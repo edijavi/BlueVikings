@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VolunteerManager.GUI.View.MainViewController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="830.0">
+         <top>
+            <GridPane prefHeight="38.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </top>
+         <left>
+            <GridPane prefHeight="550.0" prefWidth="198.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="120.0" minHeight="0.0" prefHeight="37.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="275.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="320.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="296.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnTasks" mnemonicParsing="false" text="Tasks" GridPane.rowIndex="3" />
+                  <Button fx:id="btnVolunteers" mnemonicParsing="false" text="Volunteers" GridPane.rowIndex="1" />
+                  <Button fx:id="btnGuilds" mnemonicParsing="false" text="Guilds" GridPane.rowIndex="2" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" text="Close" GridPane.rowIndex="4" />
+                  <Label text="Menu:" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+         </left>
+         <right>
+            <GridPane prefHeight="550.0" prefWidth="630.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </right>
+         <bottom>
+            <GridPane prefHeight="12.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
