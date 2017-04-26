@@ -17,6 +17,8 @@ public class tasks {
     int removeTask;
     int editTask;
     int listOfGuilds;
+    int volunteers;
+    private tasks members;
     
 public tasks (int id, String name){
     this.id = id;
@@ -24,7 +26,6 @@ public tasks (int id, String name){
 }
 public void name(String name) {
     this.name = name;
-    
 }
 public int getId(){
     return id;
@@ -34,6 +35,13 @@ public String getName() {
 }
 public tasks guilds() {
     return guilds;
+}
+public int volunteers () {
+    return volunteers;
+}
+public String members (String name) {
+    this.members = members;
+        return null;
 }
 }
 
