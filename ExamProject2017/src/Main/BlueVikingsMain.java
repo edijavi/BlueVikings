@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package VolunteerManager;
+package Main;
 
 import java.io.IOException;
 import javafx.application.Application;
@@ -16,12 +16,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
+import static javafx.application.Application.launch;
 
 /**
  *
  * @author edila
  */
-public class volunteerManager extends Application {
+public class BlueVikingsMain extends Application {
     
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("GUI/View/MainView.fxml"));
