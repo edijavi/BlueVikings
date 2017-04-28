@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VolunteerManager.GUI.Controller.VolunteersController">
    <children>
       <BorderPane prefHeight="550.0" prefWidth="600.0">
          <left>
@@ -17,12 +17,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="455.0" prefWidth="330.0">
+                  <TableView fx:id="tblAllVol" prefHeight="455.0" prefWidth="330.0">
                     <columns>
-                      <TableColumn maxWidth="120.0" prefWidth="120.0" text="Firs Name" />
-                      <TableColumn maxWidth="120.0" prefWidth="120.0" text="Last Name" />
-                        <TableColumn maxWidth="97.0" minWidth="7.0" prefWidth="97.0" text="Guild" />
-                        <TableColumn prefWidth="48.0" text="Hours" />
+                      <TableColumn fx:id="colFirstName" maxWidth="120.0" prefWidth="120.0" text="Firs Name" />
+                      <TableColumn fx:id="colLastName" maxWidth="120.0" prefWidth="120.0" text="Last Name" />
+                        <TableColumn fx:id="colGuilds" maxWidth="97.0" minWidth="7.0" prefWidth="97.0" text="Guild" />
+                        <TableColumn fx:id="colHours" prefWidth="48.0" text="Hours" />
                     </columns>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" top="5.0" />
@@ -50,8 +50,8 @@
                         <Insets />
                      </GridPane.margin>
                   </Label>
-                  <ComboBox prefWidth="150.0" promptText="Guilds" GridPane.rowIndex="2" />
-                  <TextField alignment="CENTER" promptText="Search" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <ComboBox fx:id="cmbGuilds" prefWidth="150.0" promptText="Guilds" GridPane.rowIndex="2" />
+                  <TextField fx:id="txtFieldSearch" alignment="CENTER" promptText="Search" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -68,8 +68,8 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <RadioButton mnemonicParsing="false" text="First Name" />
-                        <RadioButton mnemonicParsing="false" text="Last Name" GridPane.columnIndex="1" />
+                        <RadioButton fx:id="rbtnFirstName" mnemonicParsing="false" text="First Name" />
+                        <RadioButton fx:id="rbtnLastName" mnemonicParsing="false" text="Last Name" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>
@@ -87,10 +87,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Add Volunteer" />
-                  <Button mnemonicParsing="false" text="Remove Volunteer" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="Edit Volunteer" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" text="Close" GridPane.rowIndex="3" />
+                  <Button fx:id="btnNewVol" mnemonicParsing="false" onAction="#newVolunteer" text="New Volunteer" />
+                  <Button fx:id="btnRemoveVol" mnemonicParsing="false" text="Remove Volunteer" GridPane.rowIndex="1" />
+                  <Button fx:id="btnEditVol" mnemonicParsing="false" text="Edit Volunteer" GridPane.rowIndex="2" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" text="Close" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </right>

@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VolunteerManager.GUI.Controller.TasksController">
    <children>
       <BorderPane prefHeight="550.0" prefWidth="600.0">
          <left>
@@ -14,6 +14,7 @@
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
+                  <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="200.0" minHeight="0.0" prefHeight="66.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="340.0" minHeight="0.0" prefHeight="72.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="76.0" vgrow="SOMETIMES" />
@@ -25,7 +26,8 @@
                   <Button mnemonicParsing="false" text="Add Task" GridPane.rowIndex="1" />
                   <Button mnemonicParsing="false" text="Remove Task" GridPane.rowIndex="2" />
                   <Button mnemonicParsing="false" text="Edit Task" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" text="Close" GridPane.rowIndex="4" />
+                  <Button mnemonicParsing="false" text="Close" GridPane.rowIndex="5" />
+                  <Button mnemonicParsing="false" text="Add volunteer to Task" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </left>
@@ -41,8 +43,8 @@
                <children>
                   <TableView prefHeight="414.0" prefWidth="376.0">
                     <columns>
-                      <TableColumn prefWidth="258.0" text="Name" />
-                      <TableColumn minWidth="0.0" prefWidth="98.0" text="Estimated Time" />
+                      <TableColumn maxWidth="300.0" prefWidth="280.0" text="Name" />
+                      <TableColumn maxWidth="103.0" minWidth="0.0" prefWidth="103.0" text="Estimated Time" />
                     </columns>
                      <GridPane.margin>
                         <Insets right="5.0" top="5.0" />
