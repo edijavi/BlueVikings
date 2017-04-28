@@ -62,7 +62,7 @@ public class VolunteerDataManager {
       
         try (Connection con = CM.getConnection()) {
             String sqlCommand
-                    = "DELETE FROM Volunteer WHERE VolunteerId=" + VolunteerId;
+                    = "DELETE FROM Volunteer WHERE VolunteerId=" + VolunteerId; 
             Statement stmt = con.createStatement();
             return stmt.execute(sqlCommand);
         } catch (SQLException sqle) {

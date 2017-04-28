@@ -7,21 +7,10 @@ package Main;
 
 import java.io.IOException;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import static javafx.application.Application.launch;
-import static javafx.application.Application.launch;
-import static javafx.application.Application.launch;
-import static javafx.application.Application.launch;
-import static javafx.application.Application.launch;
-import static javafx.application.Application.launch;
 import static javafx.application.Application.launch;
 
 /**
@@ -31,7 +20,7 @@ import static javafx.application.Application.launch;
 public class BlueVikingsMain extends Application {
     
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GUI/View/MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/MainView.fxml"));
         
         Scene scene = new Scene(root);
         
