@@ -41,10 +41,10 @@ public class VolunteerDataManager {
         CM = new ConnectionManager();
     }
 
-    public void addVolunteer(String firstName, String lastName, String VolunteerId, String Email, String PhoneNumber, String Addresse) {
+    public void addVolunteer(String firstName, String lastName, String VolunteerId, String Email, String PhoneNumber, String Addresse, int VolunteerHours) {
         try (Connection con = CM.getConnection()) {
             String sqlCommand
-                    = "INSERT INTO Volunteer( fristName,  lastName, VoluntterId,  Email, PhoneNumber,Addresse) VALUES(?, ?, ?,?,?,?)";
+                    = "INSERT INTO Volunteer( fristName,  lastName, VolunteerId,  Email, PhoneNumber,Addresse, VolunteerHours) VALUES(?, ?, ?,?,?,?,?)";
             PreparedStatement pstat = con.prepareStatement(sqlCommand);
             pstat.setString(1, firstName);
             pstat.setString(2, lastName);
@@ -52,17 +52,18 @@ public class VolunteerDataManager {
             pstat.setString(4, Email);
             pstat.setString(5, PhoneNumber);
             pstat.setString(6, Addresse);
+            pstat.setInt(7, VolunteerHours);
             pstat.executeUpdate();
         } catch (SQLException sqle) {
             System.err.println(sqle);
         }
     }
 
-    public boolean deleteVolunteer(int VolunteerId) {
+    public boolean deleteVolunteer(String volunteerId) {
       
         try (Connection con = CM.getConnection()) {
             String sqlCommand
-                    = "DELETE FROM Volunteer WHERE VolunteerId=" + VolunteerId; 
+                    = "DELETE FROM Volunteer WHERE VolunteerId=" + volunteerId; 
             Statement stmt = con.createStatement();
             return stmt.execute(sqlCommand);
         } catch (SQLException sqle) {
@@ -87,6 +88,7 @@ public class VolunteerDataManager {
                 volunteerString += rs.getString("Email");
                 volunteerString += rs.getString("PhoneNumber");
                 volunteerString += rs.getString("Addresse");
+                volunteerString += rs.getString("VolunteerHours");
 
                 volunteers.add(new Volunteer(
                 rs.getString("firstName"),
@@ -94,7 +96,8 @@ public class VolunteerDataManager {
                 rs.getString("VolunteerId"),
                 rs.getString("Email"),
                 rs.getString("PhoneNumber"),
-                rs.getString("Addresse")));
+                rs.getString("Addresse"),
+                rs.getInt("VolunteerHours")));
             }
             return volunteers;
 

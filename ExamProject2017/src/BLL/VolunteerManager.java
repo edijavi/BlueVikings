@@ -30,7 +30,10 @@ public VolunteerManager(){
 public ArrayList<Volunteer> getVolunteer(){
 return VDM.getVolunteer();
 }
-    
+
+public void deletevolunteer(String volunteerId){
+VDM.deleteVolunteer(volunteerId);
+}
     
     
     

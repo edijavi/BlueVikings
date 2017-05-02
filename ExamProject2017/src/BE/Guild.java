@@ -4,13 +4,13 @@ public class Guild {
 private String GuildName;
 private String GuildId;
 private String VolunteerId;
-private String TaskID;
+private int GuildHours;
 
-    public Guild(String GuildName, String GuildId, String VolunteerId, String TaskID) {
+    public Guild(String GuildName, String GuildId, String VolunteerId, int GuildHours) {
         this.GuildName = GuildName;
         this.GuildId = GuildId;
         this.VolunteerId = VolunteerId;
-        this.TaskID = TaskID;
+        this.GuildHours = GuildHours;
     }
 
 
