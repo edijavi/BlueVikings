@@ -9,7 +9,7 @@ package GUI.Model;
  *
  * @author Jesper Enemark
  */
-public class ExampleModel
+public class ManagerModel
 {
     
 }

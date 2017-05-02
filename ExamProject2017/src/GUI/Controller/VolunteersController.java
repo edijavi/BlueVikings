@@ -62,7 +62,7 @@ public class VolunteersController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     @FXML
     private void newVolunteer(ActionEvent event) throws IOException
@@ -72,5 +72,10 @@ public class VolunteersController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));
         stage.show();
+    }
+    
+    public void fillVolunteer() {
+        
+        //tblAllVol.setItems(value);
     }
 }
