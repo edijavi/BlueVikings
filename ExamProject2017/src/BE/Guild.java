@@ -2,14 +2,14 @@ package BE;
 
 public class Guild {
 private String GuildName;
-private String GuildId;
-private String VolunteerId;
+private int GuildId;
 private int GuildHours;
-
-    public Guild(String GuildName, String GuildId, String VolunteerId, int GuildHours) {
+private int ManagerId;
+    public Guild(String GuildName, int GuildId, int GuildHours, int ManagerId ) {
         this.GuildName = GuildName;
         this.GuildId = GuildId;
         this.GuildHours = GuildHours;
+        this.ManagerId = ManagerId;
     }
 
 
