@@ -19,6 +19,7 @@ import static javafx.application.Application.launch;
  */
 public class BlueVikingsMain extends Application {
     
+    @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/MainView.fxml"));
         
@@ -35,5 +36,6 @@ public class BlueVikingsMain extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
     
 }
