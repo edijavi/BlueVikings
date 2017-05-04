@@ -4,21 +4,24 @@ public class Volunteer {
 
     private String firstName;
     private String lastName;
-    private String VolunteerId;
+    private int VolunteerId;
     private String phoneNumber;
     private String Email;
     private String Address;
     private int VolunteerHours;
 
-    public Volunteer(String firstName, String lastName, String VolunteerId, String phoneNumber, String Email, String Address, int VolunteerHours) {
+    public Volunteer(String firstName, String lastName, int VolunteerId, String Email, String phoneNumber, String Address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.VolunteerId = VolunteerId;
         this.phoneNumber = phoneNumber;
         this.Email = Email;
         this.Address = Address;
-        this.VolunteerHours = VolunteerHours;
+      
 
+    }
+    public Volunteer(){
+        
     }
 
     public String getFirstName() {
@@ -37,11 +40,11 @@ public class Volunteer {
         this.lastName = lastName;
     }
 
-    public String getVolunteerId() {
+    public int getVolunteerId() {
         return VolunteerId;
     }
 
-    public void setVolunteerId(String VolunteerId) {
+    public void setVolunteerId(int VolunteerId) {
         this.VolunteerId = VolunteerId;
     }
 

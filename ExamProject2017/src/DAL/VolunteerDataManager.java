@@ -41,34 +41,41 @@ public class VolunteerDataManager {
         CM = new ConnectionManager();
     }
 
-    public void addVolunteer(String firstName, String lastName, String VolunteerId, String Email, String PhoneNumber, String Addresse, int VolunteerHours) {
+    public void addVolunteer(String firstName, String lastName, String Email, String PhoneNumber, String Address) {
+    
         try (Connection con = CM.getConnection()) {
+            
             String sqlCommand
-                    = "INSERT INTO Volunteer( fristName,  lastName, VolunteerId,  Email, PhoneNumber,Addresse, VolunteerHours) VALUES(?, ?, ?,?,?,?,?)";
+                   
+                    = " INSERT INTO Volunteer( FirstName,  LastName, Email, PhoneNumber,Address) VALUES( ?, ?,?,?,?)";
             PreparedStatement pstat = con.prepareStatement(sqlCommand);
+            
             pstat.setString(1, firstName);
             pstat.setString(2, lastName);
-            pstat.setString(3, VolunteerId);
-            pstat.setString(4, Email);
-            pstat.setString(5, PhoneNumber);
-            pstat.setString(6, Addresse);
-            pstat.setInt(7, VolunteerHours);
+            pstat.setString(3, Email);
+            pstat.setString(4, PhoneNumber);
+            pstat.setString(5, Address);
+           
             pstat.executeUpdate();
         } catch (SQLException sqle) {
             System.err.println(sqle);
         }
     }
 
-    public boolean deleteVolunteer(String volunteerId) {
+    public void deleteVolunteer(String volunteerId) {
       
         try (Connection con = CM.getConnection()) {
             String sqlCommand
-                    = "DELETE FROM Volunteer WHERE VolunteerId=" + volunteerId; 
-            Statement stmt = con.createStatement();
-            return stmt.execute(sqlCommand);
+                    = "DELETE FROM Volunteer WHERE VolunteerId=?" ; 
+             PreparedStatement pstat = con.prepareStatement(sqlCommand);
+             pstat.setString(1, volunteerId);
+             pstat.executeUpdate();
+             
+             
+           
         } catch (SQLException sqle) {
             System.err.println(sqle);
-            return false;
+           
         }
     }
 
@@ -84,20 +91,19 @@ public class VolunteerDataManager {
                 String volunteerString = "";
                 volunteerString += rs.getString("firstName");
                 volunteerString += rs.getString("lastName");
-                volunteerString += rs.getString("VolunteerId");
+                volunteerString += rs.getInt("VolunteerId");
                 volunteerString += rs.getString("Email");
                 volunteerString += rs.getString("PhoneNumber");
-                volunteerString += rs.getString("Addresse");
-                volunteerString += rs.getString("VolunteerHours");
+                volunteerString += rs.getString("Address");
+            
 
                 volunteers.add(new Volunteer(
                 rs.getString("firstName"),
                 rs.getString("lastName"),
-                rs.getString("VolunteerId"),
+                rs.getInt("VolunteerId"),
                 rs.getString("Email"),
                 rs.getString("PhoneNumber"),
-                rs.getString("Addresse"),
-                rs.getInt("VolunteerHours")));
+                rs.getString("Address")));
             }
             return volunteers;
 

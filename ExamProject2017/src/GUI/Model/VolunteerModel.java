@@ -9,6 +9,7 @@ package GUI.Model;
 import BE.Volunteer;
 import BLL.VolunteerManager;
 import java.util.ArrayList;
+import java.util.List;
 import sun.security.jca.GetInstance;
 
 
@@ -28,15 +29,25 @@ public static VolunteerModel getInstance(){
 
 }    
     
-private VolunteerModel (){
+public VolunteerModel (){
     
 }
 
-public ArrayList<Volunteer> listOfVolunteer(){
+public List<Volunteer> getlistOfVolunteer(){
  return VM.getVolunteer();
 }
-public void addVolunteer(Volunteer volunteer){
-    listOfVolunteer().add(volunteer);
+
+
+
+public void deleteVolunteer(String volunteerId){
+VM.deleteVolunteer(volunteerId);
+
+    
+}
+
+public void addVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address){
+VM.AddVolunteer(firstName, lastName, Email, phoneNumber, Address);
+    
 }
 /*
 public void deleteVolunteer(Volunteer volunteer{

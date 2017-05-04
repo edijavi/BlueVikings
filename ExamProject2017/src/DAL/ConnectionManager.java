@@ -29,7 +29,7 @@ public class ConnectionManager
     }
     
     private  void setupDataSouce(){
-     ds.setDatabaseName("BlueVikigns");
+     ds.setDatabaseName("BlueVikings");
      ds.setUser("CS2016B_9");
      ds.setPassword("CS2016B_9");
      ds.setPortNumber(1433);

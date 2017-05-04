@@ -9,7 +9,6 @@ private int GuildHours;
     public Guild(String GuildName, String GuildId, String VolunteerId, int GuildHours) {
         this.GuildName = GuildName;
         this.GuildId = GuildId;
-        this.VolunteerId = VolunteerId;
         this.GuildHours = GuildHours;
     }
 

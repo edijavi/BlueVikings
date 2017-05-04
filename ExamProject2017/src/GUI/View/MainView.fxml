@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.MainViewController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.MainViewController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="830.0">
          <top>
@@ -69,10 +73,10 @@
                   <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="296.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnTasks" mnemonicParsing="false" onAction="#pressedButton" text="Tasks" GridPane.rowIndex="3" />
-                  <Button fx:id="btnVolunteers" mnemonicParsing="false" onAction="#pressedButton" text="Volunteers" GridPane.rowIndex="1" />
-                  <Button fx:id="btnGuilds" mnemonicParsing="false" onAction="#pressedButton" text="Guilds" GridPane.rowIndex="2" />
-                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#pressedButton" text="Close" GridPane.rowIndex="4" />
+                  <Button fx:id="btnTasks" mnemonicParsing="false" text="Tasks" GridPane.rowIndex="3" />
+                  <Button fx:id="btnVolunteers" mnemonicParsing="false" onAction="#VolunterBtb" text="Volunteers" GridPane.rowIndex="1" />
+                  <Button fx:id="btnGuilds" mnemonicParsing="false" text="Guilds" GridPane.rowIndex="2" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" text="Close" GridPane.rowIndex="4" />
                   <Label text="Menu:" GridPane.valignment="CENTER" />
                </children>
             </GridPane>

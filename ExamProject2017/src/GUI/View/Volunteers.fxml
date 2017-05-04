@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VolunteerManager.GUI.Controller.VolunteersController">
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteersController">
    <children>
       <BorderPane prefHeight="550.0" prefWidth="600.0">
          <left>
@@ -17,7 +26,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView fx:id="tblAllVol" prefHeight="455.0" prefWidth="330.0">
+                  <TableView fx:id="allVolTbl" onMouseClicked="#ClickedOnVolunteer" prefHeight="455.0" prefWidth="330.0">
                     <columns>
                       <TableColumn fx:id="colFirstName" maxWidth="120.0" prefWidth="120.0" text="Firs Name" />
                       <TableColumn fx:id="colLastName" maxWidth="120.0" prefWidth="120.0" text="Last Name" />
@@ -87,8 +96,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnNewVol" mnemonicParsing="false" onAction="#newVolunteer" text="New Volunteer" />
-                  <Button fx:id="btnRemoveVol" mnemonicParsing="false" text="Remove Volunteer" GridPane.rowIndex="1" />
+                  <Button fx:id="btnNewVol" mnemonicParsing="false" onAction="#addNewVolunteerBtb" text="New Volunteer" />
+                  <Button fx:id="btnRemoveVol" mnemonicParsing="false" onAction="#removeVolunteerBtb" text="Remove Volunteer" GridPane.rowIndex="1" />
                   <Button fx:id="btnEditVol" mnemonicParsing="false" text="Edit Volunteer" GridPane.rowIndex="2" />
                   <Button fx:id="btnClose" mnemonicParsing="false" text="Close" GridPane.rowIndex="3" />
                </children>
