@@ -62,13 +62,13 @@ public class VolunteerDataManager {
         }
     }
 
-    public void deleteVolunteer(String volunteerId) {
+    public void deleteVolunteer(int volunteerId) {
       
         try (Connection con = CM.getConnection()) {
             String sqlCommand
                     = "DELETE FROM Volunteer WHERE VolunteerId=?" ; 
              PreparedStatement pstat = con.prepareStatement(sqlCommand);
-             pstat.setString(1, volunteerId);
+             pstat.setInt(1, volunteerId);
              pstat.executeUpdate();
              
              

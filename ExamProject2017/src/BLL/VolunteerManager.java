@@ -31,7 +31,7 @@ public ArrayList<Volunteer> getVolunteer(){
 return VDM.getVolunteer();
 }
 
-public void deleteVolunteer(String volunteerId){
+public void deleteVolunteer(int volunteerId){
 VDM.deleteVolunteer(volunteerId);
 }
 public void AddVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address){
@@ -39,6 +39,6 @@ public void AddVolunteer(String firstName, String lastName, String Email, String
 }
 
     
-    
+
     
 }

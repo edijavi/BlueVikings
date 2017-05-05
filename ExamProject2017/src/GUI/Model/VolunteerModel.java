@@ -39,7 +39,7 @@ public List<Volunteer> getlistOfVolunteer(){
 
 
 
-public void deleteVolunteer(String volunteerId){
+public void deleteVolunteer(int volunteerId){
 VM.deleteVolunteer(volunteerId);
 
     

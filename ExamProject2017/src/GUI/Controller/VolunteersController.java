@@ -37,7 +37,8 @@ import javafx.stage.Stage;
  *
  * @author boldi
  */
-public class VolunteersController implements Initializable {
+public class VolunteersController implements Initializable
+{
 
     @FXML
     private ComboBox<?> cmbGuilds;
@@ -63,7 +64,7 @@ public class VolunteersController implements Initializable {
     private Button btnEditVol;
     @FXML
     private Button btnClose;
-    ObservableList<Volunteer>  listOfVolunteers;
+    ObservableList<Volunteer> listOfVolunteers;
     private Volunteer volunteer;
 
     VolunteerModel vm = new VolunteerModel();
@@ -74,29 +75,35 @@ public class VolunteersController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-       showVolunteer();
-       listOfVolunteers = FXCollections.observableArrayList(vm.getlistOfVolunteer());
-       allVolTbl.setItems(listOfVolunteers);
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        showVolunteer();
+        listOfVolunteers = FXCollections.observableArrayList(vm.getlistOfVolunteer());
+        allVolTbl.setItems(listOfVolunteers);
 
     }
-    
-    public void showVolunteer(){
-     colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-     colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName")); 
-     colGuilds.setCellValueFactory(new  PropertyValueFactory<>(""));
+
+    public void showVolunteer()
+    {
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        colGuilds.setCellValueFactory(new PropertyValueFactory<>(""));
     }
 
     @FXML
-    private void addNewVolunteerBtb(ActionEvent event) throws IOException {
-        if (event.getSource() == btnNewVol) {
+    private void addNewVolunteerBtb(ActionEvent event) throws IOException
+    {
+        if (event.getSource() == btnNewVol)
+        {
             Stage stage = null;
             Parent root = null;
             stage = (Stage) btnNewVol.getScene().getWindow();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/VolunteerDetails.fxml"));
-            try {
+            try
+            {
                 root = fxmlLoader.load();
-            } catch (IOException ex) {
+            } catch (IOException ex)
+            {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
@@ -107,16 +114,20 @@ public class VolunteersController implements Initializable {
     }
 
     @FXML
-    private void removeVolunteerBtb(ActionEvent event) {
-   
+    private void removeVolunteerBtb(ActionEvent event)
+    {
+
+        vm.deleteVolunteer(allVolTbl.getSelectionModel().getSelectedItem().getVolunteerId());
+        showVolunteer();
+        listOfVolunteers = FXCollections.observableArrayList(vm.getlistOfVolunteer());
+        allVolTbl.setItems(listOfVolunteers);
+
     }
-    
-    
 
     @FXML
-    private void ClickedOnVolunteer(MouseEvent event) {
-    
+    private void ClickedOnVolunteer(MouseEvent event)
+    {
+        
     }
 
 }
-
