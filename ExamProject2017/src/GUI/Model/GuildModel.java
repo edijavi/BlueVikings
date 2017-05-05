@@ -19,5 +19,7 @@ public class GuildModel {
         return GM.getGuild();
 
     }
-
+public GuildModel (){
+    
+} 
 }

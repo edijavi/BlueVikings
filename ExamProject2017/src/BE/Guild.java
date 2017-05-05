@@ -12,6 +12,11 @@ private int ManagerId;
         this.ManagerId = ManagerId;
     }
 
+    @Override
+    public String toString() {
+        return "Guild{" + "GuildName=" + GuildName + ", GuildId=" + GuildId + ", GuildHours=" + GuildHours + ", ManagerId=" + ManagerId + '}';
+    }
+
 
 
 }

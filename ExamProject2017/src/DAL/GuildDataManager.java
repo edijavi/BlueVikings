@@ -40,7 +40,7 @@ public class GuildDataManager {
                 String guildString = "";
                 guildString += rs.getString("GuildName");
                 guildString += rs.getInt("GuildHours");
-                guildString += rs.getInt("GuidId");
+                guildString += rs.getInt("GuildId");
                 guildString += rs.getInt("ManagerId");
 
                 Guilds.add(new Guild(
