@@ -37,7 +37,6 @@ public class LogInController implements Initializable {
     @FXML
     private Button btnLogIn;
     ToggleGroup group = new ToggleGroup();
-    MainViewController con = new MainViewController();
 
     /**
      * Initializes the controller class.
@@ -81,30 +80,25 @@ public class LogInController implements Initializable {
             try
             {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/VolunteerMainView.fxml"));
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex)
+            {
+                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                Parent root = fxmlLoader.load();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException ex)
-            {
-                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }else if(rbtnAdministrator.isSelected())
-        {Stage stage = null;
-         stage = (Stage) btnLogIn.getScene().getWindow();
-            try
-            {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
-                Parent root = fxmlLoader.load();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
- 
-            } catch (IOException ex)
-            {
-                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
+    
         }
+        
     }
-}
+        
+    
+    }
+    
+    
+
+    
+
