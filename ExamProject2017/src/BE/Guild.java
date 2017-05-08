@@ -48,7 +48,7 @@ public Guild(String GuildName, int GuildId, int GuildHours, int ManagerId ) {
 
     @Override
     public String toString() {
-        return " \n " +"GuildName:" + GuildName + " \n " +"GuildId:" + GuildId +" \n " + "GuildHours:" + GuildHours +" \n " +  "ManagerId:" + ManagerId;
+        return " \n " +" \n " +"GuildName:" + GuildName + " \n " +"GuildId:" + GuildId +" \n " + "GuildHours:" + GuildHours +" \n " +  "ManagerId:" + ManagerId;
     }
 
 

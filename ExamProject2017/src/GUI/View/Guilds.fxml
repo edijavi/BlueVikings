@@ -24,11 +24,6 @@
                         <Insets left="110.0" />
                      </GridPane.margin>
                   </Label>
-                  <Label text="Menu:" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets left="135.0" />
-                     </GridPane.margin>
-                  </Label>
                   <Label text="Double click on a guild to see the details" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" />
@@ -46,14 +41,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="487.0" prefWidth="324.0">
+                  <TableView fx:id="tblGuilds" prefHeight="487.0" prefWidth="324.0">
                     <columns>
-                      <TableColumn maxWidth="174.0" prefWidth="174.0" text="Name" />
-                      <TableColumn maxWidth="112.0" prefWidth="84.0" text="Members" />
-                        <TableColumn maxWidth="113.0" prefWidth="62.0" text="Hours" />
+                      <TableColumn fx:id="colName" maxWidth="174.0" prefWidth="174.0" text="Name" />
+                      <TableColumn fx:id="colMembers" maxWidth="112.0" prefWidth="84.0" text="Members" />
+                        <TableColumn fx:id="colHours" maxWidth="113.0" prefWidth="62.0" text="Hours" />
                     </columns>
                      <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" />
+                        <Insets bottom="5.0" left="5.0" right="5.0" />
                      </GridPane.margin>
                   </TableView>
                </children>
@@ -65,18 +60,20 @@
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="428.0" minHeight="10.0" prefHeight="428.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="241.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="New guild" />
-                  <Button mnemonicParsing="false" text="Remove Guild" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="Edit Guild" GridPane.rowIndex="2" />
-                  <Button mnemonicParsing="false" text="Add member to the selected guild" GridPane.rowIndex="3" />
-                  <Button mnemonicParsing="false" text="Close" GridPane.rowIndex="4" />
+                  <Button fx:id="btnAddMember" mnemonicParsing="false" text="Add member to the selected guild" GridPane.rowIndex="1" />
+                  <TableView fx:id="tblVolunteers" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="colFirstName" prefWidth="142.0" text="First Name" />
+                      <TableColumn fx:id="colLastName" prefWidth="146.0" text="Last Name" />
+                    </columns>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </TableView>
                </children>
             </GridPane>
          </right>

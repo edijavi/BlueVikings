@@ -33,15 +33,15 @@ public class VolunteerMainViewController implements Initializable {
     @FXML
     private Button btnClose;
     @FXML
-    private ComboBox<?> cmbHours;
+    private ComboBox<String> cmbHours;
     @FXML
     private TableView<?> volunteerInGuildTbl;
     @FXML
     private TableColumn<?, ?> FstNameClm;
-    @FXML
-    private TableColumn<?, ?> LstNameClm;
     ObservableList<Guild> listOfGuilds;
     GuildModel GM = new GuildModel();
+    @FXML
+    private ComboBox<String> cmbSearch;
     
     /**
      * Initializes the controller class.
@@ -51,9 +51,23 @@ public class VolunteerMainViewController implements Initializable {
       showguilds();
       listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
       guildsTable.setItems(listOfGuilds);
+      setHoursComboItem();
+      setSearchComboItem();
       System.out.println(listOfGuilds);
     }    
     public void showguilds(){
         guildClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
     }
+    public void setSearchComboItem()
+    {
+        ObservableList<String> comboItems = FXCollections.observableArrayList("First Name","Last Name","Guilds");
+        cmbSearch.setItems(comboItems);
+    }
+     public void setHoursComboItem()
+     {
+         ObservableList<String> comboItems = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9");
+         cmbHours.setItems(comboItems);            
+     }
+
+
 }

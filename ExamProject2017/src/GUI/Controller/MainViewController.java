@@ -29,8 +29,6 @@ import javafx.stage.Stage;
 public class MainViewController implements Initializable {
 
     @FXML
-    private Button btnTasks;
-    @FXML
     private Button btnVolunteers;
     @FXML
     private Button btnGuilds;
@@ -48,7 +46,6 @@ public class MainViewController implements Initializable {
        
     }    
 
-    @FXML
     private void VolunterBtb(ActionEvent event) {
     if (event.getSource() == btnVolunteers) {
             Stage stage = null;
@@ -66,6 +63,10 @@ public class MainViewController implements Initializable {
             stage.show();
         }
     }    
+
+    @FXML
+    private void pressedButton(ActionEvent event) {
+    }
         
     }
 

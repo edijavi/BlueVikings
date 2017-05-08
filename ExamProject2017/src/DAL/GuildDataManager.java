@@ -45,8 +45,8 @@ public class GuildDataManager {
 
                 Guilds.add(new Guild(
                         rs.getString("GuildName"),
-                        rs.getInt("GuildHours"),
                         rs.getInt("GuildId"),
+                        rs.getInt("GuildHours"),
                         rs.getInt("ManagerId")
                 ));
 

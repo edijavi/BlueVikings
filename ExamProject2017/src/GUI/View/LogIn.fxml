@@ -76,7 +76,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnLogIn" layoutX="-306.0" layoutY="138.0" mnemonicParsing="false" text="LogIn" />
+                        <Button fx:id="btnLogIn" layoutX="-306.0" layoutY="138.0" mnemonicParsing="false" onAction="#logInEvent" text="LogIn" />
                      </children>
                   </GridPane>
                   <GridPane style="-fx-border-color: black; -fx-border-radius: 80;">

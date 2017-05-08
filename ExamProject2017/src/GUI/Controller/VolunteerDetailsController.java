@@ -25,8 +25,6 @@ import javafx.scene.control.Button;
 public class VolunteerDetailsController implements Initializable {
 
     @FXML
-    private TextField Guild;
-    @FXML
     private TextField Address;
     @FXML
     private TextField EmailAddress;
@@ -42,6 +40,10 @@ public class VolunteerDetailsController implements Initializable {
     private Volunteer vol;
     
     VolunteerModel vModel = new VolunteerModel();
+    @FXML
+    private Button btnClose;
+    @FXML
+    private TextField Guild;
    
     
 
@@ -67,7 +69,7 @@ public class VolunteerDetailsController implements Initializable {
     volunteer.setFirstName(firstName.getText());
     volunteer.setLastName(lastName.getText());
     volunteer.setPhoneNumber(PhoneNumber.getText());
-    //volunteer.setVolunteerId(15);
+   
    
    // VolunteerList().add(volunteer);
      vModel.addVolunteer( Address.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
@@ -97,9 +99,6 @@ public class VolunteerDetailsController implements Initializable {
     }
     public void setVolunteerAddress(){
      vol.setAddress(Address.getText());
-    }
-    public void setVolunteerId(){
-    vol.setVolunteerId(11000) ;  
     }
    
     
