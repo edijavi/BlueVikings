@@ -42,7 +42,7 @@ public class VolunteerMainViewController implements Initializable {
     private TableColumn<?, ?> LstNameClm;
     ObservableList<Guild> listOfGuilds;
     GuildModel GM = new GuildModel();
-    private Guild guild;
+    
     /**
      * Initializes the controller class.
      */
@@ -55,6 +55,5 @@ public class VolunteerMainViewController implements Initializable {
     }    
     public void showguilds(){
         guildClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
-     
     }
 }
