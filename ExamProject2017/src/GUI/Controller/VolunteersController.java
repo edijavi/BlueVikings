@@ -87,7 +87,7 @@ public class VolunteersController implements Initializable
     {
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        colGuilds.setCellValueFactory(new PropertyValueFactory<>(""));
+        
     }
 
     @FXML
