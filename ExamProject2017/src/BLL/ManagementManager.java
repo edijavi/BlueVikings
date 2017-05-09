@@ -3,22 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.Model;
+package BLL;
 
 import BE.Manager;
-import BLL.ManagementManager;
+import DAL.ManagerDataManager;
 import java.util.ArrayList;
 
 /**
  *
  * @author Jesper Enemark
  */
-public class ManagerModel
+public class ManagementManager
 {
-    ManagementManager MM1 = new ManagementManager();
-    
+
+    ManagerDataManager MDM = new ManagerDataManager();
+
     public ArrayList<Manager> getManager()
     {
-        return MM1.getManager();
+        return MDM.getManager();
     }
 }
