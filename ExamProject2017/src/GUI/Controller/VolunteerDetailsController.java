@@ -65,7 +65,7 @@ public class VolunteerDetailsController implements Initializable
 
     public void initialize(URL url, ResourceBundle rb)
     {
-
+        
     }
 
     @FXML
@@ -155,5 +155,17 @@ public class VolunteerDetailsController implements Initializable
     {
         vol.setAddress(Address.getText());
     }
-
+    public void setVolunteer(Volunteer voll)
+    {
+        vol = voll;
+    }
+   /* public void setVolunteerItems()
+    {
+        EmailAddress.setText(vol.getEmail());
+        Address.setText(vol.getAddress());
+        firstName.setText(vol.getFirstName());
+        lastName.setText(vol.getLastName());
+        PhoneNumber.setText(vol.getPhoneNumber());
+    }
+*/
 }
