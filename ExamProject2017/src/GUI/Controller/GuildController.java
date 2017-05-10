@@ -7,11 +7,15 @@ package GUI.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -36,13 +40,23 @@ public class GuildController implements Initializable {
     private TableColumn<?, ?> colFirstName;
     @FXML
     private TableColumn<?, ?> colLastName;
+    @FXML
+    private ComboBox<String> cmbSearch;
+    @FXML
+    private TextField txtFiealdSearch;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       setSearchComboItem();
+    }
+    
+    public void setSearchComboItem()
+    {
+        ObservableList<String> comboItems = FXCollections.observableArrayList("First Name","Last Name");
+        cmbSearch.setItems(comboItems);
     }    
     
 }

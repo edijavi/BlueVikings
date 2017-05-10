@@ -36,6 +36,12 @@ public class MainViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+             openItem("/GUI/View/Volunteers.fxml");
+            } catch(IOException e) {
+                System.out.println("FXML probably not found");
+                System.out.println(e);
+            }
         // TODO
     }   
     @FXML

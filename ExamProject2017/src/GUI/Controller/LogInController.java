@@ -22,6 +22,9 @@ import javafx.stage.Stage;
 import BE.Manager;
 import java.util.List;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
@@ -46,6 +49,12 @@ public class LogInController implements Initializable
     ManagerModel MM = new ManagerModel();
     @FXML
     private Label warninglbl;
+    @FXML
+    private AnchorPane anchorPane;
+    @FXML
+    private BorderPane borderPane;
+    @FXML
+    private GridPane loginGrid;
 
     /**
      * Initializes the controller class.
@@ -60,7 +69,7 @@ public class LogInController implements Initializable
             System.out.println(ma.getUsername());
             System.out.println(ma.getPassword());
         }
-
+        loginGrid.setVisible(false);
         toggleGroup();
     }
 
@@ -80,11 +89,15 @@ public class LogInController implements Initializable
     {
         if (rbtnAdministrator.isPressed())
         {
+            loginGrid.setVisible(true);
             txtFieldUserName.setDisable(false);
             pwField.setDisable(false);
+            warninglbl.setVisible(true);
 
         } else if (rbtnVolunteer.isPressed())
-        {
+        {  
+            warninglbl.setVisible(false);
+            loginGrid.setVisible(false);
             txtFieldUserName.setDisable(true);
             pwField.setDisable(true);
         }

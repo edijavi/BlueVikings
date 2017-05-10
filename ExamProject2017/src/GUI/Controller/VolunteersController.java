@@ -41,8 +41,6 @@ public class VolunteersController implements Initializable
 {
 
     @FXML
-    private ComboBox<?> cmbGuilds;
-    @FXML
     private TextField txtFieldSearch;
     @FXML
     private RadioButton rbtnFirstName;
@@ -64,12 +62,17 @@ public class VolunteersController implements Initializable
     private Button btnEditVol;
     @FXML
     private Button btnClose;
+    
     ObservableList<Volunteer> listOfVolunteers;
+    
     private Volunteer volunteer;
 
     VolunteerModel vm = new VolunteerModel();
+    
+    VolunteerDetailsController vdc = new VolunteerDetailsController();
     @FXML
     private TableView<Volunteer> allVolTbl;
+    
 
     /**
      * Initializes the controller class.
@@ -126,8 +129,46 @@ public class VolunteersController implements Initializable
 
     @FXML
     private void ClickedOnVolunteer(MouseEvent event)
-    {
+    {if(event.isPrimaryButtonDown() && event.getClickCount() == 2) 
+        {
+            Stage stage = null;
+            Parent root = null;
+            stage = (Stage) allVolTbl.getScene().getWindow();
+            try
+            {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/VolunteerDetails.fxml"));
+            
+            root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
+            } catch (IOException ex)
+            {
+                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+           
+
+        }
         
-    }
+        
+    }   
+        public void getVolunteerAddress()
+        {
+          allVolTbl.getSelectionModel().getSelectedItem().getAddress();     
+        }
+        public void getVolunteerEmail()
+        {
+        allVolTbl.getSelectionModel().getSelectedItem().getEmail();
+        }
+        public void getVolunteerFirstName()
+        {
+        allVolTbl.getSelectionModel().getSelectedItem().getFirstName();
+        }
+        public void getVolunteerLastName()
+        {
+        allVolTbl.getSelectionModel().getSelectedItem().getLastName();
+        }
 
 }
+
