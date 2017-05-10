@@ -6,11 +6,18 @@
 package GUI.Controller;
 
 import BE.Guild;
+import BE.Volunteer;
 import GUI.Model.GuildModel;
+import GUI.Model.VolunteerModel;
+import com.sun.org.apache.bcel.internal.classfile.PMGClass;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -26,63 +33,113 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author EdwinSilva
  */
-public class VolunteerMainViewController implements Initializable {
+public class VolunteerMainViewController implements Initializable
+{
 
     @FXML
     private TableView<Guild> guildsTable;
-    
+
     @FXML
     private TableColumn<String, Guild> guildClm;
     @FXML
     private Button btnClose;
     @FXML
     private ComboBox<String> cmbHours;
-    
+
     ObservableList<Guild> listOfGuilds;
-    
+
+    ObservableList<Volunteer> listOfVolunteersBasedOnGuild;
+
     GuildModel GM = new GuildModel();
-    
+
     private Guild guild;
-    
+
     @FXML
     private ComboBox<String> cmbSearch;
     @FXML
-    private TableView<?> volunteerInGuildTbl;
+    private TableView<Volunteer> volunteerInGuildTbl;
     @FXML
     private TableColumn<?, ?> FstNameClm;
+    @FXML
+    private Button savebtn;
+
+    VolunteerModel VM = new VolunteerModel();
+    @FXML
+    private TableColumn<?, ?> lstNameClm;
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-      showguilds();
-      listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
-      guildsTable.setItems(listOfGuilds);
-      setHoursComboItem();
-      setSearchComboItem();
-      System.out.println(listOfGuilds);
-      setHoursComboItem();
-      setSearchComboItem();
-      
-    }    
-    public void showguilds(){
-        guildClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
-     
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        showguilds();
+        listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
+        guildsTable.setItems(listOfGuilds);
+        setHoursComboItem();
+        setSearchComboItem();
+        System.out.println(listOfGuilds);
+        setHoursComboItem();
+        setSearchComboItem();
+        
+        
     }
+
+    public void showguilds()
+    {
+        guildClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
+
+    }
+
     public void setSearchComboItem()
     {
-        ObservableList<String> comboItems = FXCollections.observableArrayList("Search","First Name","Last Name","Guilds");
+        ObservableList<String> comboItems = FXCollections.observableArrayList("Search", "First Name", "Last Name", "Guilds");
         cmbSearch.setItems(comboItems);
         cmbSearch.getSelectionModel().selectFirst();
 
     }
-     public void setHoursComboItem()
-     {
-         ObservableList<String> comboItems = FXCollections.observableArrayList("Hours","1","2","3","4","5","6","7","8","9");
-         cmbHours.setItems(comboItems);
-         cmbHours.getSelectionModel().selectFirst();
-         
-             
-     
-     }
+
+    public void setVolunteersBasedOnGuild()
+    {
+        
+    }
+
+    public void setHoursComboItem()
+    {
+        ObservableList<String> comboItems = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
+
+        cmbHours.setItems(comboItems);
+        cmbHours.getSelectionModel().selectFirst();
+
+    }
+
+    //Taking selected item from combobox and adding into the selected guild
+    @FXML
+    private void saveHoursBtn(ActionEvent event)
+    {
+        for (Guild p : GM.listOfGuilds())
+        {
+            if (p.getGuildName().equals(guildsTable.getSelectionModel().getSelectedItem().getGuildName()))
+            {
+                int y = Integer.parseInt(cmbHours.getSelectionModel().getSelectedItem());
+                GM.UpdateHours(y, guildsTable.getSelectionModel().getSelectedItem().getGuildId());
+
+                System.out.println(GM.listOfGuilds());
+
+            }
+        }
+
+    }
+
+    @FXML
+    private void btnAction(ActionEvent event)
+    {
+        listOfVolunteersBasedOnGuild.clear();
+        FstNameClm.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+        lstNameClm.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        
+        listOfVolunteersBasedOnGuild = FXCollections.observableArrayList(VM.getVolunteerBasedOnGuild(guildsTable.getSelectionModel().getSelectedItem().getGuildName()));
+        volunteerInGuildTbl.setItems(listOfVolunteersBasedOnGuild);
+        
+    }
+
 }
