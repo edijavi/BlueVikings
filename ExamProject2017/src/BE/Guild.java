@@ -6,12 +6,15 @@ private int GuildId;
 private int GuildHours;
 private int ManagerId;
 
-public Guild(String GuildName, int GuildId, int GuildHours, int ManagerId ) {
+public Guild(String GuildName, int GuildId, int GuildHours, int ManagerId )  {
         this.GuildName = GuildName;
         this.GuildId = GuildId;
         this.GuildHours = GuildHours;
         this.ManagerId = ManagerId;
     }
+public Guild(){
+    
+}
 
     public String getGuildName() {
         return GuildName;
@@ -50,6 +53,8 @@ public Guild(String GuildName, int GuildId, int GuildHours, int ManagerId ) {
     public String toString() {
         return " \n " +" \n " +"GuildName:" + GuildName + " \n " +"GuildId:" + GuildId +" \n " + "GuildHours:" + GuildHours +" \n " +  "ManagerId:" + ManagerId;
     }
+
+
 
 
 

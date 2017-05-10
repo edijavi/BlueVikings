@@ -7,12 +7,21 @@ package GUI.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import GUI.Model.GuildVolunteerModel;
+import BE.Guild;
+import BE.Volunteer;
+import GUI.Model.GuildModel;
+import GUI.Model.VolunteerModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
+        
 /**
  * FXML Controller class
  *
@@ -21,9 +30,7 @@ import javafx.scene.control.TableView;
 public class GuildController implements Initializable {
 
     @FXML
-    private TableView<?> tblGuilds;
-    @FXML
-    private TableColumn<?, ?> colName;
+    private TableView<Guild> tblGuilds;
     @FXML
     private TableColumn<?, ?> colMembers;
     @FXML
@@ -31,18 +38,56 @@ public class GuildController implements Initializable {
     @FXML
     private Button btnAddMember;
     @FXML
-    private TableView<?> tblVolunteers;
+    private TableView<Volunteer> tblVolunteers;
     @FXML
-    private TableColumn<?, ?> colFirstName;
+    private TableColumn<?,? > GuildNameClm;
     @FXML
-    private TableColumn<?, ?> colLastName;
-
+    private TableColumn<?, ?> FirstNameClm;
+    @FXML
+    private TableColumn<?, ?> LastNameClm;
+    
+    ObservableList<Guild> listOfGuilds;
+    ObservableList<Volunteer> listOfVolunteer;
+    
+    GuildVolunteerModel GVmodel = new GuildVolunteerModel();
+    GuildModel GModel = new GuildModel();
+    VolunteerModel VModel = new VolunteerModel();
+    int GuildId;
+    int VolunteerId;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    ShowInView();
     
+    listOfVolunteer = FXCollections.observableArrayList(VModel.getlistOfVolunteer());
+    listOfGuilds = FXCollections.observableArrayList(GModel.listOfGuilds());
+    tblVolunteers.setItems(listOfVolunteer);
+    tblGuilds.setItems(listOfGuilds);
+   
+    
+    }    
+
+    @FXML
+    private void AddMemberToGuiild(ActionEvent event) {
+    GuildVolunteerModel GVmodel = new GuildVolunteerModel(); 
+    getSelectedValues();
+    GVmodel.addMemebertoGuild(VolunteerId,GuildId );
+        System.out.println("GuildId"+GuildId);
+        System.out.println("VolunteerId"+VolunteerId);
+    
+    }
+    public void ShowInView()
+    {
+    
+    GuildNameClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
+    FirstNameClm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    LastNameClm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+    
+    }
+    public void getSelectedValues(){
+    VolunteerId  = tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId();
+    GuildId =       tblGuilds.getSelectionModel().getSelectedItem().getGuildId();
+    }
 }
