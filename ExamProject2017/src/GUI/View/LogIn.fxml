@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="400.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.LogInController">
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="400.0" prefWidth="400.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.LogInController">
    <children>
       <BorderPane fx:id="borderPane" prefHeight="400.0" prefWidth="400.0">
          <center>
@@ -77,7 +85,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button fx:id="btnLogIn" layoutX="-306.0" layoutY="138.0" mnemonicParsing="false" onAction="#logInEvent" text="LogIn" />
+                        <Button fx:id="btnLogIn" layoutX="-306.0" layoutY="138.0" mnemonicParsing="false" onAction="#logInEvent" text="Login" />
                      </children>
                   </GridPane>
                   <GridPane style="-fx-border-color: black; -fx-border-radius: 80;">
