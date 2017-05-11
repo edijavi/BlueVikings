@@ -25,6 +25,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.animation.RotateTransition;
+import javafx.util.Duration;
+import javafx.animation.ParallelTransition;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
+
 
 /**
  * FXML Controller class
@@ -71,6 +77,25 @@ public class LogInController implements Initializable
         }
         loginGrid.setVisible(false);
         toggleGroup();
+        
+         TranslateTransition transition1 = new TranslateTransition(Duration.seconds(2.5), btnLogIn);
+        transition1.setToY(-20);
+        
+        
+        RotateTransition rotation = new RotateTransition(Duration.seconds(1), btnLogIn);
+        rotation.setByAngle(360);
+        
+        ParallelTransition transition = new ParallelTransition();
+        
+        transition.setOnFinished((e)->{
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(2.4), anchorPane);
+            fadeOut.setFromValue(0.0);
+            fadeOut.setToValue(1.0);
+            fadeOut.play();
+        });
+        
+        transition.play();
+        transition1.play();
     }
 
     public void toggleGroup()

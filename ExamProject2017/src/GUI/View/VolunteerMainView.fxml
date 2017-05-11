@@ -5,7 +5,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerMainViewController">
+
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerMainViewController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="600.0">
          <top>
