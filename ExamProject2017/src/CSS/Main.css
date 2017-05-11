@@ -14,11 +14,6 @@
   
 }
 
-#effect-dropshadow {
-    
-    transition-duration: 0.3s;
-}
-
 .button {
     -fx-background-color:
         linear-gradient(bee489, darkolivegreen),
@@ -32,7 +27,7 @@
 {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: darkgoldenrod;
+    -fx-text-fill: c49340;
 }
 .table-view .column-header .label 
 {
@@ -45,7 +40,6 @@
 
 .table-view
 {
-   -fx-base: beige;
    -fx-border-color: grey;
    -fx-border-width: 2;    
    -fx-background-color: white;
@@ -59,7 +53,7 @@
 
 .combo-box
 {
-    -fx-background-color: c49390;
+    -fx-background-color: c49340;
     -fx-border-color: black;
     -fx-border-width: 2;
     -fx-font-weight: bold;
@@ -69,7 +63,7 @@
     -fx-font-weight:bold;
 }
 .root {
-    -fx-background-color: white;
+    -fx-background-color:linear-gradient(to bottom, white, whitesmoke);
 }
 .menubutton-active {
     -fx-background-color: grey;
@@ -86,14 +80,14 @@
     -fx-prompt-text-fill: white;
 }
 .list-cell:filled:selected:focused:even, .list-cell:filled:selected {
-    -fx-background-color:  dab696;
+    -fx-background-color:  dab969;
     -fx-text-fill: white;
 } 
 
 .text-field {
     
   -fx-background-color: beige;
-  -fx-border-color: dab696;
+  -fx-border-color: lightgrey;
   -fx-border-width: 2;
   
 }
