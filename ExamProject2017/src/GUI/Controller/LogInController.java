@@ -88,7 +88,7 @@ public class LogInController implements Initializable
         ParallelTransition transition = new ParallelTransition();
         
         transition.setOnFinished((e)->{
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(2.4), anchorPane);
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), anchorPane);
             fadeOut.setFromValue(0.0);
             fadeOut.setToValue(1.0);
             fadeOut.play();

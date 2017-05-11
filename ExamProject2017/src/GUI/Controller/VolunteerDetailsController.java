@@ -101,7 +101,7 @@ public class VolunteerDetailsController implements Initializable
         volunteer.setPhoneNumber(PhoneNumber.getText());
 
         // VolunteerList().add(volunteer);
-        vModel.addVolunteer(Address.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
+        vModel.addVolunteer(lastName.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
                 Address.getText());
 
         
