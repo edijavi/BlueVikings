@@ -82,7 +82,7 @@ public class Volunteer {
 
     @Override
     public String toString() {
-        return "\n" + "firstName: " + firstName + "\n" + "lastName: " + lastName + "\n" + "VolunteerId: " + VolunteerId + "\n" + "Email:" + Email + "\n" + "PhoneNumber:" + phoneNumber + "\n" + "Address:" + Address + "\n" + "volunteerHours:" + VolunteerHours;
+        return "firstName: " + firstName + "\n" + "lastName: " + lastName + "\n" + "VolunteerId: " + VolunteerId + "\n" + "Email:" + Email + "\n" + "PhoneNumber:" + phoneNumber + "\n" + "Address:" + Address + "\n" + "volunteerHours:" + VolunteerHours;
 
     }
 

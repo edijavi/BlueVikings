@@ -9,6 +9,7 @@ import BE.Guild;
 import BE.Volunteer;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -57,5 +58,44 @@ public class GuildDataManager {
             System.err.println(sqle);
             return null;
         }
+    }
+    
+    public void updateGuildHours(int GuildHours, int GuildId) {
+        try (Connection con = CM.getConnection()) {
+            String sqlQuery
+                    = "UPDATE Guild SET GuildHours=? WHERE GuildId=?";
+            PreparedStatement pstmt
+                    = con.prepareStatement(sqlQuery);
+
+            pstmt.setInt(1, GuildHours);
+            pstmt.setInt(2, GuildId);
+            
+
+            pstmt.execute();
+
+        } catch (SQLException sqle) {
+            System.err.println(sqle);
+        }
+
+    }
+    public void updateStudent(
+            int id, String name, String email, int classid) {
+        try (Connection con = CM.getConnection()) {
+            String sqlQuery
+                    = "UPDATE Student SET name=?,email=?,classid=12 WHERE id=?";
+            PreparedStatement pstmt
+                    = con.prepareStatement(sqlQuery);
+
+            pstmt.setString(1, name);
+            pstmt.setString(2, email);
+            pstmt.setInt(3, classid);
+            pstmt.setInt(4, id);
+
+            pstmt.execute();
+
+        } catch (SQLException sqle) {
+            System.err.println(sqle);
+        }
+
     }
 }

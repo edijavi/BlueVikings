@@ -13,13 +13,24 @@ import java.util.List;
  *
  * @author EdwinSilva
  */
-public class GuildModel {
-    GuildManager GM = new  GuildManager();
-    public List<Guild> listOfGuilds() {
-        return GM.getGuild();
+public class GuildModel
+{
 
+    GuildManager GM = new GuildManager();
+
+    public List<Guild> listOfGuilds()
+    {
+        return GM.getGuild();
+        
     }
-public GuildModel (){
+
+    public GuildModel()
+    {
+        
+    }    
     
-} 
+    public void setGuildHours(int GuildHours, int GuildId)
+    {
+        GM.setGuildHours(GuildHours, GuildId);
+    }
 }

@@ -13,30 +13,41 @@ import java.util.ArrayList;
  *
  * @author EdwinSilva
  */
-public class VolunteerManager {
+public class VolunteerManager
+{
 
-VolunteerDataManager VDM = new VolunteerDataManager();
+    VolunteerDataManager VDM = new VolunteerDataManager();
 
-private static VolunteerManager VOLUNTEERMANAGER = new VolunteerManager();
+    private static VolunteerManager VOLUNTEERMANAGER = new VolunteerManager();
 
-public static VolunteerManager getInstance(){
-    return VOLUNTEERMANAGER;
-}
+    public static VolunteerManager getInstance()
+    {
+        return VOLUNTEERMANAGER;
+    }
 
-public VolunteerManager(){
-    
-}
+    public VolunteerManager()
+    {
 
-public ArrayList<Volunteer> getVolunteer(){
-return VDM.getVolunteer();
-}
+    }
 
-public void deleteVolunteer(int volunteerId){
-VDM.deleteVolunteer(volunteerId);
-}
-public void AddVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address){
-    VDM.addVolunteer(firstName, lastName, Email, phoneNumber, Address);
-}
+    public ArrayList<Volunteer> getVolunteer()
+    {
+        return VDM.getVolunteer();
+    }
 
-    
+    public ArrayList<Volunteer> getVolunteerBasedOnGuild(String GuildName)
+    {
+        return VDM.getVolunteerBasedOnGuild(GuildName);
+    }
+
+    public void deleteVolunteer(int volunteerId)
+    {
+        VDM.deleteVolunteer(volunteerId);
+    }
+
+    public void AddVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address)
+    {
+        VDM.addVolunteer(firstName, lastName, Email, phoneNumber, Address);
+    }
+
 }

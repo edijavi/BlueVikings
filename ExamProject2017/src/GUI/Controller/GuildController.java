@@ -83,6 +83,7 @@ public class GuildController implements Initializable {
     {
     
     GuildNameClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
+    colHours.setCellValueFactory(new PropertyValueFactory<>("GuildHours"));
     FirstNameClm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
     LastNameClm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
     
@@ -91,4 +92,6 @@ public class GuildController implements Initializable {
     VolunteerId  = tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId();
     GuildId =       tblGuilds.getSelectionModel().getSelectedItem().getGuildId();
     }
+    
+    
 }

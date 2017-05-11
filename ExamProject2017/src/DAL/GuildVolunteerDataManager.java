@@ -57,9 +57,9 @@ public class GuildVolunteerDataManager {
            
         }
         
-   public ArrayList<>     
-
+  
 }
+    
 }
 
 

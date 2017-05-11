@@ -13,23 +13,26 @@ import java.util.ArrayList;
  *
  * @author EdwinSilva
  */
-public class GuildManager {
+public class GuildManager
+{
 
-private static GuildManager GUILDMANAGER = new GuildManager();
+    private static GuildManager GUILDMANAGER = new GuildManager();
 
+    public GuildManager getInstance()
+    {
+        return GUILDMANAGER;
 
-public GuildManager getInstance(){
-    return GUILDMANAGER;
-            
-}
-GuildDataManager GDM = new GuildDataManager();
+    }
+    GuildDataManager GDM = new GuildDataManager();
 
-public ArrayList<Guild> getGuild(){
-return GDM.getGuild();
-}  
-    
-    
-    
-    
-    
+    public ArrayList<Guild> getGuild()
+    {
+        return GDM.getGuild();
+    }
+
+    public void setGuildHours(int GuildHours, int GuildId)
+    {
+        GDM.updateGuildHours(GuildHours, GuildId);
+    }
+
 }

@@ -49,6 +49,10 @@ public void addVolunteer(String firstName, String lastName, String Email, String
 VM.AddVolunteer(firstName, lastName, Email, phoneNumber, Address);
     
 }
+
+public ArrayList<Volunteer> getVolunteersBasedOnGuild(String GuildName) {
+    return VM.getVolunteerBasedOnGuild(GuildName);
+}
 /*
 public void deleteVolunteer(Volunteer volunteer{
 listOfVolunteer().remove(0).getVolunteerId()

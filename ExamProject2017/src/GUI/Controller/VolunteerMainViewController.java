@@ -60,12 +60,14 @@ public class VolunteerMainViewController implements Initializable
     private TableView<Volunteer> volunteerInGuildTbl;
     @FXML
     private TableColumn<?, ?> FstNameClm;
-    @FXML
-    private Button savebtn;
 
     VolunteerModel VM = new VolunteerModel();
     @FXML
     private TableColumn<?, ?> lstNameClm;
+    @FXML
+    private Button btnSave;
+    @FXML
+    private Button btnWork;
     /**
      * Initializes the controller class.
      */
@@ -121,23 +123,26 @@ public class VolunteerMainViewController implements Initializable
             if (p.getGuildName().equals(guildsTable.getSelectionModel().getSelectedItem().getGuildName()))
             {
                 int y = Integer.parseInt(cmbHours.getSelectionModel().getSelectedItem());
-                GM.UpdateHours(y, guildsTable.getSelectionModel().getSelectedItem().getGuildId());
+                GM.setGuildHours(y, guildsTable.getSelectionModel().getSelectedItem().getGuildId());
 
                 System.out.println(GM.listOfGuilds());
-
+                System.out.println(y + p.getGuildHours());
             }
         }
 
     }
 
+    
+
     @FXML
-    private void btnAction(ActionEvent event)
+    private void btnWorkAction(ActionEvent event)
     {
-        listOfVolunteersBasedOnGuild.clear();
-        FstNameClm.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         lstNameClm.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        FstNameClm.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         
-        listOfVolunteersBasedOnGuild = FXCollections.observableArrayList(VM.getVolunteerBasedOnGuild(guildsTable.getSelectionModel().getSelectedItem().getGuildName()));
+        
+        
+        listOfVolunteersBasedOnGuild = FXCollections.observableArrayList(VM.getVolunteersBasedOnGuild(guildsTable.getSelectionModel().getSelectedItem().getGuildName()));
         volunteerInGuildTbl.setItems(listOfVolunteersBasedOnGuild);
         
     }

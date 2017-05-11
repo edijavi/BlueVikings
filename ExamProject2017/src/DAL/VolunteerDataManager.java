@@ -125,37 +125,30 @@ public class VolunteerDataManager
         }
     }
 
-    public List<Volunteer> getVolunteerBasedOnGuild(String GuildName) 
+    public ArrayList<Volunteer> getVolunteerBasedOnGuild(String GuildName) 
     {
 
-        List<Volunteer> volunteers = new ArrayList<>();
+        ArrayList<Volunteer> volunteers = new ArrayList<>();
 
         try (Connection con = CM.getConnection())
         {
         {
             String query = 
-                        "  SELECT FirstName, LastName  "
+                       " SELECT * "
                     
-                    +   "  FROM Volunteer v "
+                    +  " FROM [Volunteer] v "
                     
-                    +   "  INNER JOIN GuildVolunteers gv ON v.VolunteerId = gv.VolunteerId  "
+                   +  " INNER JOIN [GuildVolunteers] gv ON v.VolunteerId = gv.VolunteerId "
                     
-                    +   "  INNER JOIN Guild g ON gv.GuildId = g.GuildId  "
+                    +  " INNER JOIN [Guild] g ON gv.GuildId = g.GuildId "
                     
-                    +   "  WHERE g.GuildName = '?'  ";
+                    +  " WHERE g.GuildName = ? ";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, GuildName);
-            ResultSet rs = pstmt.executeQuery(query);
+            ResultSet rs = pstmt.executeQuery();
             
             while(rs.next()){
-            String volunteerString = "";
             
-                volunteerString += rs.getString( "firstName" );
-                volunteerString += rs.getString( "lastName" );
-                volunteerString += rs.getInt( "VolunteerId" );
-                volunteerString += rs.getString(  "Email"  );
-                volunteerString += rs.getString(  "PhoneNumber"  );
-                volunteerString += rs.getString(  "Address"  );
 
                 volunteers.add(new Volunteer(
                         rs.getString(  "firstName"  ),
@@ -164,10 +157,12 @@ public class VolunteerDataManager
                         rs.getString(  "Email"  ),
                         rs.getString(  "PhoneNumber"  ),
                         rs.getString(  "Address"  )));
-                
+//                
           
         }}
+        
         return volunteers;
+           
         
         } 
                 catch (SQLException sqle)

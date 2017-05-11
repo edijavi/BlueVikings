@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerMainViewController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerMainViewController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="600.0">
          <top>
@@ -69,7 +77,7 @@
             <TableView fx:id="volunteerInGuildTbl" prefHeight="470.0" prefWidth="225.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="FstNameClm" maxWidth="200.0" prefWidth="113.0" text="First Name" />
-                  <TableColumn maxWidth="200.0" prefWidth="112.0" text="Last Name" />
+                  <TableColumn fx:id="lstNameClm" maxWidth="200.0" prefWidth="112.0" text="Last Name" />
               </columns>
                <BorderPane.margin>
                   <Insets bottom="5.0" right="5.0" />
@@ -87,7 +95,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Save" GridPane.rowIndex="1" />
+                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveHoursBtn" text="Save" GridPane.rowIndex="1" />
                   <Button fx:id="btnClose" mnemonicParsing="false" text="Close" GridPane.rowIndex="2" />
                   <GridPane>
                     <columnConstraints>
@@ -95,9 +103,11 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <ComboBox fx:id="cmbHours" prefWidth="120.0" promptText="Hours" />
+                        <Button fx:id="btnWork" mnemonicParsing="false" onAction="#btnWorkAction" text="Show Members" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children>
