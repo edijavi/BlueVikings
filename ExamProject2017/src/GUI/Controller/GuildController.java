@@ -27,6 +27,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -40,8 +41,6 @@ public class GuildController implements Initializable {
 
     @FXML
     private TableView<Guild> tblGuilds;
-    @FXML
-    private TableColumn<?, ?> colMembers;
     @FXML
     private TableColumn<?, ?> colHours;
     @FXML
@@ -63,6 +62,10 @@ public class GuildController implements Initializable {
     VolunteerModel VModel = new VolunteerModel();
     int GuildId;
     int VolunteerId;
+    @FXML
+    private TextField txtFieldSearch;
+    @FXML
+    private ComboBox<String> cmbSearch;
     /**
      * Initializes the controller class.
      */
@@ -74,7 +77,7 @@ public class GuildController implements Initializable {
     listOfGuilds = FXCollections.observableArrayList(GModel.listOfGuilds());
     tblVolunteers.setItems(listOfVolunteer);
     tblGuilds.setItems(listOfGuilds);
-   
+    setSearchComboItem();
     
     }    
 
@@ -125,6 +128,11 @@ public class GuildController implements Initializable {
 
         }
     }
-    
+  public void setSearchComboItem()
+    {
+        ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name", "Guilds");
+        cmbSearch.setItems(comboItems);
+
+    }  
     
 }

@@ -32,7 +32,7 @@
                               <Insets right="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="35.0" text="Label" GridPane.columnIndex="1" />
+                        <Label prefHeight="17.0" prefWidth="35.0" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1">

@@ -121,7 +121,7 @@ public class VolunteerMainViewController implements Initializable
     //Taking selected item from combobox and adding into the selected guild
     @FXML
     private void saveHoursBtn(ActionEvent event)
-    {
+    {   System.exit(0);
         for (Guild p : GM.listOfGuilds())
         {
             if (p.getGuildName().equals(guildsTable.getSelectionModel().getSelectedItem().getGuildName()))
@@ -133,6 +133,7 @@ public class VolunteerMainViewController implements Initializable
                 System.out.println(y + p.getGuildHours());
             }
         }
+        System.exit(0);
 
     }
 
