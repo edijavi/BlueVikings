@@ -13,6 +13,7 @@ import com.sun.org.apache.bcel.internal.classfile.PMGClass;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -68,6 +70,10 @@ public class VolunteerMainViewController implements Initializable
     private Button btnSave;
     @FXML
     private Button btnWork;
+    private Date date = new Date();
+    private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+    @FXML
+    private Label lblDate;
     /**
      * Initializes the controller class.
      */
@@ -82,6 +88,7 @@ public class VolunteerMainViewController implements Initializable
         System.out.println(listOfGuilds);
         setHoursComboItem();
         setSearchComboItem();
+        setDate();
         
         
     }
@@ -94,9 +101,8 @@ public class VolunteerMainViewController implements Initializable
 
     public void setSearchComboItem()
     {
-        ObservableList<String> comboItems = FXCollections.observableArrayList("Search", "First Name", "Last Name", "Guilds");
+        ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name", "Guilds");
         cmbSearch.setItems(comboItems);
-        cmbSearch.getSelectionModel().selectFirst();
 
     }
 
@@ -108,9 +114,7 @@ public class VolunteerMainViewController implements Initializable
     public void setHoursComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
-
         cmbHours.setItems(comboItems);
-        cmbHours.getSelectionModel().selectFirst();
 
     }
 
@@ -151,5 +155,10 @@ public class VolunteerMainViewController implements Initializable
     {
     System.exit(0);
     }
-
+public void setDate()
+{
+    int y = date.getYear()+1900;
+    int m = date.getMonth()+1;
+    lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
+}
 }

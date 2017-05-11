@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import static javafx.application.Application.launch;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -24,7 +25,7 @@ public class BlueVikingsMain extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/LogIn.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.getIcons().add(new Image("CSS/icon.png"));
         stage.setScene(scene);
         stage.show();
                

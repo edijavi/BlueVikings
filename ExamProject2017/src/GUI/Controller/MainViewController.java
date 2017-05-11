@@ -7,12 +7,14 @@ package GUI.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -30,6 +32,11 @@ public class MainViewController implements Initializable {
     private Button btnClose;
     @FXML
     private AnchorPane paneItem;
+    
+    private Date date = new Date();
+    private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+    @FXML
+    private Label lblDate;
 
     /**
      * Initializes the controller class.
@@ -42,6 +49,7 @@ public class MainViewController implements Initializable {
                 System.out.println("FXML probably not found");
                 System.out.println(e);
             }
+        setDate();
         // TODO
     }   
     @FXML
@@ -80,7 +88,12 @@ public class MainViewController implements Initializable {
         paneItem.getChildren().clear();
         paneItem.getChildren().add(itemPane);
     }
-
+public void setDate()
+{
+    int y = date.getYear()+1900;
+    int m = date.getMonth()+1;
+    lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
+}
     
 }
 

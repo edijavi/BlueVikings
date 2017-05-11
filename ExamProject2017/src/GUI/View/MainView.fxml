@@ -27,7 +27,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="78.0" text="Administrator:">
+                        <Label prefHeight="20.0" prefWidth="114.0" text="Administrator:">
                            <GridPane.margin>
                               <Insets right="5.0" />
                            </GridPane.margin>
@@ -49,7 +49,7 @@
                               <Insets right="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label text="Label" GridPane.columnIndex="1" />
+                        <Label fx:id="lblDate" text="Label" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>
