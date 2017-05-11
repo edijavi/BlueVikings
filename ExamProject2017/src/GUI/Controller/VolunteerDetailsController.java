@@ -159,6 +159,7 @@ public class VolunteerDetailsController implements Initializable
     {
         vol = voll;
     }
+  
    /* public void setVolunteerItems()
     {
         EmailAddress.setText(vol.getEmail());

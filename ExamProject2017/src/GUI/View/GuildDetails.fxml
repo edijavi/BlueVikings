@@ -5,8 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="GUI.Controller.GuildDetailsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.GuildDetailsController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="400.0">
          <center>
@@ -15,8 +14,9 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="159.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="441.0" minHeight="10.0" prefHeight="441.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="295.0" minHeight="10.0" prefHeight="126.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="509.0" minHeight="10.0" prefHeight="429.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="441.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -31,25 +31,32 @@
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <GridPane prefHeight="49.0" prefWidth="400.0" GridPane.rowIndex="2">
                           <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="201.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="199.0" />
                           </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
                            <children>
-                              <Label text="Members of:">
-                                 <GridPane.margin>
-                                    <Insets right="5.0" />
-                                 </GridPane.margin>
-                              </Label>
+                              <GridPane prefHeight="81.0" prefWidth="200.0">
+                                <columnConstraints>
+                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label text="Hours:">
+                                       <GridPane.margin>
+                                          <Insets right="10.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                 </children>
+                              </GridPane>
                               <Label text="Label" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
@@ -78,6 +85,20 @@
                               </Label>
                            </children>
                         </GridPane>
+                        <Label text="Guild Name" />
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.rowIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Button fx:id="btnRemoveMember" mnemonicParsing="false" text="Remove Member" />
+                        <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeAction" text="Close" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </children>

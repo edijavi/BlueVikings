@@ -146,5 +146,10 @@ public class VolunteerMainViewController implements Initializable
         volunteerInGuildTbl.setItems(listOfVolunteersBasedOnGuild);
         
     }
+    @FXML
+    private void closeAction (ActionEvent event)
+    {
+    System.exit(0);
+    }
 
 }

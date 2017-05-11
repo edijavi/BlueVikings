@@ -150,9 +150,8 @@ public class VolunteersController implements Initializable
            
 
         }
-        
-        
-    }   
+    }
+
         public void getVolunteerAddress()
         {
           allVolTbl.getSelectionModel().getSelectedItem().getAddress();     

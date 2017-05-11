@@ -19,9 +19,17 @@ import BE.Guild;
 import BE.Volunteer;
 import GUI.Model.GuildModel;
 import GUI.Model.VolunteerModel;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
         
 /**
  * FXML Controller class
@@ -91,6 +99,31 @@ public class GuildController implements Initializable {
     public void getSelectedValues(){
     VolunteerId  = tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId();
     GuildId =       tblGuilds.getSelectionModel().getSelectedItem().getGuildId();
+    }
+    
+    @FXML
+    private void ClickedOnGuild(MouseEvent event)
+    {if(event.isPrimaryButtonDown() && event.getClickCount() == 2) 
+        {
+            Stage stage = null;
+            Parent root = null;
+            stage = (Stage) tblGuilds.getScene().getWindow();
+            try
+            {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/GuildDetails.fxml"));
+            
+            root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            
+            } catch (IOException ex)
+            {
+                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+           
+
+        }
     }
     
     
