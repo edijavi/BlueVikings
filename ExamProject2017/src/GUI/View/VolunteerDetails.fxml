@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -44,54 +43,16 @@
                         <Label text="1." />
                         <Label layoutX="10.0" layoutY="14.0" text="2." GridPane.rowIndex="1" />
                         <Label layoutX="10.0" layoutY="39.0" text="3." GridPane.rowIndex="2" />
-                        <TextField prefHeight="25.0" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets right="5.0" />
-                           </GridPane.margin>
-                           <padding>
-                              <Insets bottom="5.0" />
-                           </padding>
-                        </TextField>
-                        <TextField prefHeight="25.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <GridPane.margin>
-                              <Insets right="5.0" />
-                           </GridPane.margin>
-                           <padding>
-                              <Insets bottom="5.0" />
-                           </padding>
-                        </TextField>
-                        <TextField prefHeight="22.0" prefWidth="162.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                           <GridPane.margin>
-                              <Insets bottom="5.0" right="5.0" />
-                           </GridPane.margin>
-                        </TextField>
+                        <TextField GridPane.columnIndex="1" />
+                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="prefGuild3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <TextField fx:id="Address" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="EmailAddress" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="firstName" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField fx:id="PhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <GridPane.margin>
-                        <Insets right="5.0" />
-                     </GridPane.margin>
-                  </TextField>
+                  <TextField fx:id="firstName" GridPane.columnIndex="1" />
+                  <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="EmailAddress" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <TextField fx:id="Address" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </right>

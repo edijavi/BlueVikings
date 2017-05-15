@@ -36,7 +36,6 @@ public class VolunteerDetailsController implements Initializable
     private TextField Address;
     @FXML
     private TextField EmailAddress;
-    @FXML
     private TextField PhoneNumber;
     @FXML
     private TextField lastName;
@@ -51,7 +50,7 @@ public class VolunteerDetailsController implements Initializable
     @FXML
     private Button btnClose;
     @FXML
-    private TextField Guild;
+    private TextField prefGuild3;
 
     public VolunteerDetailsController()
     {
