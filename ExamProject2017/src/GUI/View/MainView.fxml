@@ -62,16 +62,18 @@
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints maxHeight="120.0" minHeight="0.0" prefHeight="37.0" valignment="CENTER" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="275.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="65.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="296.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="275.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="83.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="249.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button fx:id="btnVolunteers" mnemonicParsing="false" onAction="#pressedButton" text="Volunteers" GridPane.rowIndex="1" />
                   <Button fx:id="btnGuilds" mnemonicParsing="false" onAction="#pressedButton" text="Guilds" GridPane.rowIndex="2" />
-                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#pressedButton" text="Close" GridPane.rowIndex="3" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#pressedButton" text="Close" GridPane.rowIndex="4" />
                   <Label text="Menu:" GridPane.valignment="CENTER" />
+                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutEvent" text="Log Out" GridPane.rowIndex="3" />
                </children>
             </GridPane>
          </left>
