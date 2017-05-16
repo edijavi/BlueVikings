@@ -1,6 +1,7 @@
 package BE;
 
-public class Volunteer {
+public class Volunteer
+{
 
     private String firstName;
     private String lastName;
@@ -8,83 +9,113 @@ public class Volunteer {
     private String phoneNumber;
     private String Email;
     private String Address;
+    private String additionalInfo;
     private int VolunteerHours;
 
-    public Volunteer(String firstName, String lastName, int VolunteerId, String Email, String phoneNumber, String Address) {
+    public Volunteer(String firstName, String lastName, int VolunteerId, String Email, String phoneNumber, String Address, String additionalInfo)
+    {
         this.firstName = firstName;
         this.lastName = lastName;
         this.VolunteerId = VolunteerId;
         this.phoneNumber = phoneNumber;
         this.Email = Email;
         this.Address = Address;
-      
+        this.additionalInfo = additionalInfo;
 
     }
-    public Volunteer(){
-        
+
+    public Volunteer()
+    {
+
     }
 
-    public String getFirstName() {
+    public String getAdditionalInfo()
+    {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo)
+    {
+        this.additionalInfo = additionalInfo;
+    }
+
+    
+
+    public String getFirstName()
+    {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName)
+    {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public String getLastName()
+    {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName)
+    {
         this.lastName = lastName;
     }
 
-    public int getVolunteerId() {
+    public int getVolunteerId()
+    {
         return VolunteerId;
     }
 
-    public void setVolunteerId(int VolunteerId) {
+    public void setVolunteerId(int VolunteerId)
+    {
         this.VolunteerId = VolunteerId;
     }
 
-    public String getPhoneNumber() {
+    public String getPhoneNumber()
+    {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber)
+    {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return Email;
     }
 
-    public void setEmail(String Email) {
+    public void setEmail(String Email)
+    {
         this.Email = Email;
     }
 
-    public String getAddress() {
+    public String getAddress()
+    {
         return Address;
     }
 
-    public void setAddress(String Address) {
+    public void setAddress(String Address)
+    {
         this.Address = Address;
     }
 
-    public int getVolunteerHours() {
+    public int getVolunteerHours()
+    {
         return VolunteerHours;
     }
 
-    public void setVolunteerHours(int VolunteerHours) {
+    public void setVolunteerHours(int VolunteerHours)
+    {
         this.VolunteerHours = VolunteerHours;
     }
 
     @Override
-    public String toString() {
-        return "firstName: " + firstName + "\n" + "lastName: " + lastName + "\n" + "VolunteerId: " + VolunteerId + "\n" + "Email:" + Email + "\n" + "PhoneNumber:" + phoneNumber + "\n" + "Address:" + Address + "\n" + "volunteerHours:" + VolunteerHours;
+    public String toString()
+    {
+        return "firstName: " + firstName + "\n" + "lastName: " + lastName + "\n" + "VolunteerId: " + VolunteerId + "\n" + "Email:" + Email + "\n" + "PhoneNumber:" + phoneNumber + "\n" + "Address:" + Address + "\n" + "volunteerHours:" + VolunteerHours + "/n" + "addtionalInfo" + additionalInfo;
 
     }
 
-    
 }

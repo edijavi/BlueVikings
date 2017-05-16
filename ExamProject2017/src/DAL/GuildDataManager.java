@@ -40,14 +40,14 @@ public class GuildDataManager {
 
                 String guildString = "";
                 guildString += rs.getString("GuildName");
-                guildString += rs.getInt("GuildHours");
+                guildString += rs.getFloat("GuildHours");
                 guildString += rs.getInt("GuildId");
                 guildString += rs.getInt("ManagerId");
 
                 Guilds.add(new Guild(
                         rs.getString("GuildName"),
-                        rs.getInt("GuildId"),
-                        rs.getInt("GuildHours"),
+                        rs.getInt("GuildId"), 
+                        rs.getFloat("GuildHours"),
                         rs.getInt("ManagerId")
                 ));
 
@@ -60,14 +60,14 @@ public class GuildDataManager {
         }
     }
     
-    public void updateGuildHours(int GuildHours, int GuildId) {
+    public void updateGuildHours(double GuildHours, int GuildId) {
         try (Connection con = CM.getConnection()) {
             String sqlQuery
                     = "UPDATE Guild SET GuildHours=? WHERE GuildId=?";
             PreparedStatement pstmt
                     = con.prepareStatement(sqlQuery);
 
-            pstmt.setInt(1, GuildHours);
+            pstmt.setDouble(1, GuildHours);
             pstmt.setInt(2, GuildId);
             
 

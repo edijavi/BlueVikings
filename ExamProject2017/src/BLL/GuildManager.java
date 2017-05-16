@@ -30,7 +30,7 @@ public class GuildManager
         return GDM.getGuild();
     }
 
-    public void setGuildHours(int GuildHours, int GuildId)
+    public void setGuildHours(double GuildHours, int GuildId)
     {
         GDM.updateGuildHours(GuildHours, GuildId);
     }

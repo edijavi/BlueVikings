@@ -29,7 +29,7 @@ public class GuildModel
         
     }    
     
-    public void setGuildHours(int GuildHours, int GuildId)
+    public void setGuildHours(double GuildHours, int GuildId)
     {
         GM.setGuildHours(GuildHours, GuildId);
     }

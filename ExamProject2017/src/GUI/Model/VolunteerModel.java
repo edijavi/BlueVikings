@@ -45,8 +45,8 @@ VM.deleteVolunteer(volunteerId);
     
 }
 
-public void addVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address){
-VM.AddVolunteer(firstName, lastName, Email, phoneNumber, Address);
+public void addVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address, String additionalInfo){
+VM.AddVolunteer(firstName, lastName, Email, phoneNumber, Address, additionalInfo);
     
 }
 

@@ -45,9 +45,9 @@ public class VolunteerManager
         VDM.deleteVolunteer(volunteerId);
     }
 
-    public void AddVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address)
+    public void AddVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address, String additionalInfo)
     {
-        VDM.addVolunteer(firstName, lastName, Email, phoneNumber, Address);
+        VDM.addVolunteer(firstName, lastName, Email, phoneNumber, Address, additionalInfo);
     }
 
 }

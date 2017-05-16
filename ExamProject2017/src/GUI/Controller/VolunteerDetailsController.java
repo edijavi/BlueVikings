@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 /**
@@ -49,6 +50,8 @@ public class VolunteerDetailsController implements Initializable
     VolunteerModel vModel = new VolunteerModel();
     @FXML
     private Button btnClose;
+    @FXML
+    private TextArea AddInfoTxtArea;
     @FXML
     private TextField prefGuild3;
 
@@ -98,10 +101,10 @@ public class VolunteerDetailsController implements Initializable
         volunteer.setFirstName(firstName.getText());
         volunteer.setLastName(lastName.getText());
         volunteer.setPhoneNumber(PhoneNumber.getText());
-
+        volunteer.setAdditionalInfo(AddInfoTxtArea.getText());
         // VolunteerList().add(volunteer);
         vModel.addVolunteer(firstName.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
-                Address.getText());
+                Address.getText(),AddInfoTxtArea.getText());
 
         
         Stage stage = null;

@@ -47,14 +47,14 @@ public class VolunteerDataManager
         CM = new ConnectionManager();
     }
 
-    public void addVolunteer(String firstName, String lastName, String Email, String PhoneNumber, String Address)
+    public void addVolunteer(String firstName, String lastName, String Email, String PhoneNumber, String Address, String additionalInfo)
     {
 
         try (Connection con = CM.getConnection())
         {
 
             String sqlCommand
-                    = " INSERT INTO Volunteer( FirstName,  LastName, Email, PhoneNumber, Address) VALUES(?,?,?,?,?)";
+                    = " INSERT INTO Volunteer( FirstName,  LastName, Email, PhoneNumber, Address, Additionalinfo) VALUES(?,?,?,?,?,?)";
             PreparedStatement pstat = con.prepareStatement(sqlCommand);
 
             pstat.setString(1, firstName);
@@ -62,6 +62,7 @@ public class VolunteerDataManager
             pstat.setString(3, Email);
             pstat.setString(4, PhoneNumber);
             pstat.setString(5, Address);
+            pstat.setString(6, additionalInfo);
 
             pstat.executeUpdate();
         } catch (SQLException sqle)
@@ -107,6 +108,7 @@ public class VolunteerDataManager
                 volunteerString += rs.getString("Email");
                 volunteerString += rs.getString("PhoneNumber");
                 volunteerString += rs.getString("Address");
+                volunteerString += rs.getString("Additionalinfo");
 
                 volunteers.add(new Volunteer(
                         rs.getString("firstName"),
@@ -114,7 +116,8 @@ public class VolunteerDataManager
                         rs.getInt("VolunteerId"),
                         rs.getString("Email"),
                         rs.getString("PhoneNumber"),
-                        rs.getString("Address")));
+                        rs.getString("Address"),
+                        rs.getString("additionalInfo")));
             }
             return volunteers;
 
@@ -156,6 +159,7 @@ public class VolunteerDataManager
                         rs.getInt(  "VolunteerId"  ),
                         rs.getString(  "Email"  ),
                         rs.getString(  "PhoneNumber"  ),
+                        rs.getString( "additionalInfo" ),
                         rs.getString(  "Address"  )));
 //                
           
