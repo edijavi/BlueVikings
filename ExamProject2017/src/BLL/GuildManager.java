@@ -7,6 +7,7 @@ package BLL;
 
 import BE.Guild;
 import DAL.GuildDataManager;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +26,7 @@ public class GuildManager
     }
     GuildDataManager GDM = new GuildDataManager();
 
-    public ArrayList<Guild> getGuild()
+    public ArrayList<Guild> getGuild() throws IOException
     {
         return GDM.getGuild();
     }

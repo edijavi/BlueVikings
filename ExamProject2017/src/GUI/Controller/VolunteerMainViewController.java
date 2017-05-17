@@ -89,7 +89,11 @@ public class VolunteerMainViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         showguilds();
-        listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
+        try {
+            listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
+        } catch (IOException ex) {
+            Logger.getLogger(VolunteerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         guildsTable.setItems(listOfGuilds);
         setHoursComboItem();
         setSearchComboItem();
@@ -129,7 +133,7 @@ public class VolunteerMainViewController implements Initializable
 
     //Taking selected item from combobox and adding into the selected guild
     @FXML
-    private void saveHoursBtn(ActionEvent event)
+    private void saveHoursBtn(ActionEvent event) throws IOException
     {   System.exit(0);
         for (Guild p : GM.listOfGuilds())
         {

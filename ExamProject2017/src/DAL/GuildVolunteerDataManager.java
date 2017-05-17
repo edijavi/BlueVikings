@@ -41,6 +41,7 @@ public class GuildVolunteerDataManager {
             System.err.println(sqle);
         }
     }
+    
     public void deleteVolunteerFromGuild(int volunteerId) {
       
         try (Connection con = CM.getConnection()) {

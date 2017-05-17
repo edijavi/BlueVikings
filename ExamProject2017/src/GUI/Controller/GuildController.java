@@ -74,7 +74,11 @@ public class GuildController implements Initializable {
     ShowInView();
     
     listOfVolunteer = FXCollections.observableArrayList(VModel.getlistOfVolunteer());
-    listOfGuilds = FXCollections.observableArrayList(GModel.listOfGuilds());
+        try {
+            listOfGuilds = FXCollections.observableArrayList(GModel.listOfGuilds());
+        } catch (IOException ex) {
+            Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     tblVolunteers.setItems(listOfVolunteer);
     tblGuilds.setItems(listOfGuilds);
     setSearchComboItem();

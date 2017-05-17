@@ -7,6 +7,7 @@ package GUI.Model;
 
 import BE.Guild;
 import BLL.GuildManager;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public class GuildModel
 
     GuildManager GM = new GuildManager();
 
-    public List<Guild> listOfGuilds()
+    public List<Guild> listOfGuilds() throws IOException
     {
         return GM.getGuild();
         
