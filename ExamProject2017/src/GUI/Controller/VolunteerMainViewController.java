@@ -34,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -49,8 +50,10 @@ public class VolunteerMainViewController implements Initializable
 
     @FXML
     private TableColumn<String, Guild> guildClm;
+    
     @FXML
     private Button btnClose;
+    
     @FXML
     private ComboBox<String> cmbHours;
 
@@ -64,27 +67,35 @@ public class VolunteerMainViewController implements Initializable
 
     @FXML
     private ComboBox<String> cmbSearch;
+    
     @FXML
     private TableView<Volunteer> volunteerInGuildTbl;
+    
     @FXML
     private TableColumn<?, ?> FstNameClm;
 
     VolunteerModel VM = new VolunteerModel();
+    
     @FXML
     private TableColumn<?, ?> lstNameClm;
+    
     @FXML
     private Button btnSave;
+    
     @FXML
     private Button btnWork;
+    
     private Date date = new Date();
+    
     private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+    
     @FXML
     private Label lblDate;
+    
     @FXML
     private Button btnLogOut;
-    /**
-     * Initializes the controller class.
-     */
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
@@ -142,14 +153,14 @@ public class VolunteerMainViewController implements Initializable
                 System.out.println(y + p.getGuildHours());
             }
         }
-        System.exit(0);
-
+        
     }
 
     
 
     @FXML
-    private void btnWorkAction(ActionEvent event)
+    private void btnWorkAction(MouseEvent event){
+    if(event.isPrimaryButtonDown())
     {
         lstNameClm.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         FstNameClm.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
@@ -160,34 +171,37 @@ public class VolunteerMainViewController implements Initializable
         volunteerInGuildTbl.setItems(listOfVolunteersBasedOnGuild);
         
     }
+    }
     @FXML
     private void closeAction (ActionEvent event)
     {
     System.exit(0);
     }
-public void setDate()
-{
-    int y = date.getYear()+1900;
-    int m = date.getMonth()+1;
-    lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
-}
-@FXML
-public void logOutEvent(ActionEvent event)
-{
-    Stage stage = null;
-        stage = (Stage) btnLogOut.getScene().getWindow();
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/LogIn.fxml"));
+    
+    public void setDate()
+    {
+        int y = date.getYear()+1900;
+        int m = date.getMonth()+1;
+        lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
+    }
+    
+    @FXML
+    public void logOutEvent(ActionEvent event)
+    {
+        Stage stage = null;
+            stage = (Stage) btnLogOut.getScene().getWindow();
+            try
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/LogIn.fxml"));
 
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex)
+            {
+                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-}
+    }
 }
