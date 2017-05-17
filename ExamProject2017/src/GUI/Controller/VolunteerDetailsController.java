@@ -35,19 +35,26 @@ public class VolunteerDetailsController implements Initializable
 
     @FXML
     private TextField Address;
+    
     @FXML
     private TextField EmailAddress;
+    
+    @FXML
     private TextField PhoneNumber;
+    
     @FXML
     private TextField lastName;
+    
     @FXML
     private TextField firstName;
+    
     @FXML
     private Button saveVol;
 
     private Volunteer vol;
 
     VolunteerModel vModel = new VolunteerModel();
+    
     @FXML
     private Button btnClose;
     @FXML
@@ -162,13 +169,13 @@ public class VolunteerDetailsController implements Initializable
         vol = voll;
     }
   
-   /* public void setVolunteerItems()
+    /*public void setVolunteerItems()
     {
         EmailAddress.setText(vol.getEmail());
         Address.setText(vol.getAddress());
         firstName.setText(vol.getFirstName());
         lastName.setText(vol.getLastName());
         PhoneNumber.setText(vol.getPhoneNumber());
-    }
-*/
+    }*/
+
 }

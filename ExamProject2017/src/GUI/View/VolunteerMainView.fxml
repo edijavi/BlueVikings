@@ -62,7 +62,7 @@
             </GridPane>
          </top>
          <left>
-            <TableView fx:id="guildsTable" prefHeight="470.0" prefWidth="225.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="guildsTable" onMousePressed="#btnWorkAction" prefHeight="470.0" prefWidth="225.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="guildClm" prefWidth="224.0" text="Guilds" />
               </columns>
@@ -102,11 +102,9 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="114.0" minHeight="10.0" prefHeight="114.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <ComboBox fx:id="cmbHours" prefWidth="120.0" promptText="Hours" />
-                        <Button fx:id="btnWork" mnemonicParsing="false" onAction="#btnWorkAction" text="Show Members" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutEvent" text="Log out" GridPane.rowIndex="2" />
