@@ -7,7 +7,11 @@ package BLL;
 
 import BE.Guild;
 import DAL.GuildDataManager;
+<<<<<<< Upstream, based on origin/master
 import java.io.IOException;
+=======
+import java.sql.Date;
+>>>>>>> c35b622 GuildVolunteerWork added
 import java.util.ArrayList;
 
 /**
@@ -35,5 +39,8 @@ public class GuildManager
     {
         GDM.updateGuildHours(GuildHours, GuildId);
     }
-
+    
+    public void addVolunteerWork(Date date, double Hour) {
+        GDM.addVolunteerWork(date, Hour);
+    }
 }

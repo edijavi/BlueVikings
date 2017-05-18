@@ -17,10 +17,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+<<<<<<< Upstream, based on origin/master
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+=======
+import java.sql.Date;
+>>>>>>> c35b622 GuildVolunteerWork added
 
 /**
  *
@@ -134,4 +138,26 @@ public class GuildDataManager {
         }
 
     }
+    public void addVolunteerWork(Date date, double Hour) {
+        {
+
+        try (Connection con = CM.getConnection())
+        {
+
+            String sqlCommand
+                    = " INSERT INTO GuildVolunteerWork(Date, Hours) VALUES(?,?)";
+            PreparedStatement pstat = con.prepareStatement(sqlCommand);
+
+            pstat.setDate(1, date);
+            pstat.setDouble(2, Hour);
+            
+
+            pstat.executeUpdate();
+        } catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+        }
+    }
+    }
+        
 }

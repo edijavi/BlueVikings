@@ -155,6 +155,7 @@ public class VolunteerMainViewController implements Initializable
                 System.out.println(y);
                 System.out.println(GM.listOfGuilds());
                 System.out.println(y + p.getGuildHours());
+                //GM.addVolunteerWork(lblDate.getText(), y);
             }
         }
         
@@ -175,7 +176,12 @@ public class VolunteerMainViewController implements Initializable
         volunteerInGuildTbl.setItems(listOfVolunteersBasedOnGuild);
         
     }
+<<<<<<< Upstream, based on origin/master
     }
+=======
+   
+    
+>>>>>>> c35b622 GuildVolunteerWork added
     @FXML
     private void closeAction (ActionEvent event)
     {
