@@ -5,8 +5,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="400.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.GuildDetailsController">
 
    <children>
@@ -24,10 +22,13 @@
                <children>
                   <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn maxWidth="170.0" prefWidth="170.0" text="First Name" />
-                      <TableColumn maxWidth="170.0" prefWidth="170.0" text="Last Name" />
-                        <TableColumn prefWidth="59.0" text="Hours" />
+                      <TableColumn maxWidth="170.0" prefWidth="152.0" text="First Name" />
+                      <TableColumn maxWidth="192.0" prefWidth="179.0" text="Last Name" />
+                        <TableColumn prefWidth="56.0" text="Hours" />
                     </columns>
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
                   </TableView>
                   <GridPane prefHeight="135.0" prefWidth="400.0">
                     <columnConstraints>
@@ -66,6 +67,9 @@
                                  </GridPane.margin>
                               </Label>
                            </children>
+                           <rowConstraints>
+                              <RowConstraints />
+                           </rowConstraints>
                         </GridPane>
                         <GridPane prefHeight="39.0" prefWidth="400.0" GridPane.rowIndex="1">
                           <columnConstraints>

@@ -37,13 +37,15 @@ public class MainViewController implements Initializable {
     private Button btnClose;
     @FXML
     private AnchorPane paneItem;
-    
-    private Date date = new Date();
-    private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
     @FXML
     private Label lblDate;
     @FXML
-    private Button btnLogOut;
+    private Button btnLogOut; 
+    
+    private Date date = new Date();
+    
+    private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+
 
     /**
      * Initializes the controller class.
@@ -71,6 +73,29 @@ public class MainViewController implements Initializable {
                     System.out.println("FXML probably not found");
                     System.out.println(e);
                 }
+                
+                break;
+            case "btnStatistics":
+                try {
+                    openItem("/GUI/View/Statistics.fxml");
+                } catch(IOException e) {
+                    System.out.println("FXML probably not found");
+                    System.out.println(e);
+                }
+                break;
+            case "btnLogOut":
+                Stage stage = null;
+                stage = (Stage) btnLogOut.getScene().getWindow();
+                try{
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/LogIn.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    } catch (IOException ex)
+                    {
+                        Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 break;
                 
             case "btnGuilds":

@@ -169,13 +169,13 @@ public class VolunteerDetailsController implements Initializable
         vol = voll;
     }
   
-    /*public void setVolunteerItems()
+    public void setVolunteerItems()
     {
         EmailAddress.setText(vol.getEmail());
         Address.setText(vol.getAddress());
         firstName.setText(vol.getFirstName());
         lastName.setText(vol.getLastName());
         PhoneNumber.setText(vol.getPhoneNumber());
-    }*/
+    }
 
 }
