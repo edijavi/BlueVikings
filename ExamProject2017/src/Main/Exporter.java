@@ -85,7 +85,7 @@ String date = Date.valueOf(LocalDate.MAX).toString();
                 rowNo++;
             }
 
-            String file = "/Users/EdwinSilva/Desktop/GithubProjects/BlueVikings/ExamProject2017/MyFirstExcel.xls";
+            String file = "/Users/Jesper Enemark/Documents/NetBeansProjects/BlueVikings/ExamProject2017/MyFirstExcel.xls";
             try {
                 FileOutputStream fos = new FileOutputStream(file);
                 workBook.write(fos);

@@ -74,9 +74,11 @@ public class GuildController implements Initializable {
     ShowInView();
     
     listOfVolunteer = FXCollections.observableArrayList(VModel.getlistOfVolunteer());
-        try {
+        try
+        {
             listOfGuilds = FXCollections.observableArrayList(GModel.listOfGuilds());
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
         }
     tblVolunteers.setItems(listOfVolunteer);

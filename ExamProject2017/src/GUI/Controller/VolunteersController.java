@@ -51,8 +51,6 @@ public class VolunteersController implements Initializable
     @FXML
     private TableColumn<?, ?> colLastName;
     @FXML
-    private TableColumn<?, ?> colGuilds;
-    @FXML
     private TableColumn<?, ?> colHours;
     @FXML
     private Button btnNewVol;
@@ -60,8 +58,6 @@ public class VolunteersController implements Initializable
     private Button btnRemoveVol;
     @FXML
     private Button btnEditVol;
-    @FXML
-    private Button btnClose;
     
     ObservableList<Volunteer> listOfVolunteers;
     

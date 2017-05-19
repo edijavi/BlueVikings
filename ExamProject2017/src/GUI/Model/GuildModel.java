@@ -7,6 +7,7 @@ package GUI.Model;
 
 import BE.Guild;
 import BLL.GuildManager;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class GuildModel
     
     GuildManager GM = new GuildManager();
     
-    public List<Guild> listOfGuilds()
+    public List<Guild> listOfGuilds() throws IOException
     {
         return GM.getGuild();
         
@@ -35,8 +36,9 @@ public class GuildModel
         GM.setGuildHours(GuildHours, GuildId);
     }
 
-    public void addVolunteerWork(Date date, double Hour)
+    public void addVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId)
     {
-        GM.addVolunteerWork(date, Hour);
+        GM.addVolunteerWork(date, Hour, GuildId, VolunteerId);
     }
+   
 }

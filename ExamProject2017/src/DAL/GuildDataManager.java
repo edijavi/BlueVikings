@@ -17,14 +17,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-<<<<<<< Upstream, based on origin/master
+
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-=======
+
 import java.sql.Date;
->>>>>>> c35b622 GuildVolunteerWork added
+import org.apache.xmlbeans.impl.xb.xmlconfig.Extensionconfig;
+
 
 /**
  *
@@ -61,36 +62,36 @@ public class GuildDataManager {
                         rs.getFloat("GuildHours"),
                         rs.getInt("ManagerId")
                 ));
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet spreadsheet = workbook
-                .createSheet("Guild db");
-        XSSFRow row = spreadsheet.createRow(1);
-        XSSFCell cell;
-        cell = row.createCell(1);
-        cell.setCellValue(" Guild Name");
-        cell = row.createCell(2);
-        cell.setCellValue("Guild Id");
-        cell = row.createCell(3);
-        cell.setCellValue("Guild Hours");
-        int i=2;
-      while(rs.next())
-      {
-         row=spreadsheet.createRow(i);
-         cell=row.createCell(1);
-         cell.setCellValue(rs.getString("GuildName"));
-         cell=row.createCell(2);
-         cell.setCellValue(rs.getInt("GuildId"));
-         cell=row.createCell(3);
-         cell.setCellValue(rs.getFloat("GuildHours"));
-        
-         i++;
-      }
-        FileOutputStream out = new FileOutputStream(
-      new File("exceldatabase.xlsx"));
-      workbook.write(out);
-      out.close();
-      System.out.println(
-      "exceldatabase.xlsx written successfully");
+//        XSSFWorkbook workbook = new XSSFWorkbook();
+//        XSSFSheet spreadsheet = workbook
+//                .createSheet("Guild db");
+//        XSSFRow row = spreadsheet.createRow(1);
+//        XSSFCell cell;
+//        cell = row.createCell(1);
+//        cell.setCellValue(" Guild Name");
+//        cell = row.createCell(2);
+//        cell.setCellValue("Guild Id");
+//        cell = row.createCell(3);
+//        cell.setCellValue("Guild Hours");
+//        int i=2;
+//      while(rs.next())
+//      {
+//         row=spreadsheet.createRow(i);
+//         cell=row.createCell(1);
+//         cell.setCellValue(rs.getString("GuildName"));
+//         cell=row.createCell(2);
+//         cell.setCellValue(rs.getInt("GuildId"));
+//         cell=row.createCell(3);
+//         cell.setCellValue(rs.getFloat("GuildHours"));
+//        
+//         i++;
+//      }
+//        FileOutputStream out = new FileOutputStream(
+//      new File("exceldatabase.xlsx"));
+//      workbook.write(out);
+//      out.close();
+//      System.out.println(
+//      "exceldatabase.xlsx written successfully");
             }
             return Guilds;
 
@@ -138,19 +139,20 @@ public class GuildDataManager {
         }
 
     }
-    public void addVolunteerWork(Date date, double Hour) {
+    public void addVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId) {
         {
 
         try (Connection con = CM.getConnection())
         {
 
             String sqlCommand
-                    = " INSERT INTO GuildVolunteerWork(Date, Hours) VALUES(?,?)";
+                    = " INSERT INTO GuildVolunteerWork(Date, Hours, GuildId, VolunteerId) VALUES(?,?,?,?)";
             PreparedStatement pstat = con.prepareStatement(sqlCommand);
 
             pstat.setDate(1, date);
             pstat.setDouble(2, Hour);
-            
+            pstat.setInt(3, GuildId);
+            pstat.setInt(4, VolunteerId);
 
             pstat.executeUpdate();
         } catch (SQLException sqle)
@@ -159,5 +161,7 @@ public class GuildDataManager {
         }
     }
     }
+    
+    
         
 }

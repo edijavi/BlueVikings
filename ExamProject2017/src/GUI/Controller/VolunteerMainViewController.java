@@ -12,8 +12,10 @@ import GUI.Model.VolunteerModel;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
+import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -62,6 +64,7 @@ public class VolunteerMainViewController implements Initializable
     ObservableList<Volunteer> listOfVolunteersBasedOnGuild;
 
     GuildModel GM = new GuildModel();
+    VolunteerModel VM = new VolunteerModel();
 
     private Guild guild;
 
@@ -74,7 +77,7 @@ public class VolunteerMainViewController implements Initializable
     @FXML
     private TableColumn<?, ?> FstNameClm;
 
-    VolunteerModel VM = new VolunteerModel();
+    
     
     @FXML
     private TableColumn<?, ?> lstNameClm;
@@ -82,10 +85,9 @@ public class VolunteerMainViewController implements Initializable
     @FXML
     private Button btnSave;
     
-    @FXML
-    private Button btnWork;
     
-    private Date date = new Date();
+    java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
+    
     
     private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
     
@@ -100,9 +102,11 @@ public class VolunteerMainViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         showguilds();
-        try {
+        try
+        {
             listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(VolunteerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
         guildsTable.setItems(listOfGuilds);
@@ -111,7 +115,7 @@ public class VolunteerMainViewController implements Initializable
         System.out.println(listOfGuilds);
         setHoursComboItem();
         setSearchComboItem();
-        setDate();
+        //setDate();
         
         
     }
@@ -145,17 +149,19 @@ public class VolunteerMainViewController implements Initializable
     //Taking selected item from combobox and adding into the selected guild
     @FXML
     private void saveHoursBtn(ActionEvent event) throws IOException
-    {   System.exit(0);
+    {   
         for (Guild p : GM.listOfGuilds())
         {
             if (p.getGuildName().equals(guildsTable.getSelectionModel().getSelectedItem().getGuildName()))
             {
                 double y = Double.parseDouble(cmbHours.getSelectionModel().getSelectedItem());
                 GM.setGuildHours(y + p.getGuildHours(), guildsTable.getSelectionModel().getSelectedItem().getGuildId());
+                int CurrentVolunteer = volunteerInGuildTbl.getSelectionModel().getSelectedItem().getVolunteerId();
                 System.out.println(y);
                 System.out.println(GM.listOfGuilds());
                 System.out.println(y + p.getGuildHours());
-                //GM.addVolunteerWork(lblDate.getText(), y);
+                GM.addVolunteerWork(timeNow, y, p.getGuildId(), CurrentVolunteer);
+                
             }
         }
         
@@ -176,24 +182,24 @@ public class VolunteerMainViewController implements Initializable
         volunteerInGuildTbl.setItems(listOfVolunteersBasedOnGuild);
         
     }
-<<<<<<< Upstream, based on origin/master
+
     }
-=======
+
    
     
->>>>>>> c35b622 GuildVolunteerWork added
+
     @FXML
     private void closeAction (ActionEvent event)
     {
     System.exit(0);
     }
     
-    public void setDate()
+    /*public void setDate()
     {
         int y = date.getYear()+1900;
         int m = date.getMonth()+1;
         lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
-    }
+    }*/
     
     @FXML
     public void logOutEvent(ActionEvent event)
