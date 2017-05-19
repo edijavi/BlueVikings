@@ -7,18 +7,21 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 public class Exporter {
-
+String date = Date.valueOf(LocalDate.MAX).toString();
     private SQLServerDataSource ds
             = new SQLServerDataSource();
 
@@ -63,13 +66,14 @@ public class Exporter {
     }
 
     public void doExportGuildInfo(ArrayList<Object[]> dataList) {
-        if (dataList != null && !dataList.isEmpty()) {
+               if (dataList != null && !dataList.isEmpty()) {
             HSSFWorkbook workBook = new HSSFWorkbook();
-            HSSFSheet sheet = workBook.createSheet();
+            HSSFSheet sheet = workBook.createSheet("Guild");
             HSSFRow headingRow = sheet.createRow(0);
             headingRow.createCell((short) 0).setCellValue("GuildId");
             headingRow.createCell((short) 1).setCellValue("GuildName");
             headingRow.createCell((short) 2).setCellValue("GuildHours");
+            
             ;
             short rowNo = 1;
             for (Object[] objects : dataList) {
@@ -105,11 +109,10 @@ public class Exporter {
                 String query
                         = " SELECT v.VolunteerId, v.FirstName, g.GuildName "
                         + " FROM [Volunteer] v"
-                        
+                        +"ORDER BY g.GuildName "
                         + " INNER JOIN [GuildVolunteers] gv ON v.VolunteerId = gv.VolunteerId "
                         + " INNER JOIN [Guild] g ON gv.GuildId = g.GuildId "
                         +"where g.GuildId = gv.GuildId "
-                        +"ORDER BY g.GuildName"
                   ;
                 PreparedStatement pstmt = con.prepareStatement(query);
 
@@ -192,10 +195,10 @@ public class Exporter {
 
     public static void main(String[] args) throws SQLServerException {
         Exporter exporter = new Exporter();
-        //ArrayList<Object[]> dataList = exporter.getTableDataForGuild();
-       ArrayList<Object[]> dataList = exporter.getVolunteerBasedOnGuild();
+//        ArrayList<Object[]> dataList = exporter.getTableDataForGuild();
+       ArrayList<Object[]> dataList = exporter.getTableDataForGuild();
         if (dataList != null && dataList.size() > 0) {
-            exporter.doExportGuildVolunteerInfo(dataList);
+            exporter.doExportGuildInfo(dataList);
         } else {
             System.out.println("There is no data available in the table to export");
         }

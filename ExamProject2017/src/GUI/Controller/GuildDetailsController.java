@@ -40,7 +40,8 @@ public class GuildDetailsController implements Initializable
     {
         // TODO
     }
-public void closeAction(ActionEvent event)
+    @FXML
+    public void closeAction(ActionEvent event)
 {
 Stage stage = null;
         stage = (Stage) btnClose.getScene().getWindow();

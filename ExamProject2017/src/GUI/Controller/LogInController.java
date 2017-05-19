@@ -116,6 +116,7 @@ public class LogInController implements Initializable
         {
             loginGrid.setVisible(true);
             txtFieldUserName.setDisable(false);
+            pwField.setDisable(false);
 
         } else if (rbtnVolunteer.isPressed())
         {  
