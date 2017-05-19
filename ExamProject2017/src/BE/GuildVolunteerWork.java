@@ -19,7 +19,7 @@ public class GuildVolunteerWork
     private Date date;
     private double Hour;
 
-    public GuildVolunteerWork(int GuildId, int VolunteerId, Date date, int Hour)
+    public GuildVolunteerWork(int GuildId, int VolunteerId, Date date, double Hour)
     {
         this.GuildId = GuildId;
         this.VolunteerId = VolunteerId;
@@ -63,7 +63,7 @@ public class GuildVolunteerWork
         return Hour;
     }
 
-    public void setHour(int Hour)
+    public void setHour(double Hour)
     {
         this.Hour = Hour;
     }

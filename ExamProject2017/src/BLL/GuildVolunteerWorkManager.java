@@ -11,6 +11,7 @@ import DAL.GuildDataManager;
 import DAL.GuildVolunteerWorkDataManager;
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -21,15 +22,15 @@ public class GuildVolunteerWorkManager {
  
 GuildVolunteerWorkDataManager GVWDM = new GuildVolunteerWorkDataManager();
 
-    public ArrayList<GuildVolunteerWork> getWorkTable() throws IOException
+    public ArrayList<GuildVolunteerWork> getWorkTable(Date startDate, Date endDate) throws IOException, SQLException
     {
-        return GVWDM.getWorkTable();
+        return GVWDM.getGuildWorkHoursBasedOnDate(startDate, endDate);
     }
 
  
     
-    public void AddWorkWithDate(Date date, double Hour) {
-        GVWDM.AddWorkWithDate(date, Hour);
+    public void AddWorkWithDate(Date date, double Hour, int GuildId, int VolunteerId) {
+        GVWDM.addVolunteerWork(date, Hour, GuildId, VolunteerId);
     }
 
     

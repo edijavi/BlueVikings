@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import BE.GuildVolunteerWork;
 import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  *
@@ -20,14 +21,14 @@ public class GuildVolunteerWorkModel {
 GuildVolunteerWorkManager GVWM = new GuildVolunteerWorkManager();
 
 
-public ArrayList<GuildVolunteerWork> GetGuildVolunteerWork () throws IOException {
-return GVWM.getWorkTable();
+public ArrayList<GuildVolunteerWork> GetGuildVolunteerWork (Date startDate, Date endDate) throws IOException, SQLException {
+return GVWM.getWorkTable(startDate, endDate);
 }
 
 
 
-public void addWorkWithDate(Date date, double Hour){
-GVWM.AddWorkWithDate(date, Hour);
+public void addWorkWithDate(Date date, double Hour, int GuildId, int VolunteerId){
+GVWM.AddWorkWithDate(date, Hour, GuildId, VolunteerId);
 }
 
     
