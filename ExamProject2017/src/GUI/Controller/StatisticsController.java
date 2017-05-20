@@ -5,8 +5,21 @@
  */
 package GUI.Controller;
 
+import BE.Guild;
+import BE.GuildVolunteerWork;
+import GUI.Model.GuildModel;
+import GUI.Model.GuildVolunteerWorkModel;
+import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -14,6 +27,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -25,7 +40,7 @@ public class StatisticsController implements Initializable {
     @FXML
     private Button btnDownload;
     @FXML
-    private ComboBox<?> cmbStatistics;
+    private ComboBox<GuildVolunteerWork> cmbStatistics;
     @FXML
     private DatePicker dpStartDate;
     @FXML
@@ -33,18 +48,64 @@ public class StatisticsController implements Initializable {
     @FXML
     private TableColumn<?, ?> colGuilds;
     @FXML
-    private TableView<?> tblStatistics;
+    private TableView<GuildVolunteerWork> tblStatistics;
     @FXML
     private TableColumn<?, ?> colDate;
     @FXML
     private TableColumn<?, ?> colHours;
+    @FXML
+    private TableView<Guild> GuildTbl;
+    GuildModel GM = new GuildModel();
+    GuildVolunteerWorkModel GVWModel = new GuildVolunteerWorkModel();
+    ObservableList<Guild> listOfGuilds;
+    ObservableList<GuildVolunteerWork> listOfGuildVolunteerWork;
+    Guild p;
+    double Hour;
+    Date Date;
+    int VolunteerId;
+    int GuildId;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+
+        try {
+            ShowGuildInView();
+        } catch (IOException ex) {
+            Logger.getLogger(StatisticsController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @FXML
+    private void DownloadBtn(ActionEvent event) {
+    }
+
+    public void ShowGuildInView() throws IOException {
+        listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
+        GuildTbl.setItems(listOfGuilds);
+        colGuilds.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
+
+    }
+
+    public void ShowDateAndHours(Date Date, double Hour, int GuildId, int VolunteerId) throws IOException, SQLException {
+        listOfGuildVolunteerWork = FXCollections.observableArrayList(GVWModel.GetGuildVolunteerWork(Date, Hour, GuildId, VolunteerId));
+
+        for (Guild p : GM.listOfGuilds()) {
+            if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName())) {
+
+                tblStatistics.setItems(listOfGuildVolunteerWork);
+                colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
+                colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
+
+            }
+        }
+    }
+
+    @FXML
+    private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException {
+        ShowDateAndHours(Date, Hour, GuildId, VolunteerId);
+    }
 }

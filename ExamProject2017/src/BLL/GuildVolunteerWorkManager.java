@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.scene.control.DatePicker;
 
 /**
  *
@@ -22,15 +23,15 @@ public class GuildVolunteerWorkManager {
  
 GuildVolunteerWorkDataManager GVWDM = new GuildVolunteerWorkDataManager();
 
-    public ArrayList<GuildVolunteerWork> getWorkTable(Date startDate, Date endDate) throws IOException, SQLException
+    public ArrayList<GuildVolunteerWork> getWorkTable(Date Date, double Hour, int GuildId, int VolunteerId) throws IOException, SQLException
     {
-        return GVWDM.getGuildWorkHoursBasedOnDate(startDate, endDate);
+        return GVWDM.getGuildWorkHoursBasedOnDate(GuildId, VolunteerId, Date, GuildId);
     }
 
  
     
-    public void AddWorkWithDate(Date date, double Hour, int GuildId, int VolunteerId) {
-        GVWDM.addVolunteerWork(date, Hour, GuildId, VolunteerId);
+    public void AddWorkWithDate(Date Date, double Hour, int GuildId, int VolunteerId) {
+        GVWDM.addVolunteerWork(Date, Hour, GuildId, VolunteerId);
     }
 
     

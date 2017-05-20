@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javafx.scene.control.DatePicker;
 
 /**
  *
@@ -25,13 +26,14 @@ public class GuildVolunteerWorkDataManager {
     
 ConnectionManager CM;
 
-
-    public ArrayList getGuildWorkHoursBasedOnDate(Date startDate, Date endDate) throws SQLServerException, SQLException{
+DatePicker startDate;
+DatePicker endDate;
+    public ArrayList getGuildWorkHoursBasedOnDate(int GuildId, int VolunteerId, Date Date, double Hour) throws SQLServerException, SQLException{
      try (Connection con = CM.getConnection()) {
             String query = 
-                    "SELECT date, Hours FROM [GuildVolunteerWork]"
+                    "SELECT Date, Hours FROM [GuildVolunteerWork]"
                     +"WHERE GuildId =?"
-                    +"And between Date  =? And =?";
+                    +"And between Date" + startDate +  "AND" + endDate + " ";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -53,7 +55,7 @@ ConnectionManager CM;
      return GuildWorkTable;
      }
 }
-    public void addVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId) {
+    public void addVolunteerWork(Date Date, double Hour, int GuildId, int VolunteerId) {
         {
 
         try (Connection con = CM.getConnection())
@@ -63,9 +65,9 @@ ConnectionManager CM;
                     = " INSERT INTO GuildVolunteerWork(Date, Hours, GuildId, VolunteerId) VALUES(?,?,?,?)";
             PreparedStatement pstat = con.prepareStatement(sqlCommand);
 
-            pstat.setDate(1, date);
+            pstat.setDate(1, Date);
             pstat.setDouble(2, Hour);
-            pstat.setInt(3, GuildId);
+            pstat.setDouble(3, GuildId);
             pstat.setInt(4, VolunteerId);
 
             pstat.executeUpdate();

@@ -16,14 +16,14 @@ public class GuildVolunteerWork
 
     private int GuildId;
     private int VolunteerId;
-    private Date date;
+    private Date Date;
     private double Hour;
 
-    public GuildVolunteerWork(int GuildId, int VolunteerId, Date date, double Hour)
+    public GuildVolunteerWork(int GuildId, int VolunteerId, Date Date, double Hour)
     {
         this.GuildId = GuildId;
         this.VolunteerId = VolunteerId;
-        this.date = date;
+        this.Date = Date;
         this.Hour = Hour;
 
     }
@@ -50,12 +50,12 @@ public class GuildVolunteerWork
 
     public Date getDate()
     {
-        return date;
+        return Date;
     }
 
-    public void setDate(Date date)
+    public void setDate(Date Date)
     {
-        this.date = date;
+        this.Date = Date;
     }
 
     public double getHour()
