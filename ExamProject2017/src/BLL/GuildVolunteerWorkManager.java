@@ -23,9 +23,9 @@ public class GuildVolunteerWorkManager {
  
 GuildVolunteerWorkDataManager GVWDM = new GuildVolunteerWorkDataManager();
 
-    public ArrayList<GuildVolunteerWork> getWorkTable(Date Date, double Hour, int GuildId, int VolunteerId) throws IOException, SQLException
+    public ArrayList<GuildVolunteerWork> getWorkTable(String startDate, String endDate, int GuildId) throws IOException, SQLException
     {
-        return GVWDM.getGuildWorkHoursBasedOnDate(GuildId, VolunteerId, Date, GuildId);
+        return GVWDM.getGuildWorkHoursBasedOnDate(startDate, endDate, GuildId);
     }
 
  

@@ -16,16 +16,21 @@ public class GuildVolunteerWork
 
     private int GuildId;
     private int VolunteerId;
-    private Date Date;
+    private Date date;
     private double Hour;
 
-    public GuildVolunteerWork(int GuildId, int VolunteerId, Date Date, double Hour)
+    public GuildVolunteerWork(int GuildId, int VolunteerId, Date date, double Hour)
     {
         this.GuildId = GuildId;
         this.VolunteerId = VolunteerId;
-        this.Date = Date;
+        this.date = date;
         this.Hour = Hour;
 
+    }
+
+    public GuildVolunteerWork()
+    {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getGuildId()
@@ -50,12 +55,12 @@ public class GuildVolunteerWork
 
     public Date getDate()
     {
-        return Date;
+        return date;
     }
 
-    public void setDate(Date Date)
+    public void setDate(Date date)
     {
-        this.Date = Date;
+        this.date = date;
     }
 
     public double getHour()
@@ -66,6 +71,12 @@ public class GuildVolunteerWork
     public void setHour(double Hour)
     {
         this.Hour = Hour;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "GuildVolunteerWork{" + "GuildId=" + GuildId + ", VolunteerId=" + VolunteerId + ", date=" + date + ", Hour=" + Hour + '}';
     }
 
 }

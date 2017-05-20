@@ -119,26 +119,7 @@ public class GuildDataManager {
         }
 
     }
-    public void updateStudent(
-            int id, String name, String email, int classid) {
-        try (Connection con = CM.getConnection()) {
-            String sqlQuery
-                    = "UPDATE Student SET name=?,email=?,classid=12 WHERE id=?";
-            PreparedStatement pstmt
-                    = con.prepareStatement(sqlQuery);
-
-            pstmt.setString(1, name);
-            pstmt.setString(2, email);
-            pstmt.setInt(3, classid);
-            pstmt.setInt(4, id);
-
-            pstmt.execute();
-
-        } catch (SQLException sqle) {
-            System.err.println(sqle);
-        }
-
-    }
+    
     public void addVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId) {
         {
 

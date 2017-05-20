@@ -16,66 +16,79 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import javafx.scene.control.DatePicker;
 
 /**
  *
  * @author EdwinSilva
  */
-public class GuildVolunteerWorkDataManager {
-    
-ConnectionManager CM;
+public class GuildVolunteerWorkDataManager
+{
 
-DatePicker startDate;
-DatePicker endDate;
-    public ArrayList getGuildWorkHoursBasedOnDate(int GuildId, int VolunteerId, Date Date, double Hour) throws SQLServerException, SQLException{
-     try (Connection con = CM.getConnection()) {
-            String query = 
-                    "SELECT Date, Hours FROM [GuildVolunteerWork]"
-                    +"WHERE GuildId =?"
-                    +"And between Date" + startDate +  "AND" + endDate + " ";
+  
+    ConnectionManager CM;
+
+    public GuildVolunteerWorkDataManager()
+    {
+        CM = new ConnectionManager();
+    }
+
+    public ArrayList<GuildVolunteerWork> getGuildWorkHoursBasedOnDate(String startDate, String endDate, int GuildId) throws SQLServerException, SQLException
+    {
+        try (Connection con = CM.getConnection())
+        {
+            String query = "SELECT * FROM GuildVolunteerWork WHERE GuildId = ? AND Date between " +startDate+ " AND " + endDate + "";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
             ArrayList<GuildVolunteerWork> GuildWorkTable = new ArrayList<>();
-            while (rs.next()) {
+            while (rs.next())
+            {
 
                 String WorkString = "";
-                WorkString += rs.getDate("Date");
-                WorkString += rs.getDouble("Hour");
                 WorkString += rs.getInt("GuildId");
                 WorkString += rs.getInt("VolunteerId");
+                WorkString += rs.getDate("Date");
+                WorkString += rs.getDouble("Hours");
 
                 GuildWorkTable.add(new GuildVolunteerWork(
                         rs.getInt("GuildId"),
-                        rs.getInt("VolunteerId"), 
+                        rs.getInt("VolunteerId"),
                         rs.getDate("Date"),
-                        rs.getDouble("Hour")));   
+                        rs.getDouble("Hours")));
             }
-     return GuildWorkTable;
-     }
-}
-    public void addVolunteerWork(Date Date, double Hour, int GuildId, int VolunteerId) {
-        {
-
-        try (Connection con = CM.getConnection())
-        {
-
-            String sqlCommand
-                    = " INSERT INTO GuildVolunteerWork(Date, Hours, GuildId, VolunteerId) VALUES(?,?,?,?)";
-            PreparedStatement pstat = con.prepareStatement(sqlCommand);
-
-            pstat.setDate(1, Date);
-            pstat.setDouble(2, Hour);
-            pstat.setDouble(3, GuildId);
-            pstat.setInt(4, VolunteerId);
-
-            pstat.executeUpdate();
+            return GuildWorkTable;
+        
         } catch (SQLException sqle)
         {
             System.err.println(sqle);
+            return null;
+        }
+
+    }
+
+    // +"And between Date" + startDate +  "AND" + endDate + "";
+    public void addVolunteerWork(Date Date, double Hour, int GuildId, int VolunteerId)
+    {
+        {
+
+            try (Connection con = CM.getConnection())
+            {
+
+                String sqlCommand
+                        = " INSERT INTO GuildVolunteerWork(Date, Hours, GuildId, VolunteerId) VALUES(?,?,?,?)";
+                PreparedStatement pstat = con.prepareStatement(sqlCommand);
+
+                pstat.setDate(1, Date);
+                pstat.setDouble(2, Hour);
+                pstat.setDouble(3, GuildId);
+                pstat.setInt(4, VolunteerId);
+
+                pstat.executeUpdate();
+            } catch (SQLException sqle)
+            {
+                System.err.println(sqle);
+            }
         }
     }
-    }
- 
+
 }

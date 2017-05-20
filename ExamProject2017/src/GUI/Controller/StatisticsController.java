@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -35,16 +36,14 @@ import javafx.scene.input.MouseEvent;
  *
  * @author boldi
  */
-public class StatisticsController implements Initializable {
+public class StatisticsController implements Initializable
+{
 
     @FXML
     private Button btnDownload;
     @FXML
     private ComboBox<GuildVolunteerWork> cmbStatistics;
-    @FXML
-    private DatePicker dpStartDate;
-    @FXML
-    private DatePicker dpEndDate;
+
     @FXML
     private TableColumn<?, ?> colGuilds;
     @FXML
@@ -59,53 +58,71 @@ public class StatisticsController implements Initializable {
     GuildVolunteerWorkModel GVWModel = new GuildVolunteerWorkModel();
     ObservableList<Guild> listOfGuilds;
     ObservableList<GuildVolunteerWork> listOfGuildVolunteerWork;
-    Guild p;
-    double Hour;
-    Date Date;
-    int VolunteerId;
-    int GuildId;
+    @FXML
+    private DatePicker dpStartDate;
+    @FXML
+    private DatePicker dpEndDate;
 
+// Fordi den snakker med database? 
     /**
      * Initializes the controller class.
+     *
+     * @param url
+     * @param rb
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
 
-        try {
+        try
+        {
             ShowGuildInView();
-        } catch (IOException ex) {
+        } catch (IOException ex)
+        {
             Logger.getLogger(StatisticsController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
     @FXML
-    private void DownloadBtn(ActionEvent event) {
+    private void DownloadBtn(ActionEvent event)
+    {
     }
 
-    public void ShowGuildInView() throws IOException {
+    public void ShowGuildInView() throws IOException
+    {
         listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
         GuildTbl.setItems(listOfGuilds);
         colGuilds.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
 
     }
 
-    public void ShowDateAndHours(Date Date, double Hour, int GuildId, int VolunteerId) throws IOException, SQLException {
-        listOfGuildVolunteerWork = FXCollections.observableArrayList(GVWModel.GetGuildVolunteerWork(Date, Hour, GuildId, VolunteerId));
+    public void ShowDateAndHours() throws IOException, SQLException
+    {
 
-        for (Guild p : GM.listOfGuilds()) {
-            if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName())) {
-
-                tblStatistics.setItems(listOfGuildVolunteerWork);
+        for (Guild p : GM.listOfGuilds())
+        {
+          
+            if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName()))
+            {
+                String dateStart = dpStartDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                String dateEnd = dpEndDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                
+                
+                listOfGuildVolunteerWork = FXCollections.observableArrayList(GVWModel.GetGuildVolunteerWork(dateStart, dateEnd, p.getGuildId()));
                 colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
                 colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
-
+                tblStatistics.setItems(listOfGuildVolunteerWork);
             }
         }
     }
 
     @FXML
-    private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException {
-        ShowDateAndHours(Date, Hour, GuildId, VolunteerId);
+    private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException
+    {
+        ShowDateAndHours();
+        System.out.println(listOfGuildVolunteerWork);
+        
     }
+
 }
