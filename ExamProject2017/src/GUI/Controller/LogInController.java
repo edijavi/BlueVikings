@@ -30,7 +30,8 @@ import javafx.util.Duration;
 import javafx.animation.ParallelTransition;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
-
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * FXML Controller class
@@ -77,23 +78,24 @@ public class LogInController implements Initializable
         }
         loginGrid.setVisible(false);
         toggleGroup();
-        
-         TranslateTransition transition1 = new TranslateTransition(Duration.seconds(2.5), btnLogIn);
+
+        TranslateTransition transition1 = new TranslateTransition(Duration.seconds(2.5), btnLogIn);
         transition1.setToY(-20);
-        
-        
+
         RotateTransition rotation = new RotateTransition(Duration.seconds(1), btnLogIn);
         rotation.setByAngle(360);
-        
+
         ParallelTransition transition = new ParallelTransition();
-        
-        transition.setOnFinished((e)->{
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), anchorPane);
-            fadeOut.setFromValue(0.0);
-            fadeOut.setToValue(1.0);
-            fadeOut.play();
+
+        transition.setOnFinished((e)
+                -> 
+                {
+                    FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), anchorPane);
+                    fadeOut.setFromValue(0.0);
+                    fadeOut.setToValue(1.0);
+                    fadeOut.play();
         });
-        
+
         transition.play();
         transition1.play();
     }
@@ -119,18 +121,17 @@ public class LogInController implements Initializable
             pwField.setDisable(false);
 
         } else if (rbtnVolunteer.isPressed())
-        {  
+        {
             warninglbl.setVisible(false);
             loginGrid.setVisible(false);
         }
     }
 
-    @FXML
-    public void logInEvent(ActionEvent event)
+    public void logginin()
     {
         if (rbtnVolunteer.isSelected())
         {
-            
+
             Stage stage = null;
             //Parent root = null;
             stage = (Stage) btnLogIn.getScene().getWindow();
@@ -153,12 +154,12 @@ public class LogInController implements Initializable
             for (int i = 0; i < managers.size(); i++)
             {
                 Manager ma = managers.get(i);
-                
+
                 if (txtFieldUserName.getText().equals(ma.getUsername().trim())
                         && pwField.getText().equals(ma.getPassword().trim()))
-                    
+
                 {
-                    
+
                     Stage stage = null;
                     stage = (Stage) btnLogIn.getScene().getWindow();
                     try
@@ -174,11 +175,28 @@ public class LogInController implements Initializable
                         Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                }
-                else
+                } else
+                {
                     warninglbl.setText("Password or Username is invalid");
+                }
             }
         }
     }
 
+    @FXML
+    public void logInEvent(ActionEvent event)
+    {
+        logginin();
+    }
+   
+
+    
+    @FXML
+    private void EnterKeyPressed(KeyEvent event)
+    {
+        if(event.getCode().toString().equals("ENTER")) {
+            logginin();
+        }
+    }
+   
 }

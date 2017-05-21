@@ -50,12 +50,12 @@
                            <children>
                               <Label text="User Name:" />
                               <Label text="Password:" GridPane.rowIndex="1" />
-                              <TextField fx:id="txtFieldUserName" GridPane.columnIndex="1">
+                              <TextField fx:id="txtFieldUserName" onKeyPressed="#EnterKeyPressed" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets right="10.0" />
                                  </GridPane.margin>
                               </TextField>
-                              <PasswordField fx:id="pwField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <PasswordField fx:id="pwField" onKeyPressed="#EnterKeyPressed" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets right="10.0" />
                                  </GridPane.margin>
