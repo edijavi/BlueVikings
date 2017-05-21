@@ -26,6 +26,7 @@ public class BlueVikingsMain extends Application {
         
         Scene scene = new Scene(root);
         stage.getIcons().add(new Image("CSS/icon.png"));
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
                

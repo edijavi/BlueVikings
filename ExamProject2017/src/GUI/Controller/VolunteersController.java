@@ -100,15 +100,15 @@ public class VolunteersController implements Initializable
         if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
             List<Volunteer> volunteers;
             if(searchtype == SearchType.FIRSTNAME) {
-                if(allVolTbl.getSelectionModel().isEmpty()) {
+                
                     volunteers = vm.getlistOfVolunteer();  
                     allVolTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-                } 
+               
             }else if(searchtype == SearchType.LASTNAME) {
-                if(allVolTbl.getSelectionModel().isEmpty()) {
+                
                     volunteers = vm.getlistOfVolunteer();
                     allVolTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-            }
+            
             }
     }
     }

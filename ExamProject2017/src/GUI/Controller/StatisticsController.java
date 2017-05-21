@@ -7,6 +7,9 @@ package GUI.Controller;
 
 import BE.Guild;
 import BE.GuildVolunteerWork;
+import BE.Volunteer;
+import BLL.SearchHandler;
+import BLL.SearchHandler.SearchType;
 import GUI.Model.GuildModel;
 import GUI.Model.GuildVolunteerWorkModel;
 import java.io.IOException;
@@ -28,7 +31,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -54,14 +60,23 @@ public class StatisticsController implements Initializable
     private TableColumn<?, ?> colHours;
     @FXML
     private TableView<Guild> GuildTbl;
+    
     GuildModel GM = new GuildModel();
+    
     GuildVolunteerWorkModel GVWModel = new GuildVolunteerWorkModel();
+    
     ObservableList<Guild> listOfGuilds;
+    
     ObservableList<GuildVolunteerWork> listOfGuildVolunteerWork;
+    
     @FXML
     private DatePicker dpStartDate;
     @FXML
     private DatePicker dpEndDate;
+    @FXML
+    private TextField txtSearch;
+    private SearchType searchtype;
+    GuildModel gm = new GuildModel();
 
 // Fordi den snakker med database? 
     /**
@@ -95,6 +110,21 @@ public class StatisticsController implements Initializable
         GuildTbl.setItems(listOfGuilds);
         colGuilds.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
 
+    }
+    @FXML
+    private void search(KeyEvent event)
+    {
+        if((event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
+            List<Guild> guilds;
+            this.searchtype = SearchHandler.SearchType.GUILD;
+                    try{
+                    guilds = gm.listOfGuilds();
+                    GuildTbl.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
+                    }catch (IOException ex)
+                    {
+                        Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    }
     }
 
     public void ShowDateAndHours() throws IOException, SQLException

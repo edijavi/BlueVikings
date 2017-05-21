@@ -111,24 +111,18 @@ public class GuildController implements Initializable {
             List<Volunteer> volunteers;
             List<Guild> guilds;
             if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
-                if(tblVolunteers.getSelectionModel().isEmpty()) {
                     volunteers = vm.getlistOfVolunteer();  
                     tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-                }
                 }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
-                    if(tblVolunteers.getSelectionModel().isEmpty()) {
                     volunteers = vm.getlistOfVolunteer();
                     tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-                    }
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
-                    if(tblVolunteers.getSelectionModel().isEmpty()) {
                     try{
                     guilds = gm.listOfGuilds();
                     tblGuilds.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
                     }catch (IOException ex)
                     {
                         Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
                     }
                 }
             }
