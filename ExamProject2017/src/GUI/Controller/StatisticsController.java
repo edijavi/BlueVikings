@@ -108,7 +108,7 @@ public class StatisticsController implements Initializable
                 String dateStart = dpStartDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 String dateEnd = dpEndDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 
-                
+                System.out.println(p.getGuildId());
                 listOfGuildVolunteerWork = FXCollections.observableArrayList(GVWModel.GetGuildVolunteerWork(dateStart, dateEnd, p.getGuildId()));
                 colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
                 colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
@@ -121,6 +121,7 @@ public class StatisticsController implements Initializable
     private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException
     {
         ShowDateAndHours();
+        
         System.out.println(listOfGuildVolunteerWork);
         
     }

@@ -36,7 +36,7 @@ public class GuildVolunteerWorkDataManager
     {
         try (Connection con = CM.getConnection())
         {
-            String query = "SELECT * FROM GuildVolunteerWork WHERE GuildId = ? AND Date between " +startDate+ " AND " + endDate + "";
+            String query = "SELECT * FROM GuildVolunteerWork WHERE GuildId ="+ GuildId +" AND Date between '" + startDate + "' AND '" + endDate + "'";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 

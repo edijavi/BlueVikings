@@ -5,7 +5,9 @@
  */
 package DAL;
 
+import BE.GuildVolunteerWork;
 import BE.Volunteer;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -178,4 +180,38 @@ public class VolunteerDataManager
 
         }
     
+    
+        public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLServerException, SQLException
+    {
+        try (Connection con = CM.getConnection())
+        {
+            String query = "SELECT * FROM GuildVolunteerWork WHERE VolunteerId="+ VolunteerId +"";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            ArrayList<GuildVolunteerWork> GuildWorkTable = new ArrayList<>();
+            while (rs.next())
+            {
+
+                String WorkString = "";
+                WorkString += rs.getInt("GuildId");
+                WorkString += rs.getInt("VolunteerId");
+                WorkString += rs.getDate("Date");
+                WorkString += rs.getDouble("Hours");
+
+                GuildWorkTable.add(new GuildVolunteerWork(
+                        rs.getInt("GuildId"),
+                        rs.getInt("VolunteerId"),
+                        rs.getDate("Date"),
+                        rs.getDouble("Hours")));
+            }
+            return GuildWorkTable;
+        
+        } catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return null;
+        }
+
+    }
     }
