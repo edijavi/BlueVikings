@@ -83,6 +83,14 @@ public class MainViewController implements Initializable {
                     System.out.println(e);
                 }
                 break;
+            case "btnVolunteerStat":
+                try {
+                    openItem("/GUI/View/VolunteerStatistics.fxml");
+                } catch(IOException e) {
+                    System.out.println("FXML probably not found");
+                    System.out.println(e);
+                }
+                break;
             case "btnLogOut":
                 Stage stage = null;
                 stage = (Stage) btnLogOut.getScene().getWindow();

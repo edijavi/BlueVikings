@@ -7,11 +7,12 @@ package GUI.Model;
 
 
 import BE.Volunteer;
+import BLL.SearchHandler;
 import BLL.VolunteerManager;
 import java.util.ArrayList;
 import java.util.List;
 import sun.security.jca.GetInstance;
-
+import BLL.SearchHandler.SearchType;
 
 /**
  *
@@ -20,6 +21,8 @@ import sun.security.jca.GetInstance;
 public class VolunteerModel {
 
 private static VolunteerModel  VOLUNTEERMODEL = new VolunteerModel();
+
+ private SearchHandler searchHandler = new SearchHandler();
 
 VolunteerManager VM = VolunteerManager.getInstance();
 
@@ -36,7 +39,9 @@ public VolunteerModel (){
 public List<Volunteer> getlistOfVolunteer(){
  return VM.getVolunteer();
 }
-
+public <T> List<T> doSearch(String word, List<T> inWhat, SearchType type) {
+        return searchHandler.Search(word, inWhat, type);
+    }
 
 
 public void deleteVolunteer(int volunteerId){

@@ -67,14 +67,16 @@
                 <RowConstraints maxHeight="309.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button fx:id="btnVolunteers" mnemonicParsing="false" onAction="#pressedButton" text="Volunteers" GridPane.rowIndex="1" />
                   <Button fx:id="btnGuilds" mnemonicParsing="false" onAction="#pressedButton" text="Guilds" GridPane.rowIndex="2" />
-                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#pressedButton" text="Close" GridPane.rowIndex="5" />
+                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#pressedButton" text="Close" GridPane.rowIndex="6" />
                   <Label text="Menu:" GridPane.valignment="CENTER" />
-                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutEvent" text="Log Out" GridPane.rowIndex="4" />
-                  <Button fx:id="btnStatistics" mnemonicParsing="false" onAction="#pressedButton" text="Statistics" GridPane.rowIndex="3" />
+                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutEvent" text="Log Out" GridPane.rowIndex="5" />
+                  <Button fx:id="btnStatistics" mnemonicParsing="false" onAction="#pressedButton" text="Guild Statistics" GridPane.rowIndex="3" />
+                  <Button fx:id="btnVolunteerStat" mnemonicParsing="false" onAction="#pressedButton" text="Volunteer Statistics" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </left>

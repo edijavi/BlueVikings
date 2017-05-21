@@ -7,6 +7,7 @@ package GUI.Model;
 
 import BE.Guild;
 import BLL.GuildManager;
+import BLL.SearchHandler;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
@@ -19,11 +20,14 @@ public class GuildModel
 {
     
     GuildManager GM = new GuildManager();
-    
+    private SearchHandler searchHandler = new SearchHandler();
     public List<Guild> listOfGuilds() throws IOException
     {
         return GM.getGuild();
         
+    }
+    public <T> List<T> doSearch(String word, List<T> inWhat, SearchHandler.SearchType type) {
+        return searchHandler.Search(word, inWhat, type);
     }
     
     public GuildModel()

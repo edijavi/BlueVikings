@@ -43,7 +43,7 @@
                <children>
                   <Label text="Volunteers" />
                   <Label GridPane.rowIndex="1" />
-                  <TextField fx:id="txtFieldSearch" alignment="CENTER" promptText="Search" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtSearch" alignment="CENTER" onKeyReleased="#search" promptText="Search" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -59,7 +59,7 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <ComboBox fx:id="cmbSearch" prefHeight="29.0" prefWidth="231.0" promptText="Search..." />
+                        <ComboBox fx:id="cmbSearch" onAction="#setSearchType" prefHeight="29.0" prefWidth="231.0" promptText="Search..." />
                      </children>
                   </GridPane>
                </children>

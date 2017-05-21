@@ -17,9 +17,11 @@ import javafx.scene.control.TableView;
 import GUI.Model.GuildVolunteerModel;
 import BE.Guild;
 import BE.Volunteer;
+import BLL.SearchHandler;
 import GUI.Model.GuildModel;
 import GUI.Model.VolunteerModel;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -29,6 +31,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
         
@@ -63,9 +67,12 @@ public class GuildController implements Initializable {
     int GuildId;
     int VolunteerId;
     @FXML
-    private TextField txtFieldSearch;
-    @FXML
     private ComboBox<String> cmbSearch;
+    @FXML
+    private TextField txtSearch;
+    private SearchHandler.SearchType searchtype;
+    VolunteerModel vm = new VolunteerModel();
+    GuildModel gm = new GuildModel();
     /**
      * Initializes the controller class.
      */
@@ -84,6 +91,7 @@ public class GuildController implements Initializable {
     tblVolunteers.setItems(listOfVolunteer);
     tblGuilds.setItems(listOfGuilds);
     setSearchComboItem();
+    txtSearch.setDisable(true);
     
     }    
 
@@ -95,6 +103,55 @@ public class GuildController implements Initializable {
         System.out.println("GuildId"+GuildId);
         System.out.println("VolunteerId"+VolunteerId);
     
+    }
+    @FXML
+    private void search(KeyEvent event)
+    {
+        if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
+            List<Volunteer> volunteers;
+            List<Guild> guilds;
+            if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
+                if(tblVolunteers.getSelectionModel().isEmpty()) {
+                    volunteers = vm.getlistOfVolunteer();  
+                    tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
+                }
+                }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
+                    if(tblVolunteers.getSelectionModel().isEmpty()) {
+                    volunteers = vm.getlistOfVolunteer();
+                    tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
+                    }
+                }else if(searchtype == SearchHandler.SearchType.GUILD) {
+                    if(tblVolunteers.getSelectionModel().isEmpty()) {
+                    try{
+                    guilds = gm.listOfGuilds();
+                    tblGuilds.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
+                    }catch (IOException ex)
+                    {
+                        Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    }
+                }
+            }
+        }
+    
+    @FXML
+    private void setSearchType(ActionEvent event)
+    {
+    if("First Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        {
+            this.searchtype = SearchHandler.SearchType.FIRSTNAME;
+            txtSearch.setDisable(false);
+        }
+    if("Last Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        {
+            this.searchtype = SearchHandler.SearchType.LASTNAME;
+            txtSearch.setDisable(false);
+        }
+    if("Guilds".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        {
+            this.searchtype = SearchHandler.SearchType.GUILD;
+            txtSearch.setDisable(false);
+        }
     }
     public void ShowInView()
     {

@@ -25,7 +25,7 @@ public class BlueVikingsMain extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/LogIn.fxml"));
         
         Scene scene = new Scene(root);
-        //stage.getIcons().add(new Image("CSS/icon.png"));
+        stage.getIcons().add(new Image("CSS/icon.png"));
         stage.setScene(scene);
         stage.show();
                

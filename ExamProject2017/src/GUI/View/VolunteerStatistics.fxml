@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="630.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="GUI.Controller.VolunteerStatisticsController">
+    <stylesheets>
+        <URL value="@/CSS/Main.css" />
+    </stylesheets>
+   <children>
+      <BorderPane prefHeight="550.0" prefWidth="630.0">
+         <top>
+            <GridPane prefHeight="37.0" prefWidth="630.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="333.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="297.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="txtSearch" prefHeight="25.0" prefWidth="205.0" promptText="Search.." GridPane.columnIndex="1">
+                     <padding>
+                        <Insets left="30.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <ComboBox fx:id="cmbSearch" prefWidth="150.0" promptText="Search">
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+               </children>
+            </GridPane>
+         </top>
+         <left>
+            <GridPane prefHeight="494.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TableView fx:id="tblVolunteers" prefHeight="500.0" prefWidth="320.0">
+                    <columns>
+                      <TableColumn fx:id="colFirstName" prefWidth="155.0" text="First Name" />
+                      <TableColumn fx:id="colLastName" prefWidth="165.0" text="Last Name" />
+                    </columns>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" />
+                     </GridPane.margin>
+                  </TableView>
+               </children>
+            </GridPane>
+         </left>
+         <right>
+            <TableView fx:id="tblDatesnHours" prefHeight="494.0" prefWidth="273.0" BorderPane.alignment="CENTER">
+              <columns>
+                <TableColumn fx:id="colDate" prefWidth="165.0" text="Date" />
+                <TableColumn fx:id="colHours" prefWidth="107.0" text="hours" />
+              </columns>
+               <BorderPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+               </BorderPane.margin>
+            </TableView>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

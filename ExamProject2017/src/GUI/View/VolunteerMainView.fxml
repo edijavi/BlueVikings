@@ -44,12 +44,12 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="177.0" promptText="Search" GridPane.columnIndex="1">
+                        <TextField fx:id="txtSearch" onKeyReleased="#search" prefHeight="25.0" prefWidth="177.0" promptText="Search" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="10.0" right="5.0" />
                            </GridPane.margin>
                         </TextField>
-                        <ComboBox fx:id="cmbSearch" prefWidth="120.0" promptText="Search...">
+                        <ComboBox fx:id="cmbSearch" onAction="#setSearchType" prefWidth="120.0" promptText="Search...">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
