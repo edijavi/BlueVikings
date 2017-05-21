@@ -5,8 +5,10 @@
  */
 package BLL;
 
+import BE.GuildVolunteerWork;
 import BE.Volunteer;
 import DAL.VolunteerDataManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -50,4 +52,7 @@ public class VolunteerManager
         VDM.addVolunteer(firstName, lastName, Email, phoneNumber, Address, additionalInfo);
     }
 
+    public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLException {
+        return VDM.getVolunteerWork(VolunteerId);
+    }
 }

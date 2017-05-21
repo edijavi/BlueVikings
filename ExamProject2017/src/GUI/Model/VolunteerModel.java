@@ -6,9 +6,11 @@
 package GUI.Model;
 
 
+import BE.GuildVolunteerWork;
 import BE.Volunteer;
 import BLL.SearchHandler;
 import BLL.VolunteerManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import sun.security.jca.GetInstance;
@@ -58,6 +60,11 @@ VM.AddVolunteer(firstName, lastName, Email, phoneNumber, Address, additionalInfo
 public ArrayList<Volunteer> getVolunteersBasedOnGuild(String GuildName) {
     return VM.getVolunteerBasedOnGuild(GuildName);
 }
+
+public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLException {
+    return VM.getVolunteerWork(VolunteerId);
+}
+
 /*
 public void deleteVolunteer(Volunteer volunteer{
 listOfVolunteer().remove(0).getVolunteerId()
