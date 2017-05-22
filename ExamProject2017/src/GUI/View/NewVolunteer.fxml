@@ -60,28 +60,27 @@
                            </GridPane.margin></TextField>
                      </children>
                   </GridPane>
-
-                  <TextField fx:id="Address" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="txtFirstName" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="EmailAddress" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="txtLastName" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="lastName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtEmail" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="firstName" GridPane.columnIndex="1">
+                  <TextField fx:id="txtAddress" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="PhoneNumber" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                  <TextField fx:id="txtPhone" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <GridPane.margin>
                         <Insets right="5.0" />
                      </GridPane.margin>

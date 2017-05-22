@@ -19,9 +19,8 @@
                <children>
                   <TableView fx:id="allVolTbl" onMousePressed="#ClickedOnVolunteer" prefHeight="455.0" prefWidth="330.0">
                     <columns>
-                      <TableColumn fx:id="colFirstName" maxWidth="120.0" prefWidth="120.0" text="First Name" />
-                      <TableColumn fx:id="colLastName" maxWidth="185.0" prefWidth="185.0" text="Last Name" />
-                        <TableColumn fx:id="colHours" prefWidth="79.0" text="Hours" />
+                      <TableColumn fx:id="colFirstName" maxWidth="205.0" prefWidth="187.0" text="First Name" />
+                      <TableColumn fx:id="colLastName" maxWidth="264.0" prefWidth="197.0" text="Last Name" />
                     </columns>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" top="5.0" />
@@ -62,6 +61,7 @@
                         <ComboBox fx:id="cmbSearch" onAction="#setSearchType" prefHeight="29.0" prefWidth="231.0" promptText="Search..." />
                      </children>
                   </GridPane>
+                  <Label text="Double click on a volunteer to see the details" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </top>
