@@ -51,7 +51,7 @@ public class VolunteerDetailsController implements Initializable
     @FXML
     private Button saveVol;
 
-    private Volunteer vol;
+    private static Volunteer vol;
 
     VolunteerModel vModel = new VolunteerModel();
     
@@ -61,6 +61,12 @@ public class VolunteerDetailsController implements Initializable
     private TextArea AddInfoTxtArea;
     @FXML
     private TextField prefGuild3;
+    @FXML
+    private TextField prefGuild1;
+    @FXML
+    private TextField prefGuild2;
+    @FXML
+    private Button btnEdit;
 
     public VolunteerDetailsController()
     {
@@ -74,6 +80,7 @@ public class VolunteerDetailsController implements Initializable
 
     public void initialize(URL url, ResourceBundle rb)
     {
+        setVolunteerItems();
         
     }
 
@@ -101,7 +108,7 @@ public class VolunteerDetailsController implements Initializable
     @FXML
     private void saveVolunteerBtb(ActionEvent event)
     {
-
+        if(vol == null){
         Volunteer volunteer = new Volunteer();
         volunteer.setAddress(Address.getText());
         volunteer.setEmail(EmailAddress.getText());
@@ -112,7 +119,24 @@ public class VolunteerDetailsController implements Initializable
         // VolunteerList().add(volunteer);
         vModel.addVolunteer(firstName.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
                 Address.getText(),AddInfoTxtArea.getText());
+        Stage stage = null;
+        stage = (Stage) btnClose.getScene().getWindow();
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
 
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        System.out.println(VolunteerList());
+    
+        }else{
         
         Stage stage = null;
         stage = (Stage) btnClose.getScene().getWindow();
@@ -129,9 +153,14 @@ public class VolunteerDetailsController implements Initializable
             Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
-    }
 
+        
+
+        System.out.println(VolunteerList());
+    
+
+    }
+    }
     public List<Volunteer> VolunteerList()
     {
 
@@ -164,18 +193,42 @@ public class VolunteerDetailsController implements Initializable
     {
         vol.setAddress(Address.getText());
     }
-    public void setVolunteer(Volunteer voll)
-    {
-        vol = voll;
-    }
+
   
-    public void setVolunteerItems()
-    {
+    private void setVolunteerItems()
+    { 
         EmailAddress.setText(vol.getEmail());
         Address.setText(vol.getAddress());
         firstName.setText(vol.getFirstName());
         lastName.setText(vol.getLastName());
         PhoneNumber.setText(vol.getPhoneNumber());
+        EmailAddress.setDisable(true);
+        Address.setDisable(true);
+        firstName.setDisable(true);
+        lastName.setDisable(true);
+        PhoneNumber.setDisable(true);
+        prefGuild1.setDisable(true);
+        prefGuild2.setDisable(true);
+        prefGuild3.setDisable(true);
+        AddInfoTxtArea.setDisable(true);
     }
+    public static void setVolunteer(Volunteer voll)
+    {
+    vol = voll;
+    }
+    
+    @FXML
+    public void editAction(ActionEvent event)
+    {
+    EmailAddress.setDisable(false);
+    Address.setDisable(false);
+    firstName.setDisable(false);
+    lastName.setDisable(false);
+    PhoneNumber.setDisable(false);
+    prefGuild1.setDisable(false);
+    prefGuild2.setDisable(false);
+    prefGuild3.setDisable(false);
+    AddInfoTxtArea.setDisable(false);
 
+    }
 }

@@ -127,6 +127,7 @@ public class VolunteersController implements Initializable
         }
     }
 
+
     @FXML
     private void addNewVolunteerBtb(ActionEvent event) throws IOException
     {
@@ -135,7 +136,7 @@ public class VolunteersController implements Initializable
             Stage stage = null;
             Parent root = null;
             stage = (Stage) btnNewVol.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/VolunteerDetails.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewVolunteer.fxml"));
             try
             {
                 root = fxmlLoader.load();
@@ -170,7 +171,9 @@ public class VolunteersController implements Initializable
             stage = (Stage) allVolTbl.getScene().getWindow();
             try
             {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/VolunteerDetails.fxml"));
-            
+            VolunteerDetailsController.setVolunteer(allVolTbl.getSelectionModel().getSelectedItem());
+            VolunteerDetailsController controller = fxmlLoader.getController();
+           // controller.setCurrentVolunteer(allVolTbl.getSelectionModel().getSelectedItem());
             root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

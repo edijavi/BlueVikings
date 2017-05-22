@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="550.0" prefWidth="630.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="GUI.Controller.ManagerController">
+    <stylesheets>
+        <URL value="@/CSS/Main.css" />
+    </stylesheets>
+   <children>
+      <BorderPane prefHeight="550.0" prefWidth="630.0">
+         <top>
+            <GridPane prefHeight="48.0" prefWidth="630.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField promptText="Search..." GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="30.0" right="50.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <ComboBox prefWidth="150.0" promptText="Search..." />
+               </children>
+            </GridPane>
+         </top>
+         <left>
+            <GridPane prefHeight="502.0" prefWidth="480.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TableView prefHeight="502.0" prefWidth="466.0">
+                    <columns>
+                      <TableColumn prefWidth="150.0" text="First Name" />
+                      <TableColumn prefWidth="154.0" text="Last name" />
+                        <TableColumn prefWidth="175.0" text="Guild" />
+                    </columns>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" />
+                     </GridPane.margin>
+                  </TableView>
+               </children>
+            </GridPane>
+         </left>
+         <right>
+            <GridPane prefHeight="502.0" prefWidth="138.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnAddManager" mnemonicParsing="false" text="Add Manager" />
+                  <Button fx:id="btnRemove" mnemonicParsing="false" text="Remove Manager" GridPane.rowIndex="1" />
+                  <Button fx:id="btnEdit" mnemonicParsing="false" text="Edit Manager" GridPane.rowIndex="2" />
+               </children>
+            </GridPane>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -6,7 +6,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerDetailsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.NewVolunteerController">
    <children>
       <BorderPane prefHeight="600.0" prefWidth="600.0">
          <right>
@@ -104,7 +104,6 @@
                 <RowConstraints maxHeight="357.0" minHeight="10.0" prefHeight="357.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="244.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
                   <GridPane GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -113,15 +112,14 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <Button fx:id="saveVol" mnemonicParsing="false" onAction="#saveVolunteerBtb" text="Save Volunteer" GridPane.rowIndex="1" />
-                        <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeAction" text="Close" GridPane.rowIndex="3" />
+                        <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeAction" text="Close" GridPane.rowIndex="2" />
                         <Button mnemonicParsing="false" text="Upload Picture" />
-                        <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#editAction" text="Edit Volunteer" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
+                  <ImageView fitHeight="237.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </GridPane>
          </left>
