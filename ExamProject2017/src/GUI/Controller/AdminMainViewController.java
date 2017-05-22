@@ -99,7 +99,7 @@ public class AdminMainViewController implements Initializable {
                 break;
             case "btnManagers":
                 try {
-                    openItem("/GUI/View/Managers.fxml");
+                    openItem("/GUI/View/Manager.fxml");
                 } catch(IOException e) {
                     System.out.println("FXML probably not found");
                     System.out.println(e);

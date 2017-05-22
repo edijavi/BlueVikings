@@ -22,12 +22,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField promptText="Search..." GridPane.columnIndex="1">
+                  <TextField fx:id="txtSearch" promptText="Search..." GridPane.columnIndex="1">
                      <GridPane.margin>
-                        <Insets left="30.0" right="30.0" />
+                        <Insets left="30.0" right="35.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ComboBox prefWidth="150.0" promptText="Search..." />
+                  <ComboBox fx:id="cmbSearch" prefWidth="150.0" promptText="Search..." />
                </children>
             </GridPane>
          </top>
@@ -40,10 +40,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="497.0" prefWidth="320.0">
+                  <TableView fx:id="tblManagers" prefHeight="497.0" prefWidth="320.0">
                     <columns>
-                      <TableColumn prefWidth="189.0" text="First Name" />
-                      <TableColumn prefWidth="185.0" text="Last name" />
+                      <TableColumn fx:id="colFirstName" prefWidth="189.0" text="First Name" />
+                      <TableColumn fx:id="colLastName" prefWidth="185.0" text="Last name" />
                     </columns>
                      <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" />

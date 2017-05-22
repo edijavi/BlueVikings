@@ -130,7 +130,7 @@ public class LogInController implements Initializable
     }
 
     public void AdminLogin()
-    {
+    {if (rbtnAdministrator.isSelected()){
         List<Adminstrator> Admins = AM.getAdminstrators();
         for (int i = 0; i < Admins.size(); i++)
         {
@@ -143,7 +143,7 @@ public class LogInController implements Initializable
 
                 try
                 {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/GUI/View/AdminMainView.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
                     Parent root = fxmlLoader.load();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
@@ -156,7 +156,7 @@ public class LogInController implements Initializable
         }
 
     }
-
+    }
     public void logginin()
     {
         if (rbtnVolunteer.isSelected())
@@ -168,7 +168,7 @@ public class LogInController implements Initializable
 
             try
             {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/VolunteerMainView.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/GUI/View/VolunteerMainView.fxml"));
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
@@ -217,7 +217,7 @@ public class LogInController implements Initializable
     public void logInEvent(ActionEvent event)
     {
         AdminLogin();
-        //logginin();
+        logginin();
       
     }
 
@@ -228,7 +228,7 @@ public class LogInController implements Initializable
         {
             AdminLogin();
             
-            //logginin();
+            logginin();
         }
     }
 
