@@ -1,5 +1,6 @@
 package GUI.Controller;
 
+import BE.Adminstrator;
 import GUI.Model.ManagerModel;
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +21,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import BE.Manager;
+import GUI.Model.AdminModel;
 import java.util.List;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -70,6 +72,7 @@ public class LogInController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         List<Manager> managers = MM.getManager();
+
         for (int i = 0; i < managers.size(); i++)
         {
             Manager ma = managers.get(i);
@@ -82,7 +85,6 @@ public class LogInController implements Initializable
         TranslateTransition transition1 = new TranslateTransition(Duration.seconds(2.5), btnLogIn);
         transition1.setToY(-20);
 
-       
         ParallelTransition transition = new ParallelTransition();
 
         transition.setOnFinished((e)
@@ -97,6 +99,8 @@ public class LogInController implements Initializable
         transition.play();
         transition1.play();
     }
+
+    AdminModel AM = new AdminModel();
 
     public void toggleGroup()
     {
@@ -123,6 +127,34 @@ public class LogInController implements Initializable
             warninglbl.setVisible(false);
             loginGrid.setVisible(false);
         }
+    }
+
+    public void AdminLogin()
+    {
+        List<Adminstrator> Admins = AM.getAdminstrators();
+        for (int i = 0; i < Admins.size(); i++)
+        {
+            Adminstrator ad = Admins.get(i);
+            if (txtFieldUserName.getText().equals(ad.getUsername().trim()) && pwField.getText().equals(ad.getPassword().trim()))
+            {
+                Stage stage = null;
+                //Parent root = null;
+                stage = (Stage) btnLogIn.getScene().getWindow();
+
+                try
+                {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/GUI/View/AdminMainView.fxml"));
+                    Parent root = fxmlLoader.load();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException ex)
+                {
+                    Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
     }
 
     public void logginin()
@@ -184,17 +216,20 @@ public class LogInController implements Initializable
     @FXML
     public void logInEvent(ActionEvent event)
     {
-        logginin();
+        AdminLogin();
+        //logginin();
+      
     }
-   
 
-    
     @FXML
     private void EnterKeyPressed(KeyEvent event)
     {
-        if(event.getCode().toString().equals("ENTER")) {
-            logginin();
+        if (event.getCode().toString().equals("ENTER"))
+        {
+            AdminLogin();
+            
+            //logginin();
         }
     }
-   
+
 }

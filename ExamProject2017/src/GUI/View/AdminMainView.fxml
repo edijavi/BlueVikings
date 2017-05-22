@@ -28,7 +28,7 @@
                      <children>
                         <Label prefHeight="20.0" prefWidth="114.0" text="Administrator:">
                            <GridPane.margin>
-                              <Insets right="5.0" />
+                              
                            </GridPane.margin>
                         </Label>
                         <Label prefHeight="17.0" prefWidth="35.0" GridPane.columnIndex="1" />
@@ -45,7 +45,7 @@
                      <children>
                         <Label text="Date:">
                            <GridPane.margin>
-                              <Insets right="5.0" />
+                             
                            </GridPane.margin>
                         </Label>
                         <Label fx:id="lblDate" text="Label" GridPane.columnIndex="1" />

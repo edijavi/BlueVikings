@@ -108,17 +108,11 @@ public class VolunteerDetailsController implements Initializable
     @FXML
     private void saveVolunteerBtb(ActionEvent event)
     {
-        if(vol == null){
-        Volunteer volunteer = new Volunteer();
-        volunteer.setAddress(Address.getText());
-        volunteer.setEmail(EmailAddress.getText());
-        volunteer.setFirstName(firstName.getText());
-        volunteer.setLastName(lastName.getText());
-        volunteer.setPhoneNumber(PhoneNumber.getText());
-        volunteer.setAdditionalInfo(AddInfoTxtArea.getText());
-        // VolunteerList().add(volunteer);
-        vModel.addVolunteer(firstName.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
-                Address.getText(),AddInfoTxtArea.getText());
+        
+        
+        
+        vModel.updateVolunteer(firstName.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
+                Address.getText(),AddInfoTxtArea.getText(), vol.getVolunteerId());
         Stage stage = null;
         stage = (Stage) btnClose.getScene().getWindow();
         try
@@ -134,32 +128,10 @@ public class VolunteerDetailsController implements Initializable
             Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println(VolunteerList());
-    
-        }else{
         
-        Stage stage = null;
-        stage = (Stage) btnClose.getScene().getWindow();
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
-
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
+    
         
 
-        System.out.println(VolunteerList());
-    
-
-    }
     }
     public List<Volunteer> VolunteerList()
     {

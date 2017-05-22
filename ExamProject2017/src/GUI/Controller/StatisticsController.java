@@ -64,15 +64,15 @@ public class StatisticsController implements Initializable
     private TableColumn<?, ?> colHours;
     @FXML
     private TableView<Guild> GuildTbl;
-    
+
     GuildModel GM = new GuildModel();
-    
+
     GuildVolunteerWorkModel GVWModel = new GuildVolunteerWorkModel();
-    
+
     ObservableList<Guild> listOfGuilds;
-    
+
     ObservableList<GuildVolunteerWork> listOfGuildVolunteerWork;
-    
+
     @FXML
     private DatePicker dpStartDate;
     @FXML
@@ -113,24 +113,28 @@ public class StatisticsController implements Initializable
         HSSFRow row = null;
 
         int i = 1;
-        for (GuildVolunteerWork item : tblStatistics.getItems()) {
+        for (GuildVolunteerWork item : tblStatistics.getItems())
+        {
             row = spreadsheet.createRow(i);
             row.createCell(1).setCellValue(item.getGuildId());
             //.... add other column data as well
             i++;
         }
 
-        try {
+        try
+        {
             //Write the workbook in file system
-             String PathTillProject = System.getProperty("user.dir");
-             FileOutputStream out = new FileOutputStream(PathTillProject + "/src/Guild.xls");
-            
+            String PathTillProject = System.getProperty("user.dir");
+            FileOutputStream out = new FileOutputStream(PathTillProject + "/src/Guild.xls");
+
             workbook.write(out);
             out.close();
             System.out.println("CountriesDetails.xlsx has been created successfully");
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             e.printStackTrace();
-        } finally {
+        } finally
+        {
             workbook.close();
         }
     }
@@ -142,35 +146,48 @@ public class StatisticsController implements Initializable
         colGuilds.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
 
     }
+
     @FXML
     private void search(KeyEvent event)
     {
-        if((event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
+        if ((event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE))
+        {
             List<Guild> guilds;
             this.searchtype = SearchHandler.SearchType.GUILD;
-                    try{
-                    guilds = gm.listOfGuilds();
-                    GuildTbl.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
-                    }catch (IOException ex)
-                    {
-                        Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    }
+            try
+            {
+                guilds = gm.listOfGuilds();
+                GuildTbl.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(), guilds, searchtype)));
+            } catch (IOException ex)
+            {
+                Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void ShowDateAndHours() throws IOException, SQLException
     {
-
+        if(dpStartDate.getValue() == null || dpEndDate.getValue() == null) {
         for (Guild p : GM.listOfGuilds())
         {
-          if(dpStartDate.getValue()== null || dpEndDate.getValue()== null) {
-              
-          }
-          else if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName()))
+            if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName()))
+            {
+                listOfGuildVolunteerWork = FXCollections.observableArrayList(GVWModel.GetGuildVolunteerWork("2016-05-22", "2030-05-22", p.getGuildId()));
+                colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
+                colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
+                tblStatistics.setItems(listOfGuildVolunteerWork);
+
+            }
+        }
+        }
+        else {
+        for (Guild p : GM.listOfGuilds())
+        {
+            if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName()))
             {
                 String dateStart = dpStartDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 String dateEnd = dpEndDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                
+
                 System.out.println(p.getGuildId());
                 listOfGuildVolunteerWork = FXCollections.observableArrayList(GVWModel.GetGuildVolunteerWork(dateStart, dateEnd, p.getGuildId()));
                 colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
@@ -179,14 +196,16 @@ public class StatisticsController implements Initializable
             }
         }
     }
+    }
 
-    @FXML
-    private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException
+
+@FXML
+        private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException
     {
         ShowDateAndHours();
-        
+
         System.out.println(listOfGuildVolunteerWork);
-        
+
     }
 
 }
