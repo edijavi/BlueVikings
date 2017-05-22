@@ -73,12 +73,12 @@ public class LogInController implements Initializable
     {
         List<Manager> managers = MM.getManager();
 
-        for (int i = 0; i < managers.size(); i++)
-        {
-            Manager ma = managers.get(i);
-            System.out.println(ma.getUsername());
-            System.out.println(ma.getPassword());
-        }
+//        for (int i = 0; i < managers.size(); i++)
+//        {
+//            Manager ma = managers.get(i);
+//            System.out.println(ma.getUsername());
+//            System.out.println(ma.getPassword());
+//        }
         loginGrid.setVisible(false);
         toggleGroup();
 

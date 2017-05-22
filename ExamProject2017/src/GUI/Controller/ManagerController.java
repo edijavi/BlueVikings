@@ -5,11 +5,15 @@
  */
 package GUI.Controller;
 
+import BE.Manager;
+import GUI.Model.ManagerModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +25,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -29,7 +34,8 @@ import javafx.stage.Stage;
  *
  * @author boldi
  */
-public class ManagerController implements Initializable {
+public class ManagerController implements Initializable
+{
 
     @FXML
     private Button btnAddManager;
@@ -42,7 +48,7 @@ public class ManagerController implements Initializable {
     @FXML
     private ComboBox<?> cmbSearch;
     @FXML
-    private TableView<?> tblManagers;
+    private TableView<Manager> tblManagers;
     @FXML
     private TableColumn<?, ?> colFirstName;
     @FXML
@@ -51,10 +57,21 @@ public class ManagerController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    ObservableList<Manager> listOfManagers;
+    ManagerModel MM = new ManagerModel();
+    
+    
+    
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    } 
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        listOfManagers = FXCollections.observableArrayList(MM.getManager());
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
+        tblManagers.setItems(listOfManagers);
+
+    }
+
     private void addNewManagerBtb(ActionEvent event) throws IOException
     {
         if (event.getSource() == btnAddManager)
@@ -76,28 +93,29 @@ public class ManagerController implements Initializable {
             stage.show();
         }
     }
+
     @FXML
     private void ClickedOnManager(MouseEvent event)
-    {if(event.isPrimaryButtonDown() && event.getClickCount() == 2) 
+    {
+        if (event.isPrimaryButtonDown() && event.getClickCount() == 2)
         {
             Stage stage = null;
             Parent root = null;
             stage = (Stage) tblManagers.getScene().getWindow();
             try
-            {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/ManagerDetails.fxml"));
-            root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/ManagerDetails.fxml"));
+                root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+
             } catch (IOException ex)
             {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-           
-
         }
     }
-    
+
 }

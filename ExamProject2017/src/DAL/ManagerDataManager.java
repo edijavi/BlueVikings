@@ -7,6 +7,7 @@ package DAL;
 
 import BE.Manager;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,18 +32,47 @@ public class ManagerDataManager {
                 String ManagerString = "";
                 ManagerString += rs.getString("Username");
                 ManagerString += rs.getString("Password");
+                ManagerString += rs.getString("Firstname");
+                ManagerString += rs.getString("Lastname");
+                ManagerString += rs.getString("Email");
                 
             
 
                 Manager.add(new Manager(
                 rs.getString("Username"),
-                rs.getString("Password")));
+                rs.getString("Password"),
+                rs.getString("Firstname"),
+                rs.getString("Lastname"),
+                rs.getString("Email")));
             }
             return Manager;
 
         } catch (SQLException sqle) {
             System.err.println(sqle);
             return null;
+        }
+    }
+    public void addManager(String Username, String Password, String Firstname, String Lastname, String Email)
+    {
+
+        try (Connection con = CM.getConnection())
+        {
+
+            String sqlCommand
+                    = " INSERT INTO Management(Username, Password, Firstname, Lastname, Email) VALUES(?,?,?,?,?)";
+            PreparedStatement pstat = con.prepareStatement(sqlCommand);
+
+            pstat.setString(1, Username);
+            pstat.setString(2, Password);
+            pstat.setString(3, Firstname);
+            pstat.setString(4, Lastname);
+            pstat.setString(5, Email);
+            
+
+            pstat.executeUpdate();
+        } catch (SQLException sqle)
+        {
+            System.err.println(sqle);
         }
     }
 }
