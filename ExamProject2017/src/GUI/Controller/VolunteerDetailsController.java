@@ -129,7 +129,7 @@ public class VolunteerDetailsController implements Initializable
             Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        System.out.println(VolunteerList());
+        
     }
 
     public List<Volunteer> VolunteerList()

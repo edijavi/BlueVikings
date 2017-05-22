@@ -46,6 +46,10 @@ public class VolunteerManager
     {
         VDM.deleteVolunteer(volunteerId);
     }
+    
+    public void updateVolunteer(String FirstName, String LastName, String Email, String PhoneNumber, String Address, String Additionalinfo, int VolunteerId) {
+        VDM.updateVolunteer(FirstName, LastName, Email, PhoneNumber, Address, Additionalinfo, VolunteerId);
+    }
 
     public void AddVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address, String additionalInfo)
     {

@@ -16,53 +16,54 @@ import java.util.ArrayList;
  *
  * @author EdwinSilva
  */
-public class GuildVolunteerDataManager {
+public class GuildVolunteerDataManager
+{
 
     ConnectionManager CM;
     Volunteer volunteer = new Volunteer();
     Guild guild = new Guild();
 
-    public GuildVolunteerDataManager() {
+    public GuildVolunteerDataManager()
+    {
         CM = new ConnectionManager();
     }
 
-    public void addMemberToGuild(int VolunteerId, int GuildId) {
-        try (Connection con = CM.getConnection()) {
+    public void addMemberToGuild(int VolunteerId, int GuildId)
+    {
+        try (Connection con = CM.getConnection())
+        {
 
             String sqlCommand
- = "INSERT INTO GuildVolunteers ( GuildId, VolunteerId) VALUES( ?, ?)";
+                    = "INSERT INTO GuildVolunteers ( GuildId, VolunteerId) VALUES( ?, ?)";
 
             PreparedStatement pstat = con.prepareStatement(sqlCommand);
-            
+
             pstat.setInt(1, GuildId);
             pstat.setInt(2, VolunteerId);
             pstat.executeUpdate();
-        } catch (SQLException sqle) {
+        } catch (SQLException sqle)
+        {
             System.err.println(sqle);
         }
     }
-    
-    public void deleteVolunteerFromGuild(int volunteerId) {
-      
-        try (Connection con = CM.getConnection()) {
+
+    public void deleteVolunteerFromGuild(int volunteerId)
+    {
+
+        try (Connection con = CM.getConnection())
+        {
             String sqlCommand
-                    = "DELETE FROM GuildVolunteers WHERE VolunteerId=?" ; 
-             PreparedStatement pstat = con.prepareStatement(sqlCommand);
-             pstat.setInt(1, volunteerId);
-             pstat.executeUpdate();
-             
-             
-           
-        } catch (SQLException sqle) {
+                    = "DELETE FROM GuildVolunteers WHERE VolunteerId=?";
+            PreparedStatement pstat = con.prepareStatement(sqlCommand);
+            pstat.setInt(1, volunteerId);
+            pstat.executeUpdate();
+
+        } catch (SQLException sqle)
+        {
             System.err.println(sqle);
-           
+
         }
-        
-  
-}
-    
-}
 
+    }
 
-    
-    
+}

@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -70,6 +72,29 @@ public class VolunteerDataManager
         } catch (SQLException sqle)
         {
             System.err.println(sqle);
+        }
+    }
+
+    public void updateVolunteer(String FirstName, String LastName, String Email, String PhoneNumber, String Address, String Additionalinfo, int VolunteerId)
+    {
+        try (Connection con = CM.getConnection())
+        {
+            String sqlQuery
+                    = "UPDATE Volunteer SET FirstName=?, LastName=?, Email=?, PhoneNumber=?, Address=?, Additionalinfo=? WHERE VolunteerId=?";
+            PreparedStatement pstmt
+                    = con.prepareStatement(sqlQuery);
+
+            pstmt.setString(1, FirstName);
+            pstmt.setString(2, LastName);
+            pstmt.setString(3, Email);
+            pstmt.setString(4, PhoneNumber);
+            pstmt.setString(5, Address);
+            pstmt.setString(6, Additionalinfo);
+            pstmt.setInt(7, VolunteerId);
+            pstmt.execute();
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(VolunteerDataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -130,62 +155,56 @@ public class VolunteerDataManager
         }
     }
 
-    public ArrayList<Volunteer> getVolunteerBasedOnGuild(String GuildName) 
+    public ArrayList<Volunteer> getVolunteerBasedOnGuild(String GuildName)
     {
 
         ArrayList<Volunteer> volunteers = new ArrayList<>();
 
         try (Connection con = CM.getConnection())
         {
-        {
-            String query = 
-                       " SELECT * "
-                    
-                    +  " FROM [Volunteer] v "
-                    
-                   +  " INNER JOIN [GuildVolunteers] gv ON v.VolunteerId = gv.VolunteerId "
-                    
-                    +  " INNER JOIN [Guild] g ON gv.GuildId = g.GuildId "
-                    
-                    +  " WHERE g.GuildName = ? ";
-            PreparedStatement pstmt = con.prepareStatement(query);
-            pstmt.setString(1, GuildName);
-            ResultSet rs = pstmt.executeQuery();
-            
-            while(rs.next()){
-            
+            {
+                String query
+                        = " SELECT * "
+                        + " FROM [Volunteer] v "
+                        + " INNER JOIN [GuildVolunteers] gv ON v.VolunteerId = gv.VolunteerId "
+                        + " INNER JOIN [Guild] g ON gv.GuildId = g.GuildId "
+                        + " WHERE g.GuildName = ? ";
+                PreparedStatement pstmt = con.prepareStatement(query);
+                pstmt.setString(1, GuildName);
+                ResultSet rs = pstmt.executeQuery();
 
-                volunteers.add(new Volunteer(
-                        rs.getString(  "firstName"  ),
-                        rs.getString(  "lastName"  ),
-                        rs.getInt(  "VolunteerId"  ),
-                        rs.getString(  "Email"  ),
-                        rs.getString(  "PhoneNumber"  ),
-                        rs.getString( "additionalInfo" ),
-                        rs.getString(  "Address"  )));
+                while (rs.next())
+                {
+
+                    volunteers.add(new Volunteer(
+                            rs.getString("firstName"),
+                            rs.getString("lastName"),
+                            rs.getInt("VolunteerId"),
+                            rs.getString("Email"),
+                            rs.getString("PhoneNumber"),
+                            rs.getString("additionalInfo"),
+                            rs.getString("Address")));
 //                
-          
-        }}
-        
-        return volunteers;
-           
-        
-        } 
-                catch (SQLException sqle)
-                {           
-                        System.err.println(sqle);
-                        return null;
 
                 }
+            }
+
+            return volunteers;
+
+        } catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return null;
 
         }
-    
-    
-        public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLServerException, SQLException
+
+    }
+
+    public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLServerException, SQLException
     {
         try (Connection con = CM.getConnection())
         {
-            String query = "SELECT * FROM GuildVolunteerWork WHERE VolunteerId="+ VolunteerId +"";
+            String query = "SELECT * FROM GuildVolunteerWork WHERE VolunteerId=" + VolunteerId + "";
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery(query);
 
@@ -206,7 +225,7 @@ public class VolunteerDataManager
                         rs.getDouble("Hours")));
             }
             return GuildWorkTable;
-        
+
         } catch (SQLException sqle)
         {
             System.err.println(sqle);
@@ -214,4 +233,5 @@ public class VolunteerDataManager
         }
 
     }
-    }
+
+}

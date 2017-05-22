@@ -12,6 +12,7 @@ import BLL.SearchHandler;
 import BLL.SearchHandler.SearchType;
 import GUI.Model.GuildModel;
 import GUI.Model.GuildVolunteerWorkModel;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -36,6 +37,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  * FXML Controller class
@@ -100,8 +104,35 @@ public class StatisticsController implements Initializable
     }
 
     @FXML
-    private void DownloadBtn(ActionEvent event)
+    private void DownloadBtn(ActionEvent event) throws IOException
     {
+        HSSFWorkbook workbook = new HSSFWorkbook();
+
+        HSSFSheet spreadsheet = workbook.createSheet("GuildWork");
+
+        HSSFRow row = null;
+
+        int i = 1;
+        for (GuildVolunteerWork item : tblStatistics.getItems()) {
+            row = spreadsheet.createRow(i);
+            row.createCell(1).setCellValue(item.getGuildId());
+            //.... add other column data as well
+            i++;
+        }
+
+        try {
+            //Write the workbook in file system
+             String PathTillProject = System.getProperty("user.dir");
+             FileOutputStream out = new FileOutputStream(PathTillProject + "/src/Guild.xls");
+            
+            workbook.write(out);
+            out.close();
+            System.out.println("CountriesDetails.xlsx has been created successfully");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            workbook.close();
+        }
     }
 
     public void ShowGuildInView() throws IOException
@@ -132,8 +163,10 @@ public class StatisticsController implements Initializable
 
         for (Guild p : GM.listOfGuilds())
         {
-          
-            if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName()))
+          if(dpStartDate.getValue()== null || dpEndDate.getValue()== null) {
+              
+          }
+          else if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName()))
             {
                 String dateStart = dpStartDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 String dateEnd = dpEndDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));

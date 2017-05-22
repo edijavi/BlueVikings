@@ -65,11 +65,11 @@ public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQ
     return VM.getVolunteerWork(VolunteerId);
 }
 
-/*
-public void deleteVolunteer(Volunteer volunteer{
-listOfVolunteer().remove(0).getVolunteerId()
+public void updateVolunteer(String FirstName, String LastName, String Email, String PhoneNumber, String Address, String Additionalinfo, int VolunteerId) {
+    VM.updateVolunteer(FirstName, LastName, Email, PhoneNumber, Address, Additionalinfo, VolunteerId);
 }
-*/
+
+
     
     
 
