@@ -82,15 +82,13 @@ public class LogInController implements Initializable
         TranslateTransition transition1 = new TranslateTransition(Duration.seconds(2.5), btnLogIn);
         transition1.setToY(-20);
 
-        RotateTransition rotation = new RotateTransition(Duration.seconds(1), btnLogIn);
-        rotation.setByAngle(360);
-
+       
         ParallelTransition transition = new ParallelTransition();
 
         transition.setOnFinished((e)
                 -> 
                 {
-                    FadeTransition fadeOut = new FadeTransition(Duration.seconds(4), anchorPane);
+                    FadeTransition fadeOut = new FadeTransition(Duration.seconds(1.5), anchorPane);
                     fadeOut.setFromValue(0.0);
                     fadeOut.setToValue(1.0);
                     fadeOut.play();
