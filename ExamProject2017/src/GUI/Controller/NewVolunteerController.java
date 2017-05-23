@@ -36,27 +36,25 @@ public class NewVolunteerController implements Initializable {
     @FXML
     private Button btnClose;
     @FXML
-    private Button btnEdit;
-    @FXML
     private TextField prefGuild1;
     @FXML
     private TextField prefGuild2;
-    @FXML
-    private TextField prefGuild3;
-    @FXML
-    private TextField Address;
-    @FXML
-    private TextField EmailAddress;
-    @FXML
-    private TextField lastName;
-    @FXML
-    private TextField firstName;
-    @FXML
-    private TextField PhoneNumber;
+  
+   
     @FXML
     private TextArea AddInfoTxtArea;
     
     VolunteerModel vModel = new VolunteerModel();
+    @FXML
+    private TextField txtFirstName;
+    @FXML
+    private TextField txtLastName;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private TextField txtAddress;
+    @FXML
+    private TextField txtPhone;
 
     /**
      * Initializes the controller class.
@@ -68,16 +66,9 @@ public class NewVolunteerController implements Initializable {
     @FXML
     private void saveVolunteerBtb(ActionEvent event)
     {
-        Volunteer volunteer = new Volunteer();
-        volunteer.setAddress(Address.getText());
-        volunteer.setEmail(EmailAddress.getText());
-        volunteer.setFirstName(firstName.getText());
-        volunteer.setLastName(lastName.getText());
-        volunteer.setPhoneNumber(PhoneNumber.getText());
-        volunteer.setAdditionalInfo(AddInfoTxtArea.getText());
-        // VolunteerList().add(volunteer);
-        vModel.addVolunteer(firstName.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
-                Address.getText(),AddInfoTxtArea.getText());
+
+        vModel.addVolunteer(txtFirstName.getText(), txtLastName.getText(), txtEmail.getText(), txtPhone.getText(),
+                txtAddress.getText(),AddInfoTxtArea.getText());
         Stage stage = null;
         stage = (Stage) btnClose.getScene().getWindow();
         try
