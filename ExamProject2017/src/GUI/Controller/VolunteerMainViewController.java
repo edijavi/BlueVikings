@@ -122,6 +122,7 @@ public class VolunteerMainViewController implements Initializable
         System.out.println(listOfGuilds);
         setHoursComboItem();
         setSearchComboItem();
+        txtSearch.setDisable(true);
         //setDate();
         
         
@@ -133,24 +134,19 @@ public class VolunteerMainViewController implements Initializable
             List<Volunteer> volunteers;
             List<Guild> guilds;
             if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
-                if(volunteerInGuildTbl.getSelectionModel().isEmpty()) {
                     volunteers = vm.getlistOfVolunteer();  
                     volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-                }
+                
                 }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
-                    if(volunteerInGuildTbl.getSelectionModel().isEmpty()) {
                     volunteers = vm.getlistOfVolunteer();
                     volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-                    }
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
-                    if(guildsTable.getSelectionModel().isEmpty()) {
                     try{
                     guilds = gm.listOfGuilds();
                     guildsTable.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
                     }catch (IOException ex)
                     {
                         Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
                     }
                 }
             }

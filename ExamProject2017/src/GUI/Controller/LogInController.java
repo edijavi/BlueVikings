@@ -168,7 +168,7 @@ public class LogInController implements Initializable
 
             try
             {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("/GUI/View/VolunteerMainView.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/VolunteerMainView.fxml"));
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

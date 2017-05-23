@@ -20,11 +20,10 @@
                   <RowConstraints maxHeight="441.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                  <TableView fx:id="tblMembers" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn maxWidth="170.0" prefWidth="152.0" text="First Name" />
-                      <TableColumn maxWidth="192.0" prefWidth="179.0" text="Last Name" />
-                        <TableColumn prefWidth="56.0" text="Hours" />
+                      <TableColumn fx:id="colFirstName" maxWidth="191.0" prefWidth="191.0" text="First Name" />
+                      <TableColumn fx:id="colLastName" maxWidth="235.0" prefWidth="196.0" text="Last Name" />
                     </columns>
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
@@ -38,12 +37,13 @@
                       <RowConstraints maxHeight="86.0" minHeight="10.0" prefHeight="60.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="87.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="52.0" minHeight="10.0" prefHeight="52.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <GridPane prefHeight="49.0" prefWidth="400.0" GridPane.rowIndex="2">
                           <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="204.0" minWidth="10.0" prefWidth="201.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="199.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="220.0" minWidth="10.0" prefWidth="219.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="213.0" minWidth="10.0" prefWidth="181.0" />
                           </columnConstraints>
                            <children>
                               <GridPane prefHeight="81.0" prefWidth="200.0">
@@ -61,7 +61,7 @@
                                     </Label>
                                  </children>
                               </GridPane>
-                              <Label text="Label" GridPane.columnIndex="1">
+                              <Label fx:id="lblAllHours" text="Label" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
@@ -73,8 +73,8 @@
                         </GridPane>
                         <GridPane prefHeight="39.0" prefWidth="400.0" GridPane.rowIndex="1">
                           <columnConstraints>
-                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="227.0" minWidth="10.0" prefWidth="226.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="174.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -85,14 +85,35 @@
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Label>
-                              <Label text="Label" GridPane.columnIndex="1">
+                              <Label fx:id="lblAllMembers" text="Label" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
                               </Label>
                            </children>
                         </GridPane>
-                        <Label text="Guild Name" />
+                        <Label fx:id="lblGuildName" text="Guild Name" />
+                        <GridPane GridPane.rowIndex="3">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="159.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="241.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <ComboBox fx:id="cmbSearch" onAction="#setSearchType" prefWidth="150.0" promptText="Search...">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" />
+                                 </GridPane.margin>
+                              </ComboBox>
+                              <TextField fx:id="txtSearch" onKeyReleased="#search" promptText="Search..." GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" />
+                                 </GridPane.margin>
+                              </TextField>
+                           </children>
+                        </GridPane>
                      </children>
                   </GridPane>
                   <GridPane GridPane.rowIndex="2">

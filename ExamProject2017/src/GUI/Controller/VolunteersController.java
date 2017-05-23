@@ -30,6 +30,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -133,20 +134,24 @@ public class VolunteersController implements Initializable
     {
         if (event.getSource() == btnNewVol)
         {
-            Stage stage = null;
+            
             Parent root = null;
-            stage = (Stage) btnNewVol.getScene().getWindow();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewVolunteer.fxml"));
+            Stage stage = new Stage();
+           
             try
-            {
-                root = fxmlLoader.load();
+            { FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewVolunteer.fxml"));
+              root = fxmlLoader.load();
             } catch (IOException ex)
             {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            Scene scene = new Scene(root);
+             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(btnNewVol.getScene().getWindow());
+            stage.getIcons().add(new Image("CSS/icon.png"));
+            stage.setResizable(false);
             stage.show();
         }
     }
@@ -166,9 +171,9 @@ public class VolunteersController implements Initializable
     private void ClickedOnVolunteer(MouseEvent event)
     {if(event.isPrimaryButtonDown() && event.getClickCount() == 2) 
         {
-            Stage stage = null;
+            
             Parent root = null;
-            stage = (Stage) allVolTbl.getScene().getWindow();
+            Stage stage = new Stage();
             try
             {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/VolunteerDetails.fxml"));
             VolunteerDetailsController.setVolunteer(allVolTbl.getSelectionModel().getSelectedItem());
@@ -177,6 +182,10 @@ public class VolunteersController implements Initializable
             root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(btnNewVol.getScene().getWindow());
+            stage.getIcons().add(new Image("CSS/icon.png"));
+            stage.setResizable(false);
             stage.show();
             
             } catch (IOException ex)

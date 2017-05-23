@@ -31,9 +31,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
         
 /**
@@ -59,20 +61,32 @@ public class GuildController implements Initializable {
     private TableColumn<?, ?> LastNameClm;
     
     ObservableList<Guild> listOfGuilds;
+    
     ObservableList<Volunteer> listOfVolunteer;
     
     GuildVolunteerModel GVmodel = new GuildVolunteerModel();
+    
     GuildModel GModel = new GuildModel();
+    
     VolunteerModel VModel = new VolunteerModel();
+    
     int GuildId;
+    
     int VolunteerId;
+    
     @FXML
     private ComboBox<String> cmbSearch;
+    
     @FXML
     private TextField txtSearch;
+   
     private SearchHandler.SearchType searchtype;
+    
     VolunteerModel vm = new VolunteerModel();
+    
     GuildModel gm = new GuildModel();
+    
+    private static Guild guild;
     /**
      * Initializes the controller class.
      */
@@ -93,7 +107,8 @@ public class GuildController implements Initializable {
     setSearchComboItem();
     txtSearch.setDisable(true);
     
-    }    
+    }  
+
 
     @FXML
     private void AddMemberToGuiild(ActionEvent event) {
@@ -118,8 +133,8 @@ public class GuildController implements Initializable {
                     tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
                     try{
-                    guilds = gm.listOfGuilds();
-                    tblGuilds.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
+                        guilds = gm.listOfGuilds();
+                        tblGuilds.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
                     }catch (IOException ex)
                     {
                         Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
@@ -165,15 +180,20 @@ public class GuildController implements Initializable {
     private void ClickedOnGuild(MouseEvent event)
     {if(event.isPrimaryButtonDown() && event.getClickCount() == 2) 
         {
-            Stage stage = null;
+            
             Parent root = null;
-            stage = (Stage) tblGuilds.getScene().getWindow();
+            Stage stage = new Stage();
             try
             {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/GuildDetails.fxml"));
-            
+            GuildDetailsController controller = fxmlLoader.getController();
+            GuildDetailsController.setGuild(tblGuilds.getSelectionModel().getSelectedItem());
             root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(tblGuilds.getScene().getWindow());
+            stage.getIcons().add(new Image("CSS/icon.png"));
+            stage.setResizable(false);
             stage.show();
             
             } catch (IOException ex)

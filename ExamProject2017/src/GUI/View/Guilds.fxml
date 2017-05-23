@@ -19,7 +19,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Guilds" GridPane.rowIndex="1">
+                  <Label text="Guilds">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -46,6 +46,7 @@
                      </children>
                   </GridPane>
                   <Label text="Volunteers" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label text="Double click on a guild to see the details" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </top>
