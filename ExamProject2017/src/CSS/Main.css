@@ -122,11 +122,22 @@
     -fx-border-width: 2;
 }
 
+.text-field:disabled {
+    -fx-border-color: white;
+    -fx-background-color: white;
+    -fx-prompt-text-fill: black;
+}
+
 .radio-button:pressed {
     
     -fx-text-fill: c49340;
 }
 
+.list-view {
+    
+    -fx-border-color: #70a8a5;
+    -fx-effect: dropshadow(three-pass-box , rgba(7,5,0,0.2) , 7, 0 , 0 , 5 );
+}
 
 
 
