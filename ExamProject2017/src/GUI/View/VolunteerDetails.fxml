@@ -3,7 +3,6 @@
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerDetailsController">
@@ -104,7 +103,6 @@
                 <RowConstraints maxHeight="357.0" minHeight="10.0" prefHeight="357.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="244.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true" />
                   <GridPane GridPane.rowIndex="1">
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -118,10 +116,11 @@
                      <children>
                         <Button fx:id="saveVol" mnemonicParsing="false" onAction="#saveVolunteerBtb" text="Save Volunteer" GridPane.rowIndex="1" />
                         <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeAction" text="Close" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" text="Upload Picture" />
+                        <Button fx:id="savePic" mnemonicParsing="false" text="Upload Picture" />
                         <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#editAction" text="Edit Volunteer" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
+                  <ListView fx:id="viewPic" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </GridPane>
          </left>

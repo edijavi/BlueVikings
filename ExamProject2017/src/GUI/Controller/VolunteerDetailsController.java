@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import GUI.Model.VolunteerModel;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -203,4 +206,25 @@ public class VolunteerDetailsController implements Initializable
     AddInfoTxtArea.setDisable(false);
 
     }
+    
+    @FXML
+    private Button btnPic;
+    
+    @FXML
+    private ListView viewPic ;
+    
+    
+    public void ButtonPicAction(ActionEvent event){
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(null);
+        
+        if (selectedFile !=null){
+            viewPic.getItems().add(selectedFile.getName());
+        }else{
+            System.out.println("file is not valid");
+        }
+    
+    
+    }
+    
 }
