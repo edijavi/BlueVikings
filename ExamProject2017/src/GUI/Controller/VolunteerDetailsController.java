@@ -23,9 +23,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 /**
@@ -75,10 +77,11 @@ public class VolunteerDetailsController implements Initializable
     {
 
     }
-
+ 
     /**
      * Initializes the controller class.
      */
+    
     @Override
 
     public void initialize(URL url, ResourceBundle rb)
@@ -193,24 +196,24 @@ public class VolunteerDetailsController implements Initializable
 
     }
     
-    @FXML
-    private Button btnPic;
     
     @FXML
-    private ListView viewPic ;
+    private Button saveI;
+    @FXML
+    private ImageView imageV;
     
-    
-    public void ButtonPicAction(ActionEvent event){
-        FileChooser fc = new FileChooser();
-        File selectedFile = fc.showOpenDialog(null);
-        
-        if (selectedFile !=null){
-            viewPic.getItems().add(selectedFile.getName());
-        }else{
-            System.out.println("file is not valid");
+    @FXML
+    private void handleUploadImage(ActionEvent event)
+      {
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.JPG", "*.jpg", "*.png", "*.JPEG", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null)
+        {
+            Image image = new Image(file.toURI().toString());
+            imageV.setImage(image);
         }
-    
-    
-    }
-    
+      }
+        
 }

@@ -3,6 +3,7 @@
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerDetailsController">
@@ -116,11 +117,11 @@
                      <children>
                         <Button fx:id="saveVol" mnemonicParsing="false" onAction="#saveVolunteerBtb" text="Save Volunteer" GridPane.rowIndex="1" />
                         <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeAction" text="Close" GridPane.rowIndex="3" />
-                        <Button fx:id="savePic" mnemonicParsing="false" text="Upload Picture" />
+                        <Button fx:id="saveI" mnemonicParsing="false" onAction="#handleUploadImage" text="Upload Picture" />
                         <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#editAction" text="Edit Volunteer" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <ListView fx:id="viewPic" prefHeight="200.0" prefWidth="200.0" />
+                  <ImageView fx:id="imageV" fitHeight="243.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </GridPane>
          </left>
