@@ -121,7 +121,14 @@
                         <Button fx:id="btnEdit" mnemonicParsing="false" onAction="#editAction" text="Edit Volunteer" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
-                  <ImageView fx:id="imageV" fitHeight="243.0" fitWidth="208.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageV" fitHeight="188.0" fitWidth="155.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <GridPane.margin>
+                        <Insets left="30.0" top="30.0" />
+                     </GridPane.margin>
+                     <image>
+                        <Image url="@../../CSS/Add.png" />
+                     </image>
+                  </ImageView>
                </children>
             </GridPane>
          </left>

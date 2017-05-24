@@ -7,6 +7,7 @@ package GUI.Controller;
 
 import BE.Volunteer;
 import GUI.Model.VolunteerModel;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -22,6 +23,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 /**
@@ -100,4 +105,23 @@ public class NewVolunteerController implements Initializable {
         stage.close();
     }
     
+    
+    @FXML
+    private Button saveI;
+    @FXML
+    private ImageView imageV;
+    
+    @FXML
+    private void handleUploadImage(ActionEvent event)
+      {
+        FileChooser fileChooser = new FileChooser();
+
+        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.JPG", "*.jpg", "*.png", "*.JPEG", "*.jpeg"));
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null)
+        {
+            Image image = new Image(file.toURI().toString());
+            imageV.setImage(image);
+        }
+      }
 }
