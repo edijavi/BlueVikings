@@ -106,37 +106,8 @@ public class StatisticsController implements Initializable
     @FXML
     private void DownloadBtn(ActionEvent event) throws IOException
     {
-        HSSFWorkbook workbook = new HSSFWorkbook();
-
-        HSSFSheet spreadsheet = workbook.createSheet("GuildWork");
-
-        HSSFRow row = null;
-
-        int i = 1;
-        for (GuildVolunteerWork item : tblStatistics.getItems())
-        {
-            row = spreadsheet.createRow(i);
-            row.createCell(1).setCellValue(item.getGuildId());
-            //.... add other column data as well
-            i++;
-        }
-
-        try
-        {
-            //Write the workbook in file system
-            String PathTillProject = System.getProperty("user.dir");
-            FileOutputStream out = new FileOutputStream(PathTillProject + "/src/Guild.xls");
-
-            workbook.write(out);
-            out.close();
-            System.out.println("CountriesDetails.xlsx has been created successfully");
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        } finally
-        {
-            workbook.close();
-        }
+       
+    printToExcel();
     }
 
     public void ShowGuildInView() throws IOException
@@ -207,5 +178,44 @@ public class StatisticsController implements Initializable
         System.out.println(listOfGuildVolunteerWork);
 
     }
+public void printToExcel() throws IOException {
+        HSSFWorkbook workbook = new HSSFWorkbook();
 
+        HSSFSheet spreadsheet = workbook.createSheet("GuildWork");
+
+        HSSFRow row = null;
+
+        int i = 1;
+        for (GuildVolunteerWork item : tblStatistics.getItems()) {
+
+            HSSFRow headingRow = spreadsheet.createRow(0);
+            headingRow.createCell((short) 0).setCellValue("Date");
+            headingRow.createCell((short) 1).setCellValue("GuildId");
+            headingRow.createCell((short) 2).setCellValue("VolunteerId");
+            headingRow.createCell((short) 3).setCellValue("Hours");
+            ;
+            short rowNo = 1;
+
+            row = spreadsheet.createRow(i);
+            row.createCell((short) 0).setCellValue(item.getDate().toString());
+            row.createCell((short) 1).setCellValue(item.getGuildId());
+            row.createCell((short) 2).setCellValue(item.getVolunteerId());
+            row.createCell((short) 3).setCellValue(item.getHour());
+
+            //.... add other column data as well
+            i++;
+        }
+
+        try {
+            //Write the workbook in file system
+            String PathTillProject = System.getProperty("user.dir");
+            try (FileOutputStream out = new FileOutputStream(PathTillProject + "/src/Guild.xls")) {
+                workbook.write(out);
+            }
+            System.out.println("CountriesDetails.xlsx has been created successfully");
+        } catch (IOException e) {
+        } finally {
+            workbook.close();
+        }
+    }
 }
