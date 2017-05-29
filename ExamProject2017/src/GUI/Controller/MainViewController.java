@@ -5,6 +5,7 @@
  */
 package GUI.Controller;
 
+import GUI.Model.ManagerModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
@@ -45,6 +46,16 @@ public class MainViewController implements Initializable {
     private Date date = new Date();
     
     private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+    @FXML
+    private Button btnStatistics;
+    @FXML
+    private Button btnVolunteerStat;
+    @FXML
+    private Label lblFN;
+    @FXML
+    private Label lblLN;
+    
+    ManagerModel MM = new ManagerModel();
 
 
     /**
@@ -59,7 +70,6 @@ public class MainViewController implements Initializable {
                 System.out.println(e);
             }
         setDate();
-        // TODO
     }   
     @FXML
     private void pressedButton(ActionEvent event) {

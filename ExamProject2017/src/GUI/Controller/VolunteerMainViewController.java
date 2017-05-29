@@ -43,6 +43,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+
 /**
  * FXML Controller class
  *
@@ -81,7 +82,7 @@ public class VolunteerMainViewController implements Initializable
     @FXML
     private TableColumn<?, ?> FstNameClm;
 
-    
+    private java.util.Date date = new java.util.Date();
     
     @FXML
     private TableColumn<?, ?> lstNameClm;
@@ -123,7 +124,7 @@ public class VolunteerMainViewController implements Initializable
         setHoursComboItem();
         setSearchComboItem();
         txtSearch.setDisable(true);
-        //setDate();
+        setDate();
         
         
     }
@@ -197,6 +198,12 @@ public class VolunteerMainViewController implements Initializable
         cmbHours.setItems(comboItems);
 
     }
+    public void setDate()
+{
+    int y = date.getYear()+1900;
+    int m = date.getMonth()+1;
+    lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
+}
 
     //Taking selected item from combobox and adding into the selected guild
     @FXML

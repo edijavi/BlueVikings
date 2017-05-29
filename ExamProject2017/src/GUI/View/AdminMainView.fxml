@@ -75,7 +75,7 @@
                   <Button fx:id="btnGuilds" mnemonicParsing="false" onAction="#pressedButton" text="Guilds" GridPane.rowIndex="2" />
                   <Button fx:id="btnClose" mnemonicParsing="false" onAction="#pressedButton" text="Close" GridPane.rowIndex="7" />
                   <Label text="Menu:" GridPane.valignment="CENTER" />
-                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutEvent" text="Log Out" GridPane.rowIndex="6" />
+                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#pressedButton" text="Log Out" GridPane.rowIndex="6" />
                   <Button fx:id="btnStatistics" mnemonicParsing="false" onAction="#pressedButton" text="Guild Statistics" GridPane.rowIndex="3" />
                   <Button fx:id="btnVolunteerStat" mnemonicParsing="false" onAction="#pressedButton" text="Volunteer Statistics" GridPane.rowIndex="4" />
                   <Button fx:id="btnManagers" mnemonicParsing="false" onAction="#pressedButton" text="Managers" GridPane.rowIndex="5" />

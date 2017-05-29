@@ -9,15 +9,23 @@ package GUI.Controller;
 
 import BE.Manager;
 import BE.Volunteer;
+import static GUI.Controller.LogInController.loginType.ADMIN;
+import static GUI.Controller.LogInController.loginType.MANAGER;
 import GUI.Model.ManagerModel;
+import java.io.IOException;
 import java.net.URL;
 
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 
 
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -54,7 +62,7 @@ public class ManagerDetailsController implements Initializable {
     private TextField txtUserName;
     @FXML
     private TextField txtEmail;
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -93,7 +101,42 @@ public class ManagerDetailsController implements Initializable {
 
     @FXML
     private void closeAction(ActionEvent event) {
-        Stage stage = (Stage) btnClose.getScene().getWindow();
-        stage.close();
+        Stage stage = new Stage();
+        if(mModel.getLogintype() == MANAGER){
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
+
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            Stage closeStage = (Stage) btnClose.getScene().getWindow();
+            closeStage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
-}
+    else if(mModel.getLogintype() == ADMIN){
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
+
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            Stage closeStage = (Stage) btnClose.getScene().getWindow();
+            closeStage.close();
+            
+        } catch (IOException ex)
+        {
+            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    }
+    }
+

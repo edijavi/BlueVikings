@@ -17,7 +17,7 @@ import DAL.ManagerDataManager;
  * @author boldi
  */
 public class SearchHandler {
-   public enum SearchType{FIRSTNAME,LASTNAME,GUILD,MANAGERFIRSTNAME,MANAGERLASTNAME,FIRSTNAMBASEDONGUILD,LASTNAMEBASEDONGUILD}
+   public enum SearchType{FIRSTNAME,LASTNAME,GUILD,MANAGERFIRSTNAME,MANAGERLASTNAME,}
    VolunteerManager VM = new VolunteerManager();
    ManagerDataManager MDM = new ManagerDataManager();
    public <T> List <T> Search(String word, List<T> inWhat, SearchType type)

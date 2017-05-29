@@ -183,16 +183,19 @@ public class GuildController implements Initializable {
             
             Parent root = null;
             Stage stage = new Stage();
+            Stage stage1 = (Stage) tblGuilds.getScene().getWindow();
             try
             {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/GuildDetails.fxml"));
             GuildDetailsController controller = fxmlLoader.getController();
             GuildDetailsController.setGuild(tblGuilds.getSelectionModel().getSelectedItem());
+            
             root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(tblGuilds.getScene().getWindow());
             stage.getIcons().add(new Image("CSS/icon.png"));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(stage1);
+            stage.show();
             stage.setResizable(false);
             stage.show();
             

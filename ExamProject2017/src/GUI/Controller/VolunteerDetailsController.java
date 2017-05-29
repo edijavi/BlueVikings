@@ -6,6 +6,10 @@
 package GUI.Controller;
 
 import BE.Volunteer;
+import GUI.Controller.LogInController.loginType;
+import static GUI.Controller.LogInController.loginType.ADMIN;
+import static GUI.Controller.LogInController.loginType.MANAGER;
+import GUI.Model.ManagerModel;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -60,6 +64,8 @@ public class VolunteerDetailsController implements Initializable
 
     VolunteerModel vModel = new VolunteerModel();
     
+    ManagerModel MM = new ManagerModel();
+    
     @FXML
     private Button btnClose;
     @FXML
@@ -72,6 +78,8 @@ public class VolunteerDetailsController implements Initializable
     private TextField prefGuild2;
     @FXML
     private Button btnEdit;
+    
+    private loginType logintype;
 
     public VolunteerDetailsController()
     {
@@ -93,36 +101,21 @@ public class VolunteerDetailsController implements Initializable
     @FXML
     private void closeAction(ActionEvent event)
     {
-        Stage stage = (Stage) btnClose.getScene().getWindow();
-        stage.close();
+        Stage closeStage = (Stage) btnClose.getScene().getWindow();
+        closeStage.close();
+        
     }
 
     @FXML
     private void saveVolunteerBtb(ActionEvent event)
     {
-        
-        
-        
         vModel.updateVolunteer(firstName.getText(), lastName.getText(), EmailAddress.getText(), PhoneNumber.getText(),
         Address.getText(),AddInfoTxtArea.getText(), vol.getVolunteerId());
-        Stage stage = null;
-        stage = (Stage) btnClose.getScene().getWindow();
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
-
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
         
+
     
-        
 
     }
     public List<Volunteer> VolunteerList()

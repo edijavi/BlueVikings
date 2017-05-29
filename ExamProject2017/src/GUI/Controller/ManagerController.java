@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +37,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -87,25 +89,40 @@ public class ManagerController implements Initializable
     {
         if (event.getSource() == btnAddManager)
         {
+            
             Parent root = null;
             Stage stage = new Stage();
-            
+            Stage stage1 = (Stage) tblManagers.getScene().getWindow();
             try
-            {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewManager.fxml"));
-                root = fxmlLoader.load();   
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.initOwner(btnAddManager.getScene().getWindow());
-                stage.show();
-            }catch (IOException ex)
+            {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewManager.fxml"));
+            root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setOnHiding(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                tblManagers.setItems(FXCollections.observableArrayList(mm.getManager()));   
+                }
+            });
+            
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                tblManagers.setItems(FXCollections.observableArrayList(mm.getManager()));    
+                }
+            });
+
+            stage.getIcons().add(new Image("CSS/icon.png"));
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(stage1);
+            stage.show();       
+        } catch (IOException ex)
             {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-
-    }
+        }
     }
     @FXML
     private void search(KeyEvent event)
@@ -150,29 +167,44 @@ public class ManagerController implements Initializable
     {
         if (event.isPrimaryButtonDown() && event.getClickCount() == 2)
         {
+            {
             
             Parent root = null;
             Stage stage = new Stage();
+            Stage stage1 = (Stage) tblManagers.getScene().getWindow();
             try
-            {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/ManagerDetails.fxml"));
+            {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/ManagerDetails.fxml"));
                 ManagerDetailsController controller = fxmlLoader.getController();
                 ManagerDetailsController.setManager(tblManagers.getSelectionModel().getSelectedItem());
-                root = fxmlLoader.load();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.initModality(Modality.WINDOW_MODAL);
-                stage.initOwner(tblManagers.getScene().getWindow());
-                stage.getIcons().add(new Image("CSS/icon.png"));
-                stage.setResizable(false);
-                stage.show();
+            root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setOnHiding(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                tblManagers.setItems(FXCollections.observableArrayList(mm.getManager()));
+                }
+            });
+            
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                tblManagers.setItems(FXCollections.observableArrayList(mm.getManager())); 
+                }
+            });
 
-            } catch (IOException ex)
+            stage.getIcons().add(new Image("CSS/icon.png"));
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(stage1);
+            stage.show();
+            
+        }catch (IOException ex)
             {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        }
     }
 
+}
+}
 }

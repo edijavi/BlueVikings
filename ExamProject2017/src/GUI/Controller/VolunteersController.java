@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import static javafx.collections.FXCollections.observableList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,6 +37,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -89,6 +91,7 @@ public class VolunteersController implements Initializable
 
     }
 
+
     public void showVolunteer()
     {
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -137,22 +140,38 @@ public class VolunteersController implements Initializable
             
             Parent root = null;
             Stage stage = new Stage();
-           
+            Stage stage1 = (Stage) allVolTbl.getScene().getWindow();
             try
-            { FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewVolunteer.fxml"));
-              root = fxmlLoader.load();
+            {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewVolunteer.fxml"));
+            root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setOnHiding(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                allVolTbl.setItems(FXCollections.observableArrayList(vm.getlistOfVolunteer()));   
+                }
+            });
+            
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                allVolTbl.setItems(FXCollections.observableArrayList(vm.getlistOfVolunteer()));    
+                }
+            });
+
+            stage.getIcons().add(new Image("CSS/icon.png"));
+            stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(stage1);
+            stage.show();
+           
+            
             } catch (IOException ex)
             {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-             Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(btnNewVol.getScene().getWindow());
-            stage.getIcons().add(new Image("CSS/icon.png"));
-            stage.setResizable(false);
-            stage.show();
         }
     }
 
@@ -174,6 +193,7 @@ public class VolunteersController implements Initializable
             
             Parent root = null;
             Stage stage = new Stage();
+            Stage stage1 = (Stage) allVolTbl.getScene().getWindow();
             try
             {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/VolunteerDetails.fxml"));
             VolunteerDetailsController.setVolunteer(allVolTbl.getSelectionModel().getSelectedItem());
@@ -182,11 +202,26 @@ public class VolunteersController implements Initializable
             root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(btnNewVol.getScene().getWindow());
+            stage.setOnHiding(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                allVolTbl.setItems(FXCollections.observableArrayList(vm.getlistOfVolunteer()));   
+                }
+            });
+            
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent event) {
+                allVolTbl.setItems(FXCollections.observableArrayList(vm.getlistOfVolunteer()));    
+                }
+            });
+
             stage.getIcons().add(new Image("CSS/icon.png"));
             stage.setResizable(false);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(stage1);
             stage.show();
+           
             
             } catch (IOException ex)
             {

@@ -16,22 +16,38 @@
             <GridPane prefHeight="37.0" prefWidth="630.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="335.0" minWidth="10.0" prefWidth="333.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="297.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="312.0" minWidth="10.0" prefWidth="297.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TextField fx:id="txtSearch" onKeyReleased="#search" prefHeight="25.0" prefWidth="205.0" promptText="Search.." GridPane.columnIndex="1">
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="162.0" minWidth="10.0" prefWidth="139.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="194.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ComboBox fx:id="cmbSearch" layoutX="-104.0" layoutY="-119.0" onAction="#setSearchType" prefHeight="25.0" prefWidth="127.0" promptText="Search">
+                           <GridPane.margin>
+                              <Insets left="5.0" right="10.0" />
+                           </GridPane.margin>
+                        </ComboBox>
+                        <TextField fx:id="txtSearch" onKeyReleased="#search" prefHeight="25.0" prefWidth="132.0" promptText="Search.." GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="18.0" right="12.0" />
+                           </GridPane.margin>
+                        </TextField>
+                     </children>
+                  </GridPane>
+                  <Label text="Double Click on a date to modify" GridPane.columnIndex="1">
                      <GridPane.margin>
-                        <Insets left="18.0" right="30.0" />
+                        <Insets left="10.0" />
                      </GridPane.margin>
-                  </TextField>
-                  <ComboBox fx:id="cmbSearch" onAction="#setSearchType" prefWidth="150.0" promptText="Search">
-                     <GridPane.margin>
-                        <Insets right="13.0" />
-                     </GridPane.margin>
-                  </ComboBox>
+                  </Label>
                </children>
             </GridPane>
          </top>
@@ -57,7 +73,7 @@
             </GridPane>
          </left>
          <right>
-            <TableView fx:id="tblDatesnHours" prefHeight="494.0" prefWidth="273.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tblDatesnHours" onMousePressed="#modifyDate" prefHeight="494.0" prefWidth="273.0" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="colDate" prefWidth="165.0" text="Date" />
                 <TableColumn fx:id="colHours" prefWidth="107.0" text="hours" />
@@ -68,5 +84,10 @@
             </TableView>
          </right>
       </BorderPane>
+      <GridPane layoutX="209.0" layoutY="-115.0" GridPane.columnIndex="1">
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+      </GridPane>
    </children>
 </AnchorPane>

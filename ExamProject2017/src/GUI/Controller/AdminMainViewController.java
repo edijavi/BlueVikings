@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -114,6 +115,8 @@ public class AdminMainViewController implements Initializable {
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
+                    stage.getIcons().add(new Image("CSS/icon.png"));
+                    stage.setResizable(false);
                     } catch (IOException ex)
                     {
                         Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
@@ -147,25 +150,6 @@ public void setDate()
     int y = date.getYear()+1900;
     int m = date.getMonth()+1;
     lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
-}
-@FXML
-public void logOutEvent(ActionEvent event)
-{
-    Stage stage = null;
-        stage = (Stage) btnLogOut.getScene().getWindow();
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/LogIn.fxml"));
-
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
 }
     
 }

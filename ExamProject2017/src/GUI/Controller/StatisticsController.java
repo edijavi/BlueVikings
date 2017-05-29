@@ -30,6 +30,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -81,6 +82,10 @@ public class StatisticsController implements Initializable
     private TextField txtSearch;
     private SearchType searchtype;
     GuildModel gm = new GuildModel();
+    @FXML
+    private Label lblAllHours;
+    
+    private Guild guild;
 
 // Fordi den snakker med database? 
     /**
@@ -109,6 +114,7 @@ public class StatisticsController implements Initializable
        
     printToExcel();
     }
+
 
     public void ShowGuildInView() throws IOException
     {
@@ -172,9 +178,11 @@ public class StatisticsController implements Initializable
 
 @FXML
         private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException
-    {
+    {   
+        
         ShowDateAndHours();
-
+        String guildHoursString = String.valueOf(GuildTbl.getSelectionModel().getSelectedItem().getGuildHours());
+        lblAllHours.setText(guildHoursString);
         System.out.println(listOfGuildVolunteerWork);
 
     }

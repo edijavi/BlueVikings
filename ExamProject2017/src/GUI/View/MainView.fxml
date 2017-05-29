@@ -27,12 +27,24 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label prefHeight="20.0" prefWidth="114.0" text="Administrator:">
+                        <Label prefHeight="20.0" prefWidth="75.0" text="Manager:">
                            <GridPane.margin>
                               <Insets right="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="35.0" GridPane.columnIndex="1" />
+                        <GridPane GridPane.columnIndex="1">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label fx:id="lblFN" text="Label" />
+                              <Label fx:id="lblLN" text="Label" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="1">

@@ -9,6 +9,9 @@ import BE.Guild;
 import BE.Volunteer;
 import BLL.SearchHandler;
 import BLL.SearchHandler.SearchType;
+import static GUI.Controller.LogInController.loginType.ADMIN;
+import static GUI.Controller.LogInController.loginType.MANAGER;
+import GUI.Model.ManagerModel;
 import GUI.Model.VolunteerModel;
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
@@ -51,6 +55,9 @@ public class GuildDetailsController implements Initializable
     private static Guild guild;
     
     VolunteerModel vm = new VolunteerModel();
+    
+    ManagerModel MM = new ManagerModel();
+    
     @FXML
     private TableView<Volunteer> tblMembers;
     @FXML
@@ -91,10 +98,9 @@ public class GuildDetailsController implements Initializable
 
     @FXML
     private void closeAction(ActionEvent event) {
-        Stage stage = (Stage) btnClose.getScene().getWindow();
-        stage.close();
+        Stage closeStage = (Stage) btnClose.getScene().getWindow();
+        closeStage.close();
     }
-
 
     public static void setGuild(Guild guildd)
     {

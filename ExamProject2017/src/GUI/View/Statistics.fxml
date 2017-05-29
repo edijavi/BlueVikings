@@ -120,7 +120,7 @@
                               <Insets left="5.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblAllHours" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane>

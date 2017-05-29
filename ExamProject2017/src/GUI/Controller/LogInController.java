@@ -21,6 +21,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import BE.Manager;
+import static GUI.Controller.LogInController.loginType.ADMIN;
 import GUI.Model.AdminModel;
 import java.util.List;
 import javafx.scene.control.Label;
@@ -32,6 +33,7 @@ import javafx.util.Duration;
 import javafx.animation.ParallelTransition;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -64,7 +66,8 @@ public class LogInController implements Initializable
     private BorderPane borderPane;
     @FXML
     private GridPane loginGrid;
-
+    
+    public enum loginType{ADMIN,MANAGER};
     /**
      * Initializes the controller class.
      */
@@ -136,18 +139,22 @@ public class LogInController implements Initializable
         {
             Adminstrator ad = Admins.get(i);
             if (txtFieldUserName.getText().equals(ad.getUsername().trim()) && pwField.getText().equals(ad.getPassword().trim()))
-            {
+
+            { MM.setLogintype(ADMIN);
                 Stage stage = null;
                 //Parent root = null;
                 stage = (Stage) btnLogIn.getScene().getWindow();
 
                 try
                 {
+                    
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
                     Parent root = fxmlLoader.load();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
+                    stage.getIcons().add(new Image("CSS/icon.png"));
+                    stage.setResizable(false);
                 } catch (IOException ex)
                 {
                     Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
@@ -157,7 +164,7 @@ public class LogInController implements Initializable
 
     }
     }
-    public void logginin()
+    public void volunteerLogin()
     {
         if (rbtnVolunteer.isSelected())
         {
@@ -168,18 +175,25 @@ public class LogInController implements Initializable
 
             try
             {
+                
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/VolunteerMainView.fxml"));
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
+                stage.getIcons().add(new Image("CSS/icon.png"));
+                stage.setResizable(false);
             } catch (IOException ex)
             {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } else if (rbtnAdministrator.isSelected())
-        {
+        }
+        }
+        public void managerLogIn(){
+        
+            if (rbtnAdministrator.isSelected())
+            {
             List<Manager> managers = MM.getManager();
             for (int i = 0; i < managers.size(); i++)
             {
@@ -189,16 +203,19 @@ public class LogInController implements Initializable
                         && pwField.getText().equals(ma.getPassword().trim()))
 
                 {
-
+                    MM.setLogintype(loginType.MANAGER);
                     Stage stage = null;
                     stage = (Stage) btnLogIn.getScene().getWindow();
                     try
                     {
+                        
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
                         Parent root = fxmlLoader.load();
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
+                        stage.getIcons().add(new Image("CSS/icon.png"));
+                        stage.setResizable(false);
 
                     } catch (IOException ex)
                     {
@@ -217,7 +234,7 @@ public class LogInController implements Initializable
     public void logInEvent(ActionEvent event)
     {
         AdminLogin();
-        logginin();
+        managerLogIn();
       
     }
 
@@ -228,7 +245,7 @@ public class LogInController implements Initializable
         {
             AdminLogin();
             
-            logginin();
+            managerLogIn();
         }
     }
 

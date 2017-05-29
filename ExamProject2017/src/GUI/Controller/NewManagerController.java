@@ -5,6 +5,9 @@
  */
 package GUI.Controller;
 
+import static GUI.Controller.LogInController.loginType.ADMIN;
+import static GUI.Controller.LogInController.loginType.MANAGER;
+import GUI.Model.ManagerModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,6 +44,8 @@ public class NewManagerController implements Initializable {
     private TextField txtUserName;
     @FXML
     private Button btnClose;
+    
+    ManagerModel MM = new ManagerModel();
 
     /**
      * Initializes the controller class.
@@ -52,8 +57,43 @@ public class NewManagerController implements Initializable {
 
      @FXML
     private void closeAction(ActionEvent event) {
-        Stage stage = (Stage) btnClose.getScene().getWindow();
-        stage.close();
+        Stage stage = new Stage();
+        if(MM.getLogintype() == MANAGER){
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
+
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            Stage closeStage = (Stage) btnClose.getScene().getWindow();
+            closeStage.close();
+        } catch (IOException ex)
+        {
+            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    else if(MM.getLogintype() == ADMIN){
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
+
+            Parent root = fxmlLoader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+            Stage closeStage = (Stage) btnClose.getScene().getWindow();
+            closeStage.close();
+            
+        } catch (IOException ex)
+        {
+            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    }
     }
     
-}
+

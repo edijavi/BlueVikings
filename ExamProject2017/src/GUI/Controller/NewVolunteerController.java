@@ -6,6 +6,9 @@
 package GUI.Controller;
 
 import BE.Volunteer;
+import static GUI.Controller.LogInController.loginType.ADMIN;
+import static GUI.Controller.LogInController.loginType.MANAGER;
+import GUI.Model.ManagerModel;
 import GUI.Model.VolunteerModel;
 import java.io.File;
 import java.io.IOException;
@@ -44,7 +47,8 @@ public class NewVolunteerController implements Initializable {
     private TextField prefGuild1;
     @FXML
     private TextField prefGuild2;
-  
+   
+    ManagerModel MM = new ManagerModel();
    
     @FXML
     private TextArea AddInfoTxtArea;
@@ -74,22 +78,8 @@ public class NewVolunteerController implements Initializable {
 
         vModel.addVolunteer(txtFirstName.getText(), txtLastName.getText(), txtEmail.getText(), txtPhone.getText(),
                 txtAddress.getText(),AddInfoTxtArea.getText());
-        Stage stage = null;
-        stage = (Stage) btnClose.getScene().getWindow();
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
-
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
+        Stage closeStage = (Stage) btnClose.getScene().getWindow();
+        closeStage.close();
     }
 
     public List<Volunteer> VolunteerList()
@@ -101,10 +91,9 @@ public class NewVolunteerController implements Initializable {
 
     @FXML
     private void closeAction(ActionEvent event) {
-        Stage stage = (Stage) btnClose.getScene().getWindow();
-        stage.close();
-    }
-    
+        Stage closeStage = (Stage) btnClose.getScene().getWindow();
+        closeStage.close();
+    }   
     
     @FXML
     private Button saveI;

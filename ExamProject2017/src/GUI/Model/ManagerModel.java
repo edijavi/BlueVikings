@@ -8,6 +8,7 @@ package GUI.Model;
 import BE.Manager;
 import BLL.ManagementManager;
 import BLL.SearchHandler;
+import GUI.Controller.LogInController.loginType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,15 @@ import java.util.List;
  */
 public class ManagerModel
 {
+    private static loginType logintype;
+
+    public void setLogintype(loginType logintype) {
+        this.logintype = logintype;
+    }
+
+    public loginType getLogintype() {
+        return logintype;
+    }
     ManagementManager MM1 = new ManagementManager();
     private SearchHandler searchHandler = new SearchHandler();
     
@@ -27,4 +37,5 @@ public class ManagerModel
     public <T> List<T> doSearch(String word, List<T> inWhat, SearchHandler.SearchType type) {
         return searchHandler.Search(word, inWhat, type);
     }
+    
 }
