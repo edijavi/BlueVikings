@@ -57,14 +57,12 @@
                <children>
                   <Label text="First Name:" />
                   <Label text="Last Name:" GridPane.rowIndex="1" />
-
                   <Label text="Phone Number:" GridPane.rowIndex="2" />
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="107.0" text="E-mail Address:" GridPane.rowIndex="3" />
                   <Label text="Password:" GridPane.rowIndex="4" />
                   <Label text="User Name:" GridPane.rowIndex="5" />
                   <Label text="Guilds:" GridPane.rowIndex="6" />
                   <Label text="User Name:" GridPane.rowIndex="5" />
-
                   <TextField fx:id="txtFirstName" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets right="5.0" />
@@ -104,8 +102,6 @@
                         <Insets bottom="5.0" right="5.0" />
                      </GridPane.margin>
                   </ScrollPane>
-                 
-
                </children>
             </GridPane>
          </right>
