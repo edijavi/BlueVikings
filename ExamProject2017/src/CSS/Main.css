@@ -24,7 +24,8 @@
     -fx-background-radius: 6, 5;
     -fx-background-insets: 0, 1;
     -fx-text-fill: white;
-    
+    -fx-pref-width: 160px;
+       
     
 }
 
@@ -138,6 +139,4 @@
     -fx-border-color: #70a8a5;
     -fx-effect: dropshadow(three-pass-box , rgba(7,5,0,0.2) , 7, 0 , 0 , 5 );
 }
-
-
 

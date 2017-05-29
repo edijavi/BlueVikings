@@ -81,7 +81,7 @@
                 <RowConstraints maxHeight="241.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#AddMemberToGuiild" text="Add member to the selected guild" GridPane.rowIndex="1" />
+                  <Button fx:id="btnAddMember" mnemonicParsing="false" onAction="#AddMemberToGuiild" text="Add to Guild" GridPane.rowIndex="1" />
                   <TableView fx:id="tblVolunteers" prefHeight="200.0" prefWidth="200.0">
                     <columns>
                       <TableColumn fx:id="FirstNameClm" prefWidth="142.0" text="First Name" />
