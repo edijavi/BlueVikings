@@ -13,10 +13,11 @@ import DAL.GuildVolunteerDataManager;
  */
 public class GuildVolunteerManager {
 GuildVolunteerDataManager GVDM = new  GuildVolunteerDataManager();
-
+// Delete a volunteer from DB, with a specific volunteerId
 public void deleteVolunteer(int volunteerId){
 GVDM.deleteVolunteerFromGuild(volunteerId);
 }
+// Add a volunteer based on a volunteerID to a guild based on the chosen guildId
 public void AddVolunteer(int GuildId, int VolunteerId){
     GVDM.addMemberToGuild(GuildId, VolunteerId);
 }

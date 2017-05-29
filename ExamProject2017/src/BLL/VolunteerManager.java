@@ -43,16 +43,16 @@ public class VolunteerManager
     {
         VDM.deleteVolunteer(volunteerId);
     }
-    
+    // Update the  information about a volunteer in the DB
     public void updateVolunteer(String FirstName, String LastName, String Email, String PhoneNumber, String Address, String Additionalinfo, int VolunteerId) {
         VDM.updateVolunteer(FirstName, LastName, Email, PhoneNumber, Address, Additionalinfo, VolunteerId);
     }
-
+    // Add a Volunteer to the DB
     public void AddVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address, String additionalInfo)
     {
         VDM.addVolunteer(firstName, lastName, Email, phoneNumber, Address, additionalInfo);
     }
-
+    //Get the work a volunteer has registeret by volunteerID
     public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLException {
         return VDM.getVolunteerWork(VolunteerId);
     }
