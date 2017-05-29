@@ -226,6 +226,7 @@ public class LogInController implements Initializable
     {
         AdminLogin();
         managerLogIn();
+        volunteerLogin();
       
     }
 
@@ -235,7 +236,7 @@ public class LogInController implements Initializable
         if (event.getCode().toString().equals("ENTER"))
         {
             AdminLogin();
-            
+            volunteerLogin();
             managerLogIn();
         }
     }

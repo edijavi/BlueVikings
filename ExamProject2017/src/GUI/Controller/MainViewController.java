@@ -70,6 +70,7 @@ public class MainViewController implements Initializable {
                 System.out.println(e);
             }
         setDate();
+        
     }   
     @FXML
     private void pressedButton(ActionEvent event) {

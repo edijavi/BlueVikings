@@ -168,14 +168,14 @@ public class VolunteerStatisticsController implements Initializable {
                 stage.setOnHiding(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
-                tblVolunteers.setItems(FXCollections.observableArrayList(vm.getlistOfVolunteer()));   
+                tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));   
                         }
                     });
             
                 stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
                 @Override
                 public void handle(WindowEvent event) {
-                tblVolunteers.setItems(FXCollections.observableArrayList(vm.getlistOfVolunteer()));    
+                tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));    
                 }
                 });
 

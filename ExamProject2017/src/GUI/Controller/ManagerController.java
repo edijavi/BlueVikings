@@ -13,6 +13,7 @@ import GUI.Model.ManagerModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +26,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -178,8 +181,8 @@ public class ManagerController implements Initializable
             Stage stage1 = (Stage) tblManagers.getScene().getWindow();
             try
             {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/ManagerDetails.fxml"));
-                ManagerDetailsController controller = fxmlLoader.getController();
-                ManagerDetailsController.setManager(tblManagers.getSelectionModel().getSelectedItem());
+            ManagerDetailsController controller = fxmlLoader.getController();
+            ManagerDetailsController.setManager(tblManagers.getSelectionModel().getSelectedItem());
             root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -215,10 +218,17 @@ public class ManagerController implements Initializable
     @FXML
     private void deleteManager(ActionEvent event)
     {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmation");
+        alert.setContentText("Are you sure you want to remove " + tblManagers.getSelectionModel().getSelectedItem().getFirstname()+ " " + tblManagers.getSelectionModel().getSelectedItem().getLastname() +" from the system?" );
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
         mm.deleteManager(tblManagers.getSelectionModel().getSelectedItem().getManagerId());
         listOfManagers = FXCollections.observableArrayList(mm.getManager());
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
         tblManagers.setItems(listOfManagers);
+            }else{alert.close();}
     }
 }

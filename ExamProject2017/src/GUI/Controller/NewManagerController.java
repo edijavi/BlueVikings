@@ -19,6 +19,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -57,46 +58,20 @@ public class NewManagerController implements Initializable {
 
      @FXML
     private void closeAction(ActionEvent event) {
-        Stage stage = new Stage();
-        if(MM.getLogintype() == MANAGER){
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
-
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            Stage closeStage = (Stage) btnClose.getScene().getWindow();
-            closeStage.close();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    else if(MM.getLogintype() == ADMIN){
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
-
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            Stage closeStage = (Stage) btnClose.getScene().getWindow();
-            closeStage.close();
-            
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+        
     }
     @FXML
     public void addManager(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Add");
+        alert.setContentText("Manager Successfully added!");
+        alert.show();
         MM.addManager(txtUserName.getText(), txtPassword.getText(), txtFirstName.getText(), txtLastName.getText(), txtEamil.getText(), txtPhone.getText());
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
     }
     
     }

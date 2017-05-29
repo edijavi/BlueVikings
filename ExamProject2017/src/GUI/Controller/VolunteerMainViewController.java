@@ -29,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -54,56 +55,53 @@ public class VolunteerMainViewController implements Initializable
 
     @FXML
     private TableView<Guild> guildsTable;
-
     @FXML
     private TableColumn<String, Guild> guildClm;
-    
     @FXML
     private Button btnClose;
-    
     @FXML
     private ComboBox<String> cmbHours;
-
+    @FXML
+    private ComboBox<String> cmbSearch;
+    @FXML
+    private TableView<Volunteer> volunteerInGuildTbl;
+    @FXML
+    private TableColumn<?, ?> FstNameClm;
+    @FXML
+    private TableColumn<?, ?> lstNameClm;
+    @FXML
+    private Button btnSave;
+    @FXML
+    private Label lblDate;
+    @FXML
+    private Button btnLogOut;
+    @FXML
+    private TextField txtSearch;
+    
     ObservableList<Guild> listOfGuilds;
 
     ObservableList<Volunteer> listOfVolunteersBasedOnGuild;
 
     GuildModel GM = new GuildModel();
+    
     VolunteerModel VM = new VolunteerModel();
 
     private Guild guild;
 
-    @FXML
-    private ComboBox<String> cmbSearch;
-    
-    @FXML
-    private TableView<Volunteer> volunteerInGuildTbl;
-    
-    @FXML
-    private TableColumn<?, ?> FstNameClm;
-
     private java.util.Date date = new java.util.Date();
     
-    @FXML
-    private TableColumn<?, ?> lstNameClm;
     VolunteerModel vm = new VolunteerModel();
+    
     GuildModel gm = new GuildModel();
     
-    @FXML
-    private Button btnSave;
     private SearchHandler.SearchType searchtype;
+    
     java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
     
     
     private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
     
-    @FXML
-    private Label lblDate;
     
-    @FXML
-    private Button btnLogOut;
-    @FXML
-    private TextField txtSearch;
     
     
     @Override
@@ -199,16 +197,24 @@ public class VolunteerMainViewController implements Initializable
 
     }
     public void setDate()
-{
+    {
     int y = date.getYear()+1900;
     int m = date.getMonth()+1;
     lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
-}
+    }
 
     //Taking selected item from combobox and adding into the selected guild
     @FXML
     private void saveHoursBtn(ActionEvent event) throws IOException
     {   
+        if (guildsTable.getSelectionModel().isEmpty()/*equals(null)*/ || volunteerInGuildTbl.getSelectionModel().isEmpty()/*.getSelectedItem().equals(null)*/ || cmbHours.getSelectionModel().isEmpty()/*equals(null)*/ )
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Error");
+            alert.setHeaderText("Something is missing");
+            alert.setContentText("You have to select the guild, the volunteer, and the hours first!");
+            alert.show();
+        }else{
         for (Guild p : GM.listOfGuilds())
         {
             if (p.getGuildName().equals(guildsTable.getSelectionModel().getSelectedItem().getGuildName()))
@@ -222,6 +228,12 @@ public class VolunteerMainViewController implements Initializable
                 GM.addVolunteerWork(timeNow, y, p.getGuildId(), CurrentVolunteer);
                 
             }
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Saved");
+        alert.setHeaderText("Successfully Saved");
+        alert.setContentText("Thank you for your help today, your hours have been saved");
+        alert.show();
         }
         
     }
@@ -253,12 +265,6 @@ public class VolunteerMainViewController implements Initializable
     System.exit(0);
     }
     
-    /*public void setDate()
-    {
-        int y = date.getYear()+1900;
-        int m = date.getMonth()+1;
-        lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
-    }*/
     
     @FXML
     public void logOutEvent(ActionEvent event)

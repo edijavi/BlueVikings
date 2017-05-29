@@ -109,47 +109,11 @@ public class ManagerDetailsController implements Initializable
                 txtLastName.getText(), txtEmail.getText(), txtPhone.getText(), man.getManagerId());
         
     }
-    
-    
     @FXML
-    private void closeAction(ActionEvent event)
-    {
-        Stage stage = new Stage();
-        if (mModel.getLogintype() == MANAGER)
-        {
-            try
-            {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
-
-                Parent root = fxmlLoader.load();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-                Stage closeStage = (Stage) btnClose.getScene().getWindow();
-                closeStage.close();
-            } catch (IOException ex)
-            {
-                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } else if (mModel.getLogintype() == ADMIN)
-        {
-            try
-            {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
-
-                Parent root = fxmlLoader.load();
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-                Stage closeStage = (Stage) btnClose.getScene().getWindow();
-                closeStage.close();
-
-            } catch (IOException ex)
-            {
-                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-    }
+    private void closeAction(ActionEvent event) {
+        Stage stage = (Stage) btnClose.getScene().getWindow();
+        stage.close();
+         }
 }
+
+

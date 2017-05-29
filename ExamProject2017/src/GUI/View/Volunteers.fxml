@@ -69,12 +69,10 @@
                   <RowConstraints maxHeight="147.0" minHeight="10.0" prefHeight="66.0" valignment="TOP" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="224.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="215.0" minHeight="10.0" prefHeight="152.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="176.0" minHeight="10.0" prefHeight="156.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button fx:id="btnNewVol" mnemonicParsing="false" onAction="#addNewVolunteerBtb" text="New Volunteer" GridPane.rowIndex="1" />
                   <Button fx:id="btnRemoveVol" mnemonicParsing="false" onAction="#removeVolunteerBtb" text="Remove Volunteer" GridPane.rowIndex="2" />
-                  <Button fx:id="btnEditVol" mnemonicParsing="false" text="Edit Volunteer" GridPane.rowIndex="3" />
                   <TextField fx:id="txtSearch" alignment="CENTER" onKeyReleased="#search" promptText="Search">
                      <opaqueInsets>
                         <Insets />

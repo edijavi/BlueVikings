@@ -11,6 +11,7 @@ import GUI.Model.VolunteerModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
@@ -178,12 +181,17 @@ public class VolunteersController implements Initializable
     @FXML
     private void removeVolunteerBtb(ActionEvent event)
     {
-
-        vm.deleteVolunteer(allVolTbl.getSelectionModel().getSelectedItem().getVolunteerId());
-        showVolunteer();
-        listOfVolunteers = FXCollections.observableArrayList(vm.getlistOfVolunteer());
-        allVolTbl.setItems(listOfVolunteers);
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmation");
+        alert.setContentText("Are you sure you want to remove " + allVolTbl.getSelectionModel().getSelectedItem().getFirstName()+ " " + allVolTbl.getSelectionModel().getSelectedItem().getLastName() +" from the system" );
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                vm.deleteVolunteer(allVolTbl.getSelectionModel().getSelectedItem().getVolunteerId());
+                showVolunteer();
+                listOfVolunteers = FXCollections.observableArrayList(vm.getlistOfVolunteer());
+                allVolTbl.setItems(listOfVolunteers);
+            }else{alert.close();}
     }
 
     @FXML
