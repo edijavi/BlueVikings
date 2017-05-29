@@ -85,7 +85,7 @@ public class StatisticsController implements Initializable
     @FXML
     private Label lblAllHours;
     
-    private Guild guild;
+ 
 
 // Fordi den snakker med database? 
     /**

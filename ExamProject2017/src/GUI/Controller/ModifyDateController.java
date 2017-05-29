@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 
 public class ModifyDateController implements Initializable {
 
-private static Guild guild;
+
 private static Volunteer vol;
 private static GuildVolunteerWork GVW;
     @FXML
@@ -44,10 +44,7 @@ private static GuildVolunteerWork GVW;
     private Label lblFirstName;
     @FXML
     private Label lblLastName;
-    @FXML
-    private TextField txtYear;
-    @FXML
-    private TextField txtHours;
+  
     @FXML
     private Button btnModify;
     @FXML

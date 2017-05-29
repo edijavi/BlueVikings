@@ -27,24 +27,9 @@ public class VolunteerDataManager
 
     ConnectionManager CM;
 
-    private static VolunteerDataManager VOLUNTEERDATAMANAGER = new VolunteerDataManager();
-
-    public static VolunteerDataManager getInstance()
-    {
-        return VOLUNTEERDATAMANAGER;
-    }
-
-    private Volunteer currentVolunteer;
-
-    public Volunteer getCurrentVolunteer()
-    {
-        return currentVolunteer;
-    }
-
-    public void setCurrentVolunteer(Volunteer currentVolunteer)
-    {
-        this.currentVolunteer = currentVolunteer;
-    }
+    
+  
+   
 
     public VolunteerDataManager()
     {

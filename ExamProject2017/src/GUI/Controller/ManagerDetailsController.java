@@ -6,7 +6,6 @@
 package GUI.Controller;
 
 import BE.Manager;
-import BE.Volunteer;
 import static GUI.Controller.LogInController.loginType.ADMIN;
 import static GUI.Controller.LogInController.loginType.MANAGER;
 import GUI.Model.ManagerModel;

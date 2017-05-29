@@ -47,8 +47,7 @@ import javafx.stage.Stage;
 public class GuildDetailsController implements Initializable
 {
 
-    @FXML
-    private Button btnRemoveMember;
+    
     @FXML
     private Button btnClose;
     

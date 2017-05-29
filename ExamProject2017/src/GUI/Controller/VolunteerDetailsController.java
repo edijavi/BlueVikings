@@ -7,8 +7,6 @@ package GUI.Controller;
 
 import BE.Volunteer;
 import GUI.Controller.LogInController.loginType;
-import static GUI.Controller.LogInController.loginType.ADMIN;
-import static GUI.Controller.LogInController.loginType.MANAGER;
 import GUI.Model.ManagerModel;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,14 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import GUI.Model.VolunteerModel;
 import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -79,8 +70,7 @@ public class VolunteerDetailsController implements Initializable
     @FXML
     private Button btnEdit;
     
-    private loginType logintype;
-
+   
     public VolunteerDetailsController()
     {
 

@@ -28,13 +28,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.animation.RotateTransition;
 import javafx.util.Duration;
 import javafx.animation.ParallelTransition;
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 /**
@@ -74,14 +72,7 @@ public class LogInController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        List<Manager> managers = MM.getManager();
-
-//        for (int i = 0; i < managers.size(); i++)
-//        {
-//            Manager ma = managers.get(i);
-//            System.out.println(ma.getUsername());
-//            System.out.println(ma.getPassword());
-//        }
+      
         loginGrid.setVisible(false);
         toggleGroup();
 

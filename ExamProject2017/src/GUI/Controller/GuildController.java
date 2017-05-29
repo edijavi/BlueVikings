@@ -49,8 +49,7 @@ public class GuildController implements Initializable {
     private TableView<Guild> tblGuilds;
     @FXML
     private TableColumn<?, ?> colHours;
-    @FXML
-    private Button btnAddMember;
+  
     @FXML
     private TableView<Volunteer> tblVolunteers;
     @FXML
@@ -86,7 +85,7 @@ public class GuildController implements Initializable {
     
     GuildModel gm = new GuildModel();
     
-    private static Guild guild;
+   
     /**
      * Initializes the controller class.
      */
