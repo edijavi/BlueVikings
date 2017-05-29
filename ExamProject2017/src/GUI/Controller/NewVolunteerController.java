@@ -80,6 +80,7 @@ public class NewVolunteerController implements Initializable {
                 txtAddress.getText(),AddInfoTxtArea.getText());
         Stage closeStage = (Stage) btnClose.getScene().getWindow();
         closeStage.close();
+        
     }
 
     public List<Volunteer> VolunteerList()

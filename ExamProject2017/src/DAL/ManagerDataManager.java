@@ -6,6 +6,7 @@
 package DAL;
 
 import BE.Manager;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,6 +36,8 @@ public class ManagerDataManager {
                 ManagerString += rs.getString("Firstname");
                 ManagerString += rs.getString("Lastname");
                 ManagerString += rs.getString("Email");
+                ManagerString += rs.getString("Phone");
+                ManagerString += rs.getInt("ManagerId");
                 
             
 
@@ -43,7 +46,9 @@ public class ManagerDataManager {
                 rs.getString("Password"),
                 rs.getString("Firstname"),
                 rs.getString("Lastname"),
-                rs.getString("Email")));
+                rs.getString("Phone"),
+                rs.getString("Email"),
+                rs.getInt("ManagerId")));
             }
             return Manager;
 
@@ -52,14 +57,14 @@ public class ManagerDataManager {
             return null;
         }
     }
-    public void addManager(String Username, String Password, String Firstname, String Lastname, String Email)
+    public void addManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone)
     {
 
         try (Connection con = CM.getConnection())
         {
 
             String sqlCommand
-                    = " INSERT INTO Management(Username, Password, Firstname, Lastname, Email) VALUES(?,?,?,?,?)";
+                    = " INSERT INTO Management(Username, Password, Firstname, Lastname, Email, Phone) VALUES(?,?,?,?,?,?)";
             PreparedStatement pstat = con.prepareStatement(sqlCommand);
 
             pstat.setString(1, Username);
@@ -67,6 +72,8 @@ public class ManagerDataManager {
             pstat.setString(3, Firstname);
             pstat.setString(4, Lastname);
             pstat.setString(5, Email);
+            pstat.setString(6, Phone);
+            
             
 
             pstat.executeUpdate();
@@ -75,4 +82,48 @@ public class ManagerDataManager {
             System.err.println(sqle);
         }
     }
+    
+    public void editManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone, int ManagerId) {
+        try(Connection con = CM.getConnection()) 
+        {
+            String sqlQuery = "UPDATE Management SET Username=?, Password=?, Firstname=?, Lastname=?, Email=?, Phone=? WHERE ManagerId=?";
+            PreparedStatement pstat = con.prepareStatement(sqlQuery);
+            
+            pstat.setString(1, Username);
+            pstat.setString(2, Password);
+            pstat.setString(3, Firstname);
+            pstat.setString(4, Lastname);
+            pstat.setString(5, Email);
+            pstat.setString(6, Phone);
+            pstat.setInt(7, ManagerId);
+            pstat.execute();
+        } catch (SQLException sqle)
+        {
+          
+            System.err.println(sqle);
+        }
+    }
+    
+    
+    public void deleteManager(int ManagerId)
+    {
+
+        try (Connection con = CM.getConnection())
+        {
+            String sqlCommand
+                    = "DELETE FROM Management WHERE ManagerId=?";
+            PreparedStatement pstat = con.prepareStatement(sqlCommand);
+            pstat.setInt(1, ManagerId);
+            pstat.executeUpdate();
+
+        } catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+
+        }
+    }
+    
+    
+    
+    
 }

@@ -37,5 +37,15 @@ public class ManagerModel
     public <T> List<T> doSearch(String word, List<T> inWhat, SearchHandler.SearchType type) {
         return searchHandler.Search(word, inWhat, type);
     }
+    public void editManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone, int ManagerId) {
+        MM1.editManager(Username, Password, Firstname, Lastname, Email, Phone, ManagerId);
+    }
     
+    public void deleteManager(int ManagerId) {
+         MM1.deleteManager(ManagerId);
+    }
+    
+    public void addManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone) {
+        MM1.addManager(Username, Password, Firstname, Lastname, Email, Phone);
+    }
 }

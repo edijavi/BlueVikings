@@ -58,7 +58,7 @@ public class VolunteerDataManager
         {
 
             String sqlCommand
-                    = " INSERT INTO Volunteer( FirstName,  LastName, Email, PhoneNumber, Address, Additionalinfo) VALUES(?,?,?,?,?,?)";
+                    = " INSERT INTO Volunteer(FirstName ,LastName ,Email ,PhoneNumber ,Address ,Additionalinfo) VALUES(?,?,?,?,?,?)";
             PreparedStatement pstat = con.prepareStatement(sqlCommand);
 
             pstat.setString(1, firstName);
@@ -67,14 +67,19 @@ public class VolunteerDataManager
             pstat.setString(4, PhoneNumber);
             pstat.setString(5, Address);
             pstat.setString(6, additionalInfo);
-
             pstat.executeUpdate();
         } catch (SQLException sqle)
         {
             System.err.println(sqle);
         }
     }
-
+    
+   
+    
+    
+    
+    
+    
     public void updateVolunteer(String FirstName, String LastName, String Email, String PhoneNumber, String Address, String Additionalinfo, int VolunteerId)
     {
         try (Connection con = CM.getConnection())
@@ -136,6 +141,7 @@ public class VolunteerDataManager
                 volunteerString += rs.getString("PhoneNumber");
                 volunteerString += rs.getString("Address");
                 volunteerString += rs.getString("Additionalinfo");
+                volunteerString += rs.getString("Image");
 
                 volunteers.add(new Volunteer(
                         rs.getString("firstName"),
@@ -144,7 +150,9 @@ public class VolunteerDataManager
                         rs.getString("Email"),
                         rs.getString("PhoneNumber"),
                         rs.getString("Address"),
-                        rs.getString("additionalInfo")));
+                        rs.getString("additionalInfo"),
+                        rs.getString("Image")));
+                        
             }
             return volunteers;
 
@@ -183,8 +191,8 @@ public class VolunteerDataManager
                             rs.getString("Email"),
                             rs.getString("PhoneNumber"),
                             rs.getString("additionalInfo"),
-                            rs.getString("Address")));
-//                
+                            rs.getString("Address"),
+                            rs.getString("Image")));
 
                 }
             }

@@ -94,6 +94,11 @@ public class NewManagerController implements Initializable {
 
     }
     }
+    @FXML
+    public void addManager(ActionEvent event) {
+        MM.addManager(txtUserName.getText(), txtPassword.getText(), txtFirstName.getText(), txtLastName.getText(), txtEamil.getText(), txtPhone.getText());
+    }
+    
     }
     
 

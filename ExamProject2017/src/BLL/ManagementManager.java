@@ -22,4 +22,15 @@ public class ManagementManager
     {
         return MDM.getManager();
     }
+    public void editManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone, int ManagerId) {
+        MDM.editManager(Username, Password, Firstname, Lastname, Email, Phone, ManagerId);
+    }
+    
+     public void deleteManager(int ManagerId) {
+         MDM.deleteManager(ManagerId);
+     }
+     
+    public void addManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone) {
+        MDM.addManager(Username, Password, Firstname, Lastname, Email, Phone);
+    }
 }

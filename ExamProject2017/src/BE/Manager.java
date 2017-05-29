@@ -7,13 +7,37 @@ private String Password;
 private String Firstname;
 private String Lastname;
 private String Email;
+private int ManagerId;
+private String Phone;
 
-    public Manager(String Username, String Password, String Firstname, String Lastname, String Email) {
+    public Manager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone, int ManagerId) {
         this.Username = Username;
         this.Password = Password;
         this.Firstname = Firstname;
         this.Lastname = Lastname;
         this.Email = Email;
+        this.ManagerId = ManagerId;
+        this.Phone = Phone;
+    }
+
+    public String getPhone()
+    {
+        return Phone;
+    }
+
+    public void setPhone(String Phone)
+    {
+        this.Phone = Phone;
+    }
+
+    public int getManagerId()
+    {
+        return ManagerId;
+    }
+
+    public void setManagerId(int ManagerId)
+    {
+        this.ManagerId = ManagerId;
     }
 
     public String getFirstname()

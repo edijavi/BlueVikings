@@ -162,6 +162,10 @@ public class ManagerController implements Initializable
         cmbSearch.setItems(comboItems);
 
     }
+    
+         
+    
+    
     @FXML
     private void ClickedOnManager(MouseEvent event)
     {
@@ -207,4 +211,14 @@ public class ManagerController implements Initializable
 
 }
 }
+
+    @FXML
+    private void deleteManager(ActionEvent event)
+    {
+        mm.deleteManager(tblManagers.getSelectionModel().getSelectedItem().getManagerId());
+        listOfManagers = FXCollections.observableArrayList(mm.getManager());
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
+        tblManagers.setItems(listOfManagers);
+    }
 }

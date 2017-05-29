@@ -21,6 +21,8 @@ public class GuildModel
     
     GuildManager GM = new GuildManager();
     private SearchHandler searchHandler = new SearchHandler();
+   
+    
     public List<Guild> listOfGuilds() throws IOException
     {
         return GM.getGuild();

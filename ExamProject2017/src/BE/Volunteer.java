@@ -11,8 +11,9 @@ public class Volunteer
     private String Address;
     private String additionalInfo;
     private int VolunteerHours;
+    private String image;
 
-    public Volunteer(String firstName, String lastName, int VolunteerId, String Email, String phoneNumber, String Address, String additionalInfo)
+    public Volunteer(String firstName, String lastName, int VolunteerId, String Email, String phoneNumber, String Address, String additionalInfo, String Image)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,14 +22,28 @@ public class Volunteer
         this.Email = Email;
         this.Address = Address;
         this.additionalInfo = additionalInfo;
+        this.image = Image;
 
     }
+
+    
 
     public Volunteer()
     {
 
     }
 
+    public String getImage()
+    {
+        return image;
+    }
+
+    public void setImage(String image)
+    {
+        this.image = image;
+    }
+    
+    
     public String getAdditionalInfo()
     {
         return additionalInfo;

@@ -11,23 +11,24 @@ import BLL.GuildVolunteerManager;
  *
  * @author EdwinSilva
  */
-public class GuildVolunteerModel {
+public class GuildVolunteerModel
+{
 
-GuildVolunteerManager GVM = new GuildVolunteerManager();
+    GuildVolunteerManager GVM = new GuildVolunteerManager();
 
-
-
-    public GuildVolunteerModel() {
+    public GuildVolunteerModel()
+    {
     }
-public void addMemebertoGuild(int GuildId, int VolunteerId){
-GVM.AddVolunteer(GuildId, VolunteerId);
-}
 
-public void deleteMemberFromGuild(int VolunteerId){
-GVM.deleteVolunteer(VolunteerId);
-    
-}
+    public void addMemebertoGuild(int GuildId, int VolunteerId)
+    {
+        GVM.AddVolunteer(GuildId, VolunteerId);
+    }
 
+    public void deleteMemberFromGuild(int VolunteerId)
+    {
+        GVM.deleteVolunteer(VolunteerId);
 
-    
+    }
+
 }

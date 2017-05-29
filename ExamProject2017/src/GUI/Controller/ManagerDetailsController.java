@@ -5,8 +5,6 @@
  */
 package GUI.Controller;
 
-
-
 import BE.Manager;
 import BE.Volunteer;
 import static GUI.Controller.LogInController.loginType.ADMIN;
@@ -22,7 +20,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,18 +27,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 /**
  * FXML Controller class
  *
  * @author boldi
  */
-public class ManagerDetailsController implements Initializable {
+public class ManagerDetailsController implements Initializable
+{
 
     private static Manager man;
-    
+
     ManagerModel mModel = new ManagerModel();
-    
+
     @FXML
     private Button btnSave;
     @FXML
@@ -62,16 +59,19 @@ public class ManagerDetailsController implements Initializable {
     private TextField txtUserName;
     @FXML
     private TextField txtEmail;
-    
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
+    public void initialize(URL url, ResourceBundle rb)
+    {
+
         setManagerItems();
-    }  
+    }
+
     public static void setManager(Manager mann)
     {
-    man = mann;
+        man = mann;
     }
+
     private void setManagerItems()
     {
         txtPassword.setText(man.getPassword());
@@ -79,14 +79,16 @@ public class ManagerDetailsController implements Initializable {
         txtFirstName.setText(man.getFirstname());
         txtLastName.setText(man.getLastname());
         txtUserName.setText(man.getUsername());
+        txtPhone.setText(man.getPhone());
         txtEmail.setDisable(true);
         txtFirstName.setDisable(true);
         txtLastName.setDisable(true);
         txtUserName.setDisable(true);
         txtPassword.setDisable(true);
         txtPhone.setDisable(true);
-        txtAddress.setDisable(true);
+        
     }
+
     @FXML
     private void editAction(ActionEvent event)
     {
@@ -96,47 +98,59 @@ public class ManagerDetailsController implements Initializable {
         txtUserName.setDisable(false);
         txtPassword.setDisable(false);
         txtPhone.setDisable(false);
-        txtAddress.setDisable(false);
+        
     }
 
+    
+    
+    
     @FXML
-    private void closeAction(ActionEvent event) {
+    public void editManagerEvent(ActionEvent event) {
+        mModel.editManager(txtUserName.getText(), txtPassword.getText(), txtFirstName.getText(),
+                txtLastName.getText(), txtEmail.getText(), txtPhone.getText(), man.getManagerId());
+        
+    }
+    
+    
+    @FXML
+    private void closeAction(ActionEvent event)
+    {
         Stage stage = new Stage();
-        if(mModel.getLogintype() == MANAGER){
-        try
+        if (mModel.getLogintype() == MANAGER)
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
+            try
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
 
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            Stage closeStage = (Stage) btnClose.getScene().getWindow();
-            closeStage.close();
-        } catch (IOException ex)
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                Stage closeStage = (Stage) btnClose.getScene().getWindow();
+                closeStage.close();
+            } catch (IOException ex)
+            {
+                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (mModel.getLogintype() == ADMIN)
         {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+            try
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
+
+                Parent root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+                Stage closeStage = (Stage) btnClose.getScene().getWindow();
+                closeStage.close();
+
+            } catch (IOException ex)
+            {
+                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
         }
-
     }
-    else if(mModel.getLogintype() == ADMIN){
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
-
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-            Stage closeStage = (Stage) btnClose.getScene().getWindow();
-            closeStage.close();
-            
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    }
-    }
-
+}

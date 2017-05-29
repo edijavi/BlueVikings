@@ -20,12 +20,9 @@ public class VolunteerManager
 
     VolunteerDataManager VDM = new VolunteerDataManager();
 
-    private static VolunteerManager VOLUNTEERMANAGER = new VolunteerManager();
 
-    public static VolunteerManager getInstance()
-    {
-        return VOLUNTEERMANAGER;
-    }
+
+ 
 
     public VolunteerManager()
     {

@@ -62,36 +62,7 @@ public class GuildDataManager {
                         rs.getFloat("GuildHours"),
                         rs.getInt("ManagerId")
                 ));
-//        XSSFWorkbook workbook = new XSSFWorkbook();
-//        XSSFSheet spreadsheet = workbook
-//                .createSheet("Guild db");
-//        XSSFRow row = spreadsheet.createRow(1);
-//        XSSFCell cell;
-//        cell = row.createCell(1);
-//        cell.setCellValue(" Guild Name");
-//        cell = row.createCell(2);
-//        cell.setCellValue("Guild Id");
-//        cell = row.createCell(3);
-//        cell.setCellValue("Guild Hours");
-//        int i=2;
-//      while(rs.next())
-//      {
-//         row=spreadsheet.createRow(i);
-//         cell=row.createCell(1);
-//         cell.setCellValue(rs.getString("GuildName"));
-//         cell=row.createCell(2);
-//         cell.setCellValue(rs.getInt("GuildId"));
-//         cell=row.createCell(3);
-//         cell.setCellValue(rs.getFloat("GuildHours"));
-//        
-//         i++;
-//      }
-//        FileOutputStream out = new FileOutputStream(
-//      new File("exceldatabase.xlsx"));
-//      workbook.write(out);
-//      out.close();
-//      System.out.println(
-//      "exceldatabase.xlsx written successfully");
+
             }
             return Guilds;
 
