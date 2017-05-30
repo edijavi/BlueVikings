@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -103,8 +104,13 @@ public class ManagerDetailsController implements Initializable
     
     @FXML
     public void editManagerEvent(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Successfully Edited");
+        alert.setContentText("You edited "+ txtFirstName.getText() + " " + txtLastName.getText());
+        alert.show();
         mModel.editManager(txtUserName.getText(), txtPassword.getText(), txtFirstName.getText(),
-                txtLastName.getText(), txtEmail.getText(), txtPhone.getText(), man.getManagerId());
+        txtLastName.getText(), txtEmail.getText(), txtPhone.getText(), man.getManagerId());
         
     }
     @FXML

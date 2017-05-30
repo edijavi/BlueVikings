@@ -66,7 +66,7 @@ public class NewManagerController implements Initializable {
     public void addManager(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
-        alert.setTitle("Added");
+        alert.setTitle("Successfully Added");
         alert.setContentText(txtFirstName.getText()+" "+txtLastName.getText() + " successfully added to the system as Manager");
         alert.show();
         MM.addManager(txtUserName.getText(), txtPassword.getText(), txtFirstName.getText(), txtLastName.getText(), txtEamil.getText(), txtPhone.getText());

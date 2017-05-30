@@ -131,10 +131,8 @@ public class StatisticsController implements Initializable
     {
         if ((event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE))
         {
-            List<Guild> guilds;
             this.searchtype = SearchHandler.SearchType.GUILD;
-            guilds = gm.getListOfGuilds();
-            GuildTbl.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(), guilds, searchtype)));
+            GuildTbl.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(), gm.getListOfGuilds(), searchtype)));
         }
     }
 
@@ -198,7 +196,6 @@ public void printToExcel() throws IOException {
             headingRow.createCell((short) 2).setCellValue("VolunteerId");
             headingRow.createCell((short) 3).setCellValue("Hours");
             ;
-            short rowNo = 1;
 
             row = spreadsheet.createRow(i);
             row.createCell((short) 0).setCellValue(item.getDate().toString());
@@ -216,10 +213,10 @@ public void printToExcel() throws IOException {
             try (FileOutputStream out = new FileOutputStream(PathTillProject + "/src/"+GuildTbl.getSelectionModel().getSelectedItem().getGuildName()+".xls")) {
                 workbook.write(out);
             }
-            System.out.println("CountriesDetails.xlsx has been created successfully");
         } catch (IOException e) {
+            System.out.println(e);
         } finally {
-            //workbook.close();
+            workbook.close();
         }
     }
 }

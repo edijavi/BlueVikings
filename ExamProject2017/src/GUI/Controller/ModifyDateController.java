@@ -25,6 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -96,11 +97,17 @@ private static GuildVolunteerWork GVW;
     @FXML
     private void modifyAction(ActionEvent event)
     {
-        Stage closeStage = (Stage) btnModify.getScene().getWindow();
-        closeStage.close();
+        String date = String.valueOf(GVW.getDate());
+        String hour = String.valueOf(GVW.getHour());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Successfully Edited");
+        alert.setContentText(vol.getFirstName()+" "+vol.getFirstName() + " successfully Edited in " + date+ " from " + hour +" hours to " + cmbTime.getSelectionModel().getSelectedItem()+" hours.");
+        alert.show();
         double y = Double.parseDouble(cmbTime.getSelectionModel().getSelectedItem());
         GVWM.editHourOnWork(y,GVW.getWorkId());
-        
+        Stage closeStage = (Stage) btnModify.getScene().getWindow();
+        closeStage.close(); 
         
     }
 }

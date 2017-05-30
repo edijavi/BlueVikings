@@ -46,13 +46,12 @@
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="222.0" minWidth="10.0" prefWidth="220.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="66.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="59.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="93.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="112.0" minHeight="10.0" prefHeight="112.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="119.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="200.0" minHeight="144.0" prefHeight="163.0" />
               </rowConstraints>
                <children>
                   <Label text="First Name:" />
@@ -61,7 +60,6 @@
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="107.0" text="E-mail Address:" GridPane.rowIndex="3" />
                   <Label text="Password:" GridPane.rowIndex="4" />
                   <Label text="User Name:" GridPane.rowIndex="5" />
-                  <Label text="Guilds:" GridPane.rowIndex="6" />
                   <Label text="User Name:" GridPane.rowIndex="5" />
                   <TextField fx:id="txtFirstName" GridPane.columnIndex="1">
                      <GridPane.margin>
@@ -93,15 +91,6 @@
                         <Insets right="5.0" />
                      </GridPane.margin>
                   </TextField>
-
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                    </content>
-                     <GridPane.margin>
-                        <Insets bottom="5.0" right="5.0" />
-                     </GridPane.margin>
-                  </ScrollPane>
                </children>
             </GridPane>
          </right>

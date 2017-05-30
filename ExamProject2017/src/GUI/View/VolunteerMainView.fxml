@@ -7,7 +7,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerMainViewController">
    <children>
-      <BorderPane prefHeight="500.0" prefWidth="600.0">
+      <BorderPane prefHeight="550.0" prefWidth="650.0">
          <top>
             <GridPane BorderPane.alignment="CENTER">
               <columnConstraints>
@@ -20,25 +20,28 @@
                <children>
                   <GridPane prefHeight="30.0" prefWidth="213.0">
                     <columnConstraints>
-                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="52.0" />
-                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="146.0" />
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="43.0" />
+                      <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="204.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Date:" />
+                        <Label text="Date:">
+                           <GridPane.margin>
+                              <Insets top="5.0" />
+                           </GridPane.margin></Label>
                         <Label fx:id="lblDate" text="Label" GridPane.columnIndex="1">
                            <GridPane.margin>
-                              <Insets left="10.0" />
+                              <Insets left="10.0" top="5.0" />
                            </GridPane.margin>
                         </Label>
                      </children>
                   </GridPane>
-                  <GridPane prefHeight="30.0" prefWidth="384.0" GridPane.columnIndex="1">
+                  <GridPane prefHeight="30.0" prefWidth="416.0" GridPane.columnIndex="1">
                     <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="162.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="241.0" minWidth="10.0" prefWidth="240.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="206.0" minWidth="10.0" prefWidth="154.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="264.0" minWidth="10.0" prefWidth="249.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -46,15 +49,15 @@
                      <children>
                         <TextField fx:id="txtSearch" onKeyReleased="#search" prefHeight="25.0" prefWidth="177.0" promptText="Search" GridPane.columnIndex="1">
                            <GridPane.margin>
-                              <Insets left="10.0" right="5.0" />
+                              <Insets left="20.0" right="5.0" top="5.0" />
                            </GridPane.margin>
                         </TextField>
-                        <ComboBox fx:id="cmbSearch" onAction="#setSearchType" prefWidth="120.0" promptText="Search...">
+                        <ComboBox fx:id="cmbSearch" onAction="#setSearchType" prefHeight="29.0" prefWidth="123.0" promptText="Search...">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                            <GridPane.margin>
-                              <Insets left="40.0" />
+                              <Insets top="5.0" />
                            </GridPane.margin></ComboBox>
                      </children>
                   </GridPane>
@@ -67,7 +70,7 @@
                 <TableColumn fx:id="guildClm" prefWidth="224.0" text="Guilds" />
               </columns>
                <BorderPane.margin>
-                  <Insets bottom="5.0" left="5.0" />
+                  <Insets bottom="5.0" left="5.0" top="10.0" />
                </BorderPane.margin>
             </TableView>
          </left>
@@ -78,7 +81,7 @@
                   <TableColumn fx:id="lstNameClm" maxWidth="200.0" prefWidth="112.0" text="Last Name" />
               </columns>
                <BorderPane.margin>
-                  <Insets bottom="5.0" right="5.0" />
+                  <Insets bottom="5.0" right="5.0" top="10.0" />
                </BorderPane.margin>
             </TableView>
          </right>
@@ -94,7 +97,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnSave" mnemonicParsing="false" text="Save" GridPane.rowIndex="1">
+                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveHoursBtn" text="Save" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></Button>

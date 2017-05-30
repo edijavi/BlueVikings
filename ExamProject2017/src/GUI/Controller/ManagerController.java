@@ -137,18 +137,16 @@ public class ManagerController implements Initializable
     {
         if (searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE))
         {
-            List<Manager> managers;
+
             if (searchtype == SearchHandler.SearchType.MANAGERFIRSTNAME)
             {
 
-                managers = mm.getManagers();
-                tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(), managers, searchtype)));
+                tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(), mm.getManagers(), searchtype)));
 
             } else if (searchtype == SearchHandler.SearchType.MANAGERLASTNAME)
             {
 
-                managers = mm.getManagers();
-                tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(), managers, searchtype)));
+                tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(), mm.getManagers(), searchtype)));
 
             }
         }

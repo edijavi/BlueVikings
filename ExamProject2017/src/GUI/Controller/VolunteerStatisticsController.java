@@ -138,17 +138,12 @@ public class VolunteerStatisticsController implements Initializable
     @FXML
     private void getVolunteerStatsOnClick(MouseEvent event) throws SQLException
     {
-        for (Volunteer V : VM.getlistOfVolunteer())
-        {
 
-            if (V.getFirstName().equals(tblVolunteers.getSelectionModel().getSelectedItem().getFirstName()))
-            {
-
-                colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
-                colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
-                tblDatesnHours.setItems(VM.getVolunteerWork(V.getVolunteerId()));
-            }
-        }
+        colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
+        colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
+        tblDatesnHours.setItems(VM.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
+            
+        
     }
 
     @FXML
@@ -173,11 +168,13 @@ public class VolunteerStatisticsController implements Initializable
                     @Override
                     public void handle(WindowEvent event)
                     {
-
-                        tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));
-
-                        //tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));
-                    }
+                        try{
+                        tblDatesnHours.setItems(VM.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
+                    
+                    }catch (SQLException ex){
+                            System.out.println(ex);
+                }
+                }
                 });
 
                 stage.setOnCloseRequest(new EventHandler<WindowEvent>()
@@ -185,13 +182,13 @@ public class VolunteerStatisticsController implements Initializable
                     @Override
                     public void handle(WindowEvent event)
                     {
-
-                        tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));
-
-                        tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));
-                        tblDatesnHours.refresh();
-
-                    }
+                        try{
+                        tblDatesnHours.setItems(VM.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
+                    
+                    }catch (SQLException ex){
+                            System.out.println(ex);
+                }
+                }
                 });
 
                 stage.getIcons().add(new Image("CSS/icon.png"));

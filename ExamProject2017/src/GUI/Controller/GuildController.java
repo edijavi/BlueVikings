@@ -124,17 +124,16 @@ public class GuildController implements Initializable {
     private void search(KeyEvent event)
     {
         if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
-            List<Volunteer> volunteers;
-            List<Guild> guilds;
+
             if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
-                    volunteers = vm.getlistOfVolunteer();  
-                    tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
+ 
+                    tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),vm.getlistOfVolunteer(), searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
-                    volunteers = vm.getlistOfVolunteer();
-                    tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
+
+                    tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),vm.getlistOfVolunteer(), searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
-                    guilds = gm.getListOfGuilds();
-                    tblGuilds.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
+
+                    tblGuilds.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),gm.getListOfGuilds(), searchtype)));
                 }
             }
         }

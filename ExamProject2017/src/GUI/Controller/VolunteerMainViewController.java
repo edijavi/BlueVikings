@@ -100,7 +100,7 @@ public class VolunteerMainViewController implements Initializable
     java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
     
     
-    private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+    private String[] weekdays = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
     
 
 
@@ -129,20 +129,18 @@ public class VolunteerMainViewController implements Initializable
     private void search(KeyEvent event)
     {
         if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
-            List<Volunteer> volunteers;
-            List<Guild> guilds;
+
             String guild = guildsTable.getSelectionModel().getSelectedItem().getGuildName();
             if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
-                    volunteers = GVM.getVolunteersBasedOnGuild(guild);  
-                    volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
+ 
+                    volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),GVM.getVolunteersBasedOnGuild(guild), searchtype)));
                 
                 }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
-                    volunteers = GVM.getVolunteersBasedOnGuild(guild);
-                    volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
+                    
+                    volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),GVM.getVolunteersBasedOnGuild(guild), searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
                     
-                    guilds = gm.getListOfGuilds();
-                    guildsTable.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
+                    guildsTable.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),gm.getListOfGuilds(), searchtype)));
                     
                 }
             }
@@ -217,7 +215,11 @@ public class VolunteerMainViewController implements Initializable
 
         {
             if (p.getGuildName().equals(guildsTable.getSelectionModel().getSelectedItem().getGuildName()))
-            {
+            {   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Saved");
+                alert.setHeaderText("Successfully Saved");
+                alert.setContentText("Thank you for your help today, your hours have been saved");
+                alert.show();
                 double y = Double.parseDouble(cmbHours.getSelectionModel().getSelectedItem());
                 GM.setGuildHours(y + p.getGuildHours(), guildsTable.getSelectionModel().getSelectedItem().getGuildId());
                 int CurrentVolunteer = volunteerInGuildTbl.getSelectionModel().getSelectedItem().getVolunteerId();
@@ -228,11 +230,7 @@ public class VolunteerMainViewController implements Initializable
                 
             }
         }
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Saved");
-        alert.setHeaderText("Successfully Saved");
-        alert.setContentText("Thank you for your help today, your hours have been saved");
-        alert.show();
+
         }
         
     }
