@@ -18,21 +18,29 @@ public class GuildVolunteerWork
     private int VolunteerId;
     private Date date;
     private double Hour;
+    private int WorkId;
 
-    public GuildVolunteerWork(int GuildId, int VolunteerId, Date date, double Hour)
+    public GuildVolunteerWork(int GuildId, int VolunteerId, Date date, double Hour, int WorkId)
     {
         this.GuildId = GuildId;
         this.VolunteerId = VolunteerId;
         this.date = date;
         this.Hour = Hour;
+        this.WorkId = WorkId;
 
     }
 
-    public GuildVolunteerWork()
+    public int getWorkId()
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return WorkId;
     }
 
+    public void setWorkId(int WorkId)
+    {
+        this.WorkId = WorkId;
+    }
+
+   
     public int getGuildId()
     {
         return GuildId;

@@ -17,10 +17,11 @@ public class AdminstratorManager
 {
 
     AdminManager AM = new AdminManager();
-    
-    
+
     // Get a list of Administrators  from DB
-    public ArrayList<Adminstrator> getManager() {
-        return AM.getManager();
+    public ArrayList<Adminstrator> getAdminstrators()
+    {
+        return AM.getAdminstrators();
+
     }
 }

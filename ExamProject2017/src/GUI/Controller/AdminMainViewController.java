@@ -52,6 +52,8 @@ public class AdminMainViewController implements Initializable {
     private Button btnVolunteerStat;
     @FXML
     private AnchorPane paneItem;
+    @FXML
+    private Button btnManagers;
 
 
     /**

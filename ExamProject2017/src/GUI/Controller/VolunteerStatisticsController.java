@@ -5,7 +5,6 @@
  */
 package GUI.Controller;
 
-
 import BE.GuildVolunteerWork;
 import BE.Volunteer;
 import BLL.SearchHandler;
@@ -45,7 +44,8 @@ import javafx.stage.WindowEvent;
  *
  * @author boldi
  */
-public class VolunteerStatisticsController implements Initializable {
+public class VolunteerStatisticsController implements Initializable
+{
 
     @FXML
     private TextField txtSearch;
@@ -71,58 +71,63 @@ public class VolunteerStatisticsController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
+
     VolunteerModel VM = new VolunteerModel();
-    
+
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         DisplayVolunteers();
         setSearchComboItem();
         txtSearch.setDisable(true);
-    }    
-    
-    
-    public void DisplayVolunteers() {
+    }
+
+    public void DisplayVolunteers()
+    {
         listOfGuilds = FXCollections.observableArrayList(VM.getlistOfVolunteer());
         tblVolunteers.setItems(listOfGuilds);
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        
-        
+
     }
-    
-     @FXML
+
+    @FXML
     private void search(KeyEvent event)
     {
-        if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
+        if (searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE))
+        {
             List<Volunteer> volunteers;
-            if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
-                
-                    volunteers = vm.getlistOfVolunteer();  
-                    tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-               
-            }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
-                
-                    volunteers = vm.getlistOfVolunteer();
-                    tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-            
+            if (searchtype == SearchHandler.SearchType.FIRSTNAME)
+            {
+
+                volunteers = vm.getlistOfVolunteer();
+                tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(), volunteers, searchtype)));
+
+            } else if (searchtype == SearchHandler.SearchType.LASTNAME)
+            {
+
+                volunteers = vm.getlistOfVolunteer();
+                tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(), volunteers, searchtype)));
+
             }
+        }
     }
-    }
+
     @FXML
     private void setSearchType(ActionEvent event)
     {
-    if("First Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        if ("First Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
         {
             this.searchtype = SearchHandler.SearchType.FIRSTNAME;
             txtSearch.setDisable(false);
         }
-    if("Last Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        if ("Last Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
         {
             this.searchtype = SearchHandler.SearchType.LASTNAME;
             txtSearch.setDisable(false);
         }
     }
+
     public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name");
@@ -130,28 +135,26 @@ public class VolunteerStatisticsController implements Initializable {
 
     }
 
-
     @FXML
     private void getVolunteerStatsOnClick(MouseEvent event) throws SQLException
     {
         for (Volunteer V : VM.getlistOfVolunteer())
         {
-          
+
             if (V.getFirstName().equals(tblVolunteers.getSelectionModel().getSelectedItem().getFirstName()))
             {
-                
-                
-                listOfGuildVolunteerWork = FXCollections.observableArrayList(VM.getVolunteerWork(V.getVolunteerId()));
+
                 colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
                 colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
-                tblDatesnHours.setItems(listOfGuildVolunteerWork);
+                tblDatesnHours.setItems(VM.getVolunteerWork(V.getVolunteerId()));
             }
         }
     }
+
     @FXML
     private void modifyDate(MouseEvent event)
     {
-        if(event.isPrimaryButtonDown() && event.getClickCount() == 2)
+        if (event.isPrimaryButtonDown() && event.getClickCount() == 2)
         {
             Stage stage = new Stage();
             Stage stage1 = (Stage) tblVolunteers.getScene().getWindow();
@@ -165,18 +168,30 @@ public class VolunteerStatisticsController implements Initializable {
                 root = fxmlLoader.load();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                stage.setOnHiding(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));   
-                        }
-                    });
-            
-                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));    
-                }
+                stage.setOnHiding(new EventHandler<WindowEvent>()
+                {
+                    @Override
+                    public void handle(WindowEvent event)
+                    {
+
+                        tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));
+
+                        //tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));
+                    }
+                });
+
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>()
+                {
+                    @Override
+                    public void handle(WindowEvent event)
+                    {
+
+                        tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));
+
+                        tblDatesnHours.setItems(FXCollections.observableArrayList(listOfGuildVolunteerWork));
+                        tblDatesnHours.refresh();
+
+                    }
                 });
 
                 stage.getIcons().add(new Image("CSS/icon.png"));
@@ -184,15 +199,13 @@ public class VolunteerStatisticsController implements Initializable {
                 stage.initModality(Modality.WINDOW_MODAL);
                 stage.initOwner(stage1);
                 stage.show();
-           
-            
+
             } catch (IOException ex)
             {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    
+
     }
-    
-    
+
 }

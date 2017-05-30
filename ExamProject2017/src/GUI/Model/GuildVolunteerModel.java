@@ -5,7 +5,12 @@
  */
 package GUI.Model;
 
+import BE.Volunteer;
 import BLL.GuildVolunteerManager;
+
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,7 +20,7 @@ public class GuildVolunteerModel
 {
 
     GuildVolunteerManager GVM = new GuildVolunteerManager();
-
+    ObservableList<Volunteer> listOfVolunteerOnGuild;
     public GuildVolunteerModel()
     {
     }
@@ -29,6 +34,10 @@ public class GuildVolunteerModel
     {
         GVM.deleteVolunteer(VolunteerId);
 
+    }
+    public ObservableList<Volunteer> getVolunteersBasedOnGuild(String GuildName)
+    {
+        return listOfVolunteerOnGuild = FXCollections.observableArrayList(GVM.getVolunteerBasedOnGuild(GuildName));
     }
 
 }

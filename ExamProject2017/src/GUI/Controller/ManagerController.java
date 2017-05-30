@@ -71,149 +71,161 @@ public class ManagerController implements Initializable
      * Initializes the controller class.
      */
     private SearchType searchtype;
-    ObservableList<Manager> listOfManagers;
+
     ManagerModel mm = new ManagerModel();
-    
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        listOfManagers = FXCollections.observableArrayList(mm.getManager());
+
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
-        tblManagers.setItems(listOfManagers);
+        tblManagers.setItems(mm.getManagers());
         setSearchComboItem();
         txtSearch.setDisable(true);
 
     }
+
     @FXML
     private void addNewManagerBtb(ActionEvent event) throws IOException
     {
         if (event.getSource() == btnAddManager)
         {
-            
+
             Parent root = null;
             Stage stage = new Stage();
             Stage stage1 = (Stage) tblManagers.getScene().getWindow();
             try
-            {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewManager.fxml"));
-            root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setOnHiding(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                tblManagers.setItems(FXCollections.observableArrayList(mm.getManager()));   
-                }
-            });
-            
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                tblManagers.setItems(FXCollections.observableArrayList(mm.getManager()));    
-                }
-            });
+            {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/NewManager.fxml"));
+                root = fxmlLoader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setOnHiding(new EventHandler<WindowEvent>()
+                {
+                    @Override
+                    public void handle(WindowEvent event)
+                    {
+                        tblManagers.setItems(mm.getManagers());
+                    }
+                });
 
-            stage.getIcons().add(new Image("CSS/icon.png"));
-            stage.setResizable(false);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(stage1);
-            stage.show();       
-        } catch (IOException ex)
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>()
+                {
+                    @Override
+                    public void handle(WindowEvent event)
+                    {
+                        tblManagers.setItems(mm.getManagers());
+                    }
+                });
+
+                stage.getIcons().add(new Image("CSS/icon.png"));
+                stage.setResizable(false);
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(stage1);
+                stage.show();
+            } catch (IOException ex)
             {
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
     }
+
     @FXML
     private void search(KeyEvent event)
     {
-        if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
+        if (searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE))
+        {
             List<Manager> managers;
-            if(searchtype == SearchHandler.SearchType.MANAGERFIRSTNAME) {
-                
-                    managers = mm.getManager();
-                    tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(),managers, searchtype)));
-               
-            }else if(searchtype == SearchHandler.SearchType.MANAGERLASTNAME) {
-                
-                    managers = mm.getManager();
-                    tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(),managers, searchtype)));
-            
+            if (searchtype == SearchHandler.SearchType.MANAGERFIRSTNAME)
+            {
+
+                managers = mm.getManagers();
+                tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(), managers, searchtype)));
+
+            } else if (searchtype == SearchHandler.SearchType.MANAGERLASTNAME)
+            {
+
+                managers = mm.getManagers();
+                tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(), managers, searchtype)));
+
             }
+        }
     }
-    }
+
     @FXML
     private void setSearchType(ActionEvent event)
     {
-    if("First Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        if ("First Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
         {
             this.searchtype = SearchHandler.SearchType.MANAGERFIRSTNAME;
             txtSearch.setDisable(false);
         }
-    if("Last Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        if ("Last Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
         {
             this.searchtype = SearchHandler.SearchType.MANAGERLASTNAME;
             txtSearch.setDisable(false);
         }
     }
+
     public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name");
         cmbSearch.setItems(comboItems);
 
     }
-    
-         
-    
-    
+
     @FXML
     private void ClickedOnManager(MouseEvent event)
     {
         if (event.isPrimaryButtonDown() && event.getClickCount() == 2)
         {
             {
-            
-            Parent root = null;
-            Stage stage = new Stage();
-            Stage stage1 = (Stage) tblManagers.getScene().getWindow();
-            try
-            {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/ManagerDetails.fxml"));
-            ManagerDetailsController controller = fxmlLoader.getController();
-            ManagerDetailsController.setManager(tblManagers.getSelectionModel().getSelectedItem());
-            root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setOnHiding(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                tblManagers.setItems(FXCollections.observableArrayList(mm.getManager()));
-                }
-            });
-            
-            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-                @Override
-                public void handle(WindowEvent event) {
-                tblManagers.setItems(FXCollections.observableArrayList(mm.getManager())); 
-                }
-            });
 
-            stage.getIcons().add(new Image("CSS/icon.png"));
-            stage.setResizable(false);
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(stage1);
-            stage.show();
-            
-        }catch (IOException ex)
-            {
-                Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+                Parent root = null;
+                Stage stage = new Stage();
+                Stage stage1 = (Stage) tblManagers.getScene().getWindow();
+                try
+                {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/ManagerDetails.fxml"));
+                    ManagerDetailsController controller = fxmlLoader.getController();
+                    ManagerDetailsController.setManager(tblManagers.getSelectionModel().getSelectedItem());
+                    root = fxmlLoader.load();
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.setOnHiding(new EventHandler<WindowEvent>()
+                    {
+                        @Override
+                        public void handle(WindowEvent event)
+                        {
+                            tblManagers.setItems(mm.getManagers());
+                        }
+                    });
+
+                    stage.setOnCloseRequest(new EventHandler<WindowEvent>()
+                    {
+                        @Override
+                        public void handle(WindowEvent event)
+                        {
+                            tblManagers.setItems(mm.getManagers());
+                        }
+                    });
+
+                    stage.getIcons().add(new Image("CSS/icon.png"));
+                    stage.setResizable(false);
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.initOwner(stage1);
+                    stage.show();
+
+                } catch (IOException ex)
+                {
+                    Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-    }
 
-}
-}
+        }
+    }
 
     @FXML
     private void deleteManager(ActionEvent event)
@@ -221,14 +233,21 @@ public class ManagerController implements Initializable
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setTitle("Confirmation");
-        alert.setContentText("Are you sure you want to remove " + tblManagers.getSelectionModel().getSelectedItem().getFirstname()+ " " + tblManagers.getSelectionModel().getSelectedItem().getLastname() +" from the system?" );
+        alert.setContentText("Are you sure you want to remove " + tblManagers.getSelectionModel().getSelectedItem().getFirstname() + " " + tblManagers.getSelectionModel().getSelectedItem().getLastname() + " from the system?");
         Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-        mm.deleteManager(tblManagers.getSelectionModel().getSelectedItem().getManagerId());
-        listOfManagers = FXCollections.observableArrayList(mm.getManager());
-        colFirstName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
-        colLastName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
-        tblManagers.setItems(listOfManagers);
-            }else{alert.close();}
+        if (result.get() == ButtonType.OK)
+        {
+            mm.deleteManager(tblManagers.getSelectionModel().getSelectedItem().getManagerId());
+
+            colFirstName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
+            colLastName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
+
+        } else
+        {
+            alert.close();
+        }
+
+        tblManagers.setItems(mm.getManagers());
+
     }
 }

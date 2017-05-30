@@ -19,7 +19,7 @@ public class VolunteerManager
 {
 
     VolunteerDataManager VDM = new VolunteerDataManager();
-
+    
 
 
  
@@ -34,10 +34,7 @@ public class VolunteerManager
         return VDM.getVolunteer();
     }
 
-    public ArrayList<Volunteer> getVolunteerBasedOnGuild(String GuildName)
-    {
-        return VDM.getVolunteerBasedOnGuild(GuildName);
-    }
+    
 
     public void deleteVolunteer(int volunteerId)
     {

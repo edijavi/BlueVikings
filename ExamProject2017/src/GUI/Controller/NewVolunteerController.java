@@ -56,6 +56,8 @@ public class NewVolunteerController implements Initializable {
     private TextField txtAddress;
     @FXML
     private TextField txtPhone;
+    @FXML
+    private TextField prefGuild3;
 
     /**
      * Initializes the controller class.

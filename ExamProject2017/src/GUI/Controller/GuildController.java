@@ -59,9 +59,7 @@ public class GuildController implements Initializable {
     @FXML
     private TableColumn<?, ?> LastNameClm;
     
-    ObservableList<Guild> listOfGuilds;
     
-    ObservableList<Volunteer> listOfVolunteer;
     
     GuildVolunteerModel GVmodel = new GuildVolunteerModel();
     
@@ -93,16 +91,10 @@ public class GuildController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
     ShowInView();
     
-    listOfVolunteer = FXCollections.observableArrayList(VModel.getlistOfVolunteer());
-        try
-        {
-            listOfGuilds = FXCollections.observableArrayList(GModel.listOfGuilds());
-        } catch (IOException ex)
-        {
-            Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    tblVolunteers.setItems(listOfVolunteer);
-    tblGuilds.setItems(listOfGuilds);
+    
+        
+    tblVolunteers.setItems(VModel.getlistOfVolunteer());
+    tblGuilds.setItems(gm.getListOfGuilds());
     setSearchComboItem();
     txtSearch.setDisable(true);
     
@@ -131,13 +123,8 @@ public class GuildController implements Initializable {
                     volunteers = vm.getlistOfVolunteer();
                     tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
-                    try{
-                        guilds = gm.listOfGuilds();
-                        tblGuilds.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
-                    }catch (IOException ex)
-                    {
-                        Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    guilds = gm.getListOfGuilds();
+                    tblGuilds.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
                 }
             }
         }
@@ -172,7 +159,7 @@ public class GuildController implements Initializable {
     }
     public void getSelectedValues(){
     VolunteerId  = tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId();
-    GuildId =       tblGuilds.getSelectionModel().getSelectedItem().getGuildId();
+    GuildId = tblGuilds.getSelectionModel().getSelectedItem().getGuildId();
     }
     
     @FXML

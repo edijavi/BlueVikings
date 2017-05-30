@@ -6,8 +6,11 @@
 package GUI.Model;
 
 import BE.Adminstrator;
+import BE.Guild;
+import BE.Volunteer;
 import BLL.AdminstratorManager;
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -15,11 +18,11 @@ import java.util.ArrayList;
  */
 public class AdminModel
 {
-
+    
     AdminstratorManager AM = new AdminstratorManager();
-
+    
     public ArrayList<Adminstrator> getAdminstrators()
     {
-        return AM.getManager();
+        return AM.getAdminstrators();
     }
 }

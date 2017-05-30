@@ -29,7 +29,7 @@ public class GuildManager
     }
     GuildDataManager GDM = new GuildDataManager();
 
-    public ArrayList<Guild> getGuild() throws IOException
+    public ArrayList<Guild> getGuild()
     {
         return GDM.getGuild();
     }

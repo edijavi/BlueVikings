@@ -52,8 +52,6 @@ public class StatisticsController implements Initializable
 
     @FXML
     private Button btnDownload;
-    @FXML
-    private ComboBox<GuildVolunteerWork> cmbStatistics;
 
     @FXML
     private TableColumn<?, ?> colGuilds;
@@ -82,8 +80,7 @@ public class StatisticsController implements Initializable
     private TextField txtSearch;
     private SearchType searchtype;
     GuildModel gm = new GuildModel();
-    @FXML
-    private Label lblAllHours;
+   
     
  
 
@@ -118,8 +115,8 @@ public class StatisticsController implements Initializable
 
     public void ShowGuildInView() throws IOException
     {
-        listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
-        GuildTbl.setItems(listOfGuilds);
+        
+        GuildTbl.setItems(GM.getListOfGuilds());
         colGuilds.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
 
     }
@@ -131,34 +128,28 @@ public class StatisticsController implements Initializable
         {
             List<Guild> guilds;
             this.searchtype = SearchHandler.SearchType.GUILD;
-            try
-            {
-                guilds = gm.listOfGuilds();
-                GuildTbl.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(), guilds, searchtype)));
-            } catch (IOException ex)
-            {
-                Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            guilds = gm.getListOfGuilds();
+            GuildTbl.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(), guilds, searchtype)));
         }
     }
 
     public void ShowDateAndHours() throws IOException, SQLException
     {
         if(dpStartDate.getValue() == null || dpEndDate.getValue() == null) {
-        for (Guild p : GM.listOfGuilds())
+        for (Guild p : GM.getListOfGuilds())
         {
             if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName()))
             {
-                listOfGuildVolunteerWork = FXCollections.observableArrayList(GVWModel.GetGuildVolunteerWork("2016-05-22", "2030-05-22", p.getGuildId()));
+                
                 colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
                 colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
-                tblStatistics.setItems(listOfGuildVolunteerWork);
+                tblStatistics.setItems(GVWModel.GetGuildVolunteerWork("2016-05-22", "2030-05-22", p.getGuildId()));
 
             }
         }
         }
         else {
-        for (Guild p : GM.listOfGuilds())
+        for (Guild p : GM.getListOfGuilds())
         {
             if (p.getGuildName().equals(GuildTbl.getSelectionModel().getSelectedItem().getGuildName()))
             {
@@ -166,10 +157,11 @@ public class StatisticsController implements Initializable
                 String dateEnd = dpEndDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
                 System.out.println(p.getGuildId());
-                listOfGuildVolunteerWork = FXCollections.observableArrayList(GVWModel.GetGuildVolunteerWork(dateStart, dateEnd, p.getGuildId()));
+                
                 colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
                 colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
-                tblStatistics.setItems(listOfGuildVolunteerWork);
+                tblStatistics.setItems(GVWModel.GetGuildVolunteerWork(dateStart, dateEnd, p.getGuildId()));
+                
             }
         }
     }
@@ -181,8 +173,7 @@ public class StatisticsController implements Initializable
     {   
         
         ShowDateAndHours();
-        String guildHoursString = String.valueOf(GuildTbl.getSelectionModel().getSelectedItem().getGuildHours());
-        lblAllHours.setText(guildHoursString);
+        
         System.out.println(listOfGuildVolunteerWork);
 
     }
@@ -223,7 +214,7 @@ public void printToExcel() throws IOException {
             System.out.println("CountriesDetails.xlsx has been created successfully");
         } catch (IOException e) {
         } finally {
-            workbook.close();
+            //workbook.close();
         }
     }
 }

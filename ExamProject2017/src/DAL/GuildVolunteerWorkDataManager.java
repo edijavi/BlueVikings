@@ -54,7 +54,9 @@ public class GuildVolunteerWorkDataManager
                         rs.getInt("GuildId"),
                         rs.getInt("VolunteerId"),
                         rs.getDate("Date"),
-                        rs.getDouble("Hours")));
+                        rs.getDouble("Hours"),
+                        rs.getInt("WorkId")
+                ));
             }
             return GuildWorkTable;
         
@@ -88,6 +90,22 @@ public class GuildVolunteerWorkDataManager
             {
                 System.err.println(sqle);
             }
+        }
+    }
+    
+    public void editHourOnWork(double hours, int WorkId) {
+        try(Connection con = CM.getConnection())
+        {
+            
+            String sqlQuery = "UPDATE GuildVolunteerWork SET Hours=? WHERE WorkId=?";
+            PreparedStatement pstat = con.prepareStatement(sqlQuery);
+            
+            pstat.setDouble(1, hours);
+            pstat.setInt(2, WorkId);
+            pstat.execute();
+        } catch (SQLException sqle)
+        {
+            System.err.println(sqle);
         }
     }
 

@@ -27,7 +27,7 @@ public class AdminManager
         CM = new ConnectionManager();
     }
 
-    public ArrayList<Adminstrator> getManager()
+    public ArrayList<Adminstrator> getAdminstrators()
     {
         try (Connection con = CM.getConnection())
         {

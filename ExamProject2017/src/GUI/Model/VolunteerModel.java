@@ -12,8 +12,10 @@ import BLL.VolunteerManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import sun.security.jca.GetInstance;
+
 import BLL.SearchHandler.SearchType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -27,16 +29,16 @@ public class VolunteerModel
     private SearchHandler searchHandler = new SearchHandler();
     
     VolunteerManager VM = new VolunteerManager();
-    
-  
+    ObservableList<Volunteer> listOfVolunteers;
+    ObservableList<GuildVolunteerWork> listOFVolunteerWorks;
     public VolunteerModel()
     {
         
     }
     
-    public List<Volunteer> getlistOfVolunteer()
+    public ObservableList<Volunteer> getlistOfVolunteer()
     {
-        return VM.getVolunteer();
+        return listOfVolunteers = FXCollections.observableArrayList(VM.getVolunteer());
     }
 
     public <T> List<T> doSearch(String word, List<T> inWhat, SearchType type)
@@ -56,14 +58,11 @@ public class VolunteerModel
         
     }
     
-    public ArrayList<Volunteer> getVolunteersBasedOnGuild(String GuildName)
-    {
-        return VM.getVolunteerBasedOnGuild(GuildName);
-    }
     
-    public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLException
+    
+    public ObservableList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLException
     {
-        return VM.getVolunteerWork(VolunteerId);
+        return listOFVolunteerWorks = FXCollections.observableArrayList(VM.getVolunteerWork(VolunteerId));
     }
     
     public void updateVolunteer(String FirstName, String LastName, String Email, String PhoneNumber, String Address, String Additionalinfo, int VolunteerId)

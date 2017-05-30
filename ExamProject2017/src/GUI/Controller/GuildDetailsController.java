@@ -11,6 +11,7 @@ import BLL.SearchHandler;
 import BLL.SearchHandler.SearchType;
 import static GUI.Controller.LogInController.loginType.ADMIN;
 import static GUI.Controller.LogInController.loginType.MANAGER;
+import GUI.Model.GuildVolunteerModel;
 import GUI.Model.ManagerModel;
 import GUI.Model.VolunteerModel;
 import java.io.IOException;
@@ -50,13 +51,15 @@ public class GuildDetailsController implements Initializable
     
     @FXML
     private Button btnClose;
-    
+
     private static Guild guild;
-    
+
     VolunteerModel vm = new VolunteerModel();
-    
+
     ManagerModel MM = new ManagerModel();
-    
+
+    GuildVolunteerModel GVM = new GuildVolunteerModel();
+
     @FXML
     private TableView<Volunteer> tblMembers;
     @FXML
@@ -67,17 +70,18 @@ public class GuildDetailsController implements Initializable
     private Label lblAllHours;
     @FXML
     private Label lblAllMembers;
-    
+
     ObservableList<Volunteer> listOfVolunteersBasedOnGuild;
-    
+
     @FXML
     private ComboBox<String> cmbSearch;
     @FXML
     private TextField txtSearch;
-    
+
     private SearchType searchtype;
     @FXML
     private Label lblGuildName;
+
     /**
      * Initializes the controller class.
      */
@@ -87,69 +91,75 @@ public class GuildDetailsController implements Initializable
         setGuildMembers();
         setSearchComboItem();
         txtSearch.setDisable(true);
-        lblGuildName.setText(guild.getGuildName());
-        String guildHoursString = String.valueOf(guild.getGuildHours());
-        lblAllHours.setText(guildHoursString);
-        String guildMembers = String.valueOf(listOfVolunteersBasedOnGuild.size());
-        lblAllMembers.setText(guildMembers);
         
+        
+        
+        
+      
     }
 
     @FXML
-    private void closeAction(ActionEvent event) {
+    private void closeAction(ActionEvent event)
+    {
         Stage closeStage = (Stage) btnClose.getScene().getWindow();
         closeStage.close();
     }
 
     public static void setGuild(Guild guildd)
     {
-    guild = guildd;
+        guild = guildd;
     }
+
     public void setGuildMembers()
     {
-        listOfVolunteersBasedOnGuild = FXCollections.observableArrayList(vm.getVolunteersBasedOnGuild(guild.getGuildName()));
+
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-        tblMembers.setItems(listOfVolunteersBasedOnGuild);
+        tblMembers.setItems(GVM.getVolunteersBasedOnGuild(guild.getGuildName()));
     }
+
     @FXML
     private void search(KeyEvent event)
     {
-        if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
+        if (searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE))
+        {
             List<Volunteer> volunteers;
-            if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
-                
-                    volunteers = vm.getVolunteersBasedOnGuild(guild.getGuildName());  
-                    tblMembers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-               
-            }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
-                
-                    volunteers = vm.getVolunteersBasedOnGuild(guild.getGuildName());
-                    tblMembers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
-            
+            if (searchtype == SearchHandler.SearchType.FIRSTNAME)
+            {
+
+                volunteers = GVM.getVolunteersBasedOnGuild(guild.getGuildName());
+                tblMembers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(), volunteers, searchtype)));
+
+            } else if (searchtype == SearchHandler.SearchType.LASTNAME)
+            {
+
+                volunteers = GVM.getVolunteersBasedOnGuild(guild.getGuildName());
+                tblMembers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(), volunteers, searchtype)));
+
             }
+        }
     }
-    }
+
     @FXML
     private void setSearchType(ActionEvent event)
     {
-    if("First Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        if ("First Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
         {
             this.searchtype = SearchHandler.SearchType.FIRSTNAME;
             txtSearch.setDisable(false);
         }
-    if("Last Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
+        if ("Last Name".equals(cmbSearch.getSelectionModel().getSelectedItem()))
         {
             this.searchtype = SearchHandler.SearchType.LASTNAME;
             txtSearch.setDisable(false);
         }
     }
-     public void setSearchComboItem()
+
+    public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name");
         cmbSearch.setItems(comboItems);
 
     }
 
-    
 }

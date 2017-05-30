@@ -9,6 +9,7 @@ import BE.Guild;
 import BE.Volunteer;
 import BLL.SearchHandler;
 import GUI.Model.GuildModel;
+import GUI.Model.GuildVolunteerModel;
 import GUI.Model.VolunteerModel;
 import java.io.IOException;
 import java.net.URL;
@@ -80,12 +81,12 @@ public class VolunteerMainViewController implements Initializable
     
     ObservableList<Guild> listOfGuilds;
 
-    ObservableList<Volunteer> listOfVolunteersBasedOnGuild;
+    
 
     GuildModel GM = new GuildModel();
     
     VolunteerModel VM = new VolunteerModel();
-
+    GuildVolunteerModel GVM = new GuildVolunteerModel();
     private Guild guild;
 
     private java.util.Date date = new java.util.Date();
@@ -101,6 +102,10 @@ public class VolunteerMainViewController implements Initializable
     
     private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
     
+
+
+   
+
     
     
     
@@ -108,14 +113,8 @@ public class VolunteerMainViewController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         showguilds();
-        try
-        {
-            listOfGuilds = FXCollections.observableArrayList(GM.listOfGuilds());
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteerMainViewController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        guildsTable.setItems(listOfGuilds);
+        
+        guildsTable.setItems(GM.getListOfGuilds());
         setHoursComboItem();
         setSearchComboItem();
         System.out.println(listOfGuilds);
@@ -134,20 +133,17 @@ public class VolunteerMainViewController implements Initializable
             List<Guild> guilds;
             String guild = guildsTable.getSelectionModel().getSelectedItem().getGuildName();
             if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
-                    volunteers = vm.getVolunteersBasedOnGuild(guild);  
+                    volunteers = GVM.getVolunteersBasedOnGuild(guild);  
                     volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
                 
                 }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
-                    volunteers = vm.getVolunteersBasedOnGuild(guild);
+                    volunteers = GVM.getVolunteersBasedOnGuild(guild);
                     volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),volunteers, searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
-                    try{
-                    guilds = gm.listOfGuilds();
+                    
+                    guilds = gm.getListOfGuilds();
                     guildsTable.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),guilds, searchtype)));
-                    }catch (IOException ex)
-                    {
-                        Logger.getLogger(GuildController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    
                 }
             }
         }
@@ -215,7 +211,10 @@ public class VolunteerMainViewController implements Initializable
             alert.setContentText("You have to select the guild, the volunteer, and the hours first!");
             alert.show();
         }else{
-        for (Guild p : GM.listOfGuilds())
+        
+
+        for (Guild p : GM.getListOfGuilds())
+
         {
             if (p.getGuildName().equals(guildsTable.getSelectionModel().getSelectedItem().getGuildName()))
             {
@@ -223,7 +222,7 @@ public class VolunteerMainViewController implements Initializable
                 GM.setGuildHours(y + p.getGuildHours(), guildsTable.getSelectionModel().getSelectedItem().getGuildId());
                 int CurrentVolunteer = volunteerInGuildTbl.getSelectionModel().getSelectedItem().getVolunteerId();
                 System.out.println(y);
-                System.out.println(GM.listOfGuilds());
+                System.out.println(GM.getListOfGuilds());
                 System.out.println(y + p.getGuildHours());
                 GM.addVolunteerWork(timeNow, y, p.getGuildId(), CurrentVolunteer);
                 
@@ -249,8 +248,8 @@ public class VolunteerMainViewController implements Initializable
         
         
         
-        listOfVolunteersBasedOnGuild = FXCollections.observableArrayList(VM.getVolunteersBasedOnGuild(guildsTable.getSelectionModel().getSelectedItem().getGuildName()));
-        volunteerInGuildTbl.setItems(listOfVolunteersBasedOnGuild);
+         
+        volunteerInGuildTbl.setItems(GVM.getVolunteersBasedOnGuild(guildsTable.getSelectionModel().getSelectedItem().getGuildName()));
         
     }
 

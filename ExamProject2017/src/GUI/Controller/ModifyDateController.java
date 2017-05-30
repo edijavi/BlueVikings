@@ -10,12 +10,15 @@ import BE.GuildVolunteerWork;
 import BE.Volunteer;
 import static GUI.Controller.LogInController.loginType.ADMIN;
 import static GUI.Controller.LogInController.loginType.MANAGER;
+import GUI.Model.GuildVolunteerWorkModel;
 import GUI.Model.ManagerModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +26,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -51,12 +55,16 @@ private static GuildVolunteerWork GVW;
     private Label lblHours;
     
     ManagerModel MM = new ManagerModel();
+    GuildVolunteerWorkModel GVWM = new GuildVolunteerWorkModel();
+    @FXML
+    private ComboBox<String> cmbTime;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showData();
+        setHoursComboItem();
     }    
     public static void setDate(GuildVolunteerWork gvww)
     {
@@ -76,10 +84,23 @@ private static GuildVolunteerWork GVW;
     String hour = String.valueOf(GVW.getHour());
     lblHours.setText(hour);
     }
+    
+    public void setHoursComboItem()
+    {
+        ObservableList<String> comboItems = FXCollections.observableArrayList("0.5","1","1.5","2","2.5","3","3.5","4","4.5","5","5.5","6","6.5","7","7.5", "8","8.5","9","9.5","10","10.5", "11", "11.5","12","12.5","13","13.5","14","14.5","15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20");
+
+        cmbTime.setItems(comboItems);
+
+    }
+    
     @FXML
     private void modifyAction(ActionEvent event)
     {
         Stage closeStage = (Stage) btnModify.getScene().getWindow();
         closeStage.close();
+        double y = Double.parseDouble(cmbTime.getSelectionModel().getSelectedItem());
+        GVWM.editHourOnWork(y,GVW.getWorkId());
+        
+        
     }
 }

@@ -49,8 +49,6 @@ public class ManagerDetailsController implements Initializable
     @FXML
     private TextField txtLastName;
     @FXML
-    private TextField txtAddress;
-    @FXML
     private TextField txtPhone;
     @FXML
     private TextField txtPassword;

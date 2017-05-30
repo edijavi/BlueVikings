@@ -55,15 +55,13 @@ public class VolunteersController implements Initializable
     @FXML
     private TableColumn<?, ?> colLastName;
     @FXML
-    private TableColumn<?, ?> colHours;
-    @FXML
     private Button btnNewVol;
     @FXML
     private Button btnRemoveVol;
     @FXML
     private Button btnEditVol;
     
-    ObservableList<Volunteer> listOfVolunteers;
+    
     
     private Volunteer volunteer;
 
@@ -87,8 +85,8 @@ public class VolunteersController implements Initializable
     public void initialize(URL url, ResourceBundle rb)
     {
         showVolunteer();
-        listOfVolunteers = FXCollections.observableArrayList(vm.getlistOfVolunteer());
-        allVolTbl.setItems(listOfVolunteers);
+        
+        allVolTbl.setItems(vm.getlistOfVolunteer());
         setSearchComboItem();
         txtSearch.setDisable(true);
 
@@ -181,6 +179,7 @@ public class VolunteersController implements Initializable
     @FXML
     private void removeVolunteerBtb(ActionEvent event)
     {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
         alert.setTitle("Confirmation");
@@ -189,9 +188,17 @@ public class VolunteersController implements Initializable
             if (result.get() == ButtonType.OK){
                 vm.deleteVolunteer(allVolTbl.getSelectionModel().getSelectedItem().getVolunteerId());
                 showVolunteer();
-                listOfVolunteers = FXCollections.observableArrayList(vm.getlistOfVolunteer());
-                allVolTbl.setItems(listOfVolunteers);
+                
+                allVolTbl.setItems(vm.getlistOfVolunteer());
             }else{alert.close();}
+
+
+        vm.deleteVolunteer(allVolTbl.getSelectionModel().getSelectedItem().getVolunteerId());
+        showVolunteer();
+        
+        allVolTbl.setItems(vm.getlistOfVolunteer());
+
+
     }
 
     @FXML
@@ -247,22 +254,7 @@ public class VolunteersController implements Initializable
 
     }
 
-        public void getVolunteerAddress()
-        {
-          allVolTbl.getSelectionModel().getSelectedItem().getAddress();     
-        }
-        public void getVolunteerEmail()
-        {
-        allVolTbl.getSelectionModel().getSelectedItem().getEmail();
-        }
-        public void getVolunteerFirstName()
-        {
-        allVolTbl.getSelectionModel().getSelectedItem().getFirstName();
-        }
-        public void getVolunteerLastName()
-        {
-        allVolTbl.getSelectionModel().getSelectedItem().getLastName();
-        }
+        
 
 }
 

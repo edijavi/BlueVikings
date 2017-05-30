@@ -64,15 +64,19 @@ public class LogInController implements Initializable
     private BorderPane borderPane;
     @FXML
     private GridPane loginGrid;
-    
-    public enum loginType{ADMIN,MANAGER};
+
+    public enum loginType
+    {
+        ADMIN, MANAGER
+    };
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-      
+
         loginGrid.setVisible(false);
         toggleGroup();
 
@@ -124,37 +128,41 @@ public class LogInController implements Initializable
     }
 
     public void AdminLogin()
-    {if (rbtnAdministrator.isSelected()){
-        List<Adminstrator> Admins = AM.getAdminstrators();
-        for (int i = 0; i < Admins.size(); i++)
+    {
+        if (rbtnAdministrator.isSelected())
         {
-            Adminstrator ad = Admins.get(i);
-            if (txtFieldUserName.getText().equals(ad.getUsername().trim()) && pwField.getText().equals(ad.getPassword().trim()))
+            List<Adminstrator> Admins = AM.getAdminstrators();
+            for (int i = 0; i < Admins.size(); i++)
+            {
+                Adminstrator ad = Admins.get(i);
+                if (txtFieldUserName.getText().equals(ad.getUsername().trim()) && pwField.getText().equals(ad.getPassword().trim()))
 
-            { MM.setLogintype(ADMIN);
-                Stage stage = null;
-                //Parent root = null;
-                stage = (Stage) btnLogIn.getScene().getWindow();
+                {
+                    MM.setLogintype(ADMIN);
+                    Stage stage = null;
+                    //Parent root = null;
+                    stage = (Stage) btnLogIn.getScene().getWindow();
 
-                try
-                {
-                    
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
-                    Parent root = fxmlLoader.load();
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                    stage.getIcons().add(new Image("CSS/icon.png"));
-                    stage.setResizable(false);
-                } catch (IOException ex)
-                {
-                    Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+                    try
+                    {
+
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/AdminMainView.fxml"));
+                        Parent root = fxmlLoader.load();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                        stage.getIcons().add(new Image("CSS/icon.png"));
+                        stage.setResizable(false);
+                    } catch (IOException ex)
+                    {
+                        Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
-        }
 
+        }
     }
-    }
+
     public void volunteerLogin()
     {
         if (rbtnVolunteer.isSelected())
@@ -166,7 +174,7 @@ public class LogInController implements Initializable
 
             try
             {
-                
+
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/VolunteerMainView.fxml"));
                 Parent root = fxmlLoader.load();
                 Scene scene = new Scene(root);
@@ -180,12 +188,14 @@ public class LogInController implements Initializable
             }
 
         }
-        }
-        public void managerLogIn(){
-        
-            if (rbtnAdministrator.isSelected())
-            {
-            List<Manager> managers = MM.getManager();
+    }
+
+    public void managerLogIn()
+    {
+
+        if (rbtnAdministrator.isSelected())
+        {
+            List<Manager> managers = MM.getManagers();
             for (int i = 0; i < managers.size(); i++)
             {
                 Manager ma = managers.get(i);
@@ -199,7 +209,7 @@ public class LogInController implements Initializable
                     stage = (Stage) btnLogIn.getScene().getWindow();
                     try
                     {
-                        
+
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
                         Parent root = fxmlLoader.load();
                         Scene scene = new Scene(root);
@@ -227,7 +237,7 @@ public class LogInController implements Initializable
         AdminLogin();
         managerLogIn();
         volunteerLogin();
-      
+
     }
 
     @FXML

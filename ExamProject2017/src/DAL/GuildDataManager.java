@@ -6,10 +6,6 @@
 package DAL;
 
 import BE.Guild;
-import BE.Volunteer;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,13 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
 import java.sql.Date;
-import org.apache.xmlbeans.impl.xb.xmlconfig.Extensionconfig;
+
 
 
 /**
@@ -41,7 +32,7 @@ public class GuildDataManager {
         CM = new ConnectionManager();
     }
 
-    public ArrayList<Guild> getGuild() throws IOException {
+    public ArrayList<Guild> getGuild(){
         try (Connection con = CM.getConnection()) {
             String query = "SELECT * FROM [Guild]";
             Statement stmt = con.createStatement();

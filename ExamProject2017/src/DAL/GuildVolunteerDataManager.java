@@ -9,6 +9,7 @@ import BE.Guild;
 import BE.Volunteer;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -45,6 +46,51 @@ public class GuildVolunteerDataManager
         {
             System.err.println(sqle);
         }
+    }
+    
+    public ArrayList<Volunteer> getVolunteerBasedOnGuild(String GuildName)
+    {
+
+        ArrayList<Volunteer> volunteers = new ArrayList<>();
+
+        try (Connection con = CM.getConnection())
+        {
+            {
+                String query
+                        = " SELECT * "
+                        + " FROM [Volunteer] v "
+                        + " INNER JOIN [GuildVolunteers] gv ON v.VolunteerId = gv.VolunteerId "
+                        + " INNER JOIN [Guild] g ON gv.GuildId = g.GuildId "
+                        + " WHERE g.GuildName = ? ";
+                PreparedStatement pstmt = con.prepareStatement(query);
+                pstmt.setString(1, GuildName);
+                ResultSet rs = pstmt.executeQuery();
+
+                while (rs.next())
+                {
+
+                    volunteers.add(new Volunteer(
+                            rs.getString("firstName"),
+                            rs.getString("lastName"),
+                            rs.getInt("VolunteerId"),
+                            rs.getString("Email"),
+                            rs.getString("PhoneNumber"),
+                            rs.getString("additionalInfo"),
+                            rs.getString("Address"),
+                            rs.getString("Image")));
+
+                }
+            }
+
+            return volunteers;
+
+        } catch (SQLException sqle)
+        {
+            System.err.println(sqle);
+            return null;
+
+        }
+
     }
 
     public void deleteVolunteerFromGuild(int volunteerId)
