@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerMainViewController">
+<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="600.0" stylesheets="@../../CSS/Main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.VolunteerMainViewController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="600.0">
          <top>
@@ -33,6 +26,14 @@
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
+                     <children>
+                        <Label text="Date:" />
+                        <Label fx:id="lblDate" text="Label" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="10.0" />
+                           </GridPane.margin>
+                        </Label>
+                     </children>
                   </GridPane>
                   <GridPane prefHeight="30.0" prefWidth="384.0" GridPane.columnIndex="1">
                     <columnConstraints>
@@ -93,8 +94,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveHoursBtn" text="Save" GridPane.rowIndex="1" />
-                  <Button fx:id="btnClose" mnemonicParsing="false" onAction="#closeAction" text="Close" GridPane.rowIndex="3" />
+                  <Button fx:id="btnSave" mnemonicParsing="false" text="Save" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin></Button>
+                  <Button fx:id="btnClose" mnemonicParsing="false" text="Close" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin></Button>
                   <GridPane>
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -106,7 +113,10 @@
                         <ComboBox fx:id="cmbHours" prefWidth="120.0" promptText="Hours" />
                      </children>
                   </GridPane>
-                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutEvent" text="Log out" GridPane.rowIndex="2" />
+                  <Button fx:id="btnLogOut" mnemonicParsing="false" text="Log out" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin></Button>
                </children>
             </GridPane>
          </center>

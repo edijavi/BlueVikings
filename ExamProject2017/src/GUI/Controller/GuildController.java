@@ -22,6 +22,7 @@ import GUI.Model.GuildModel;
 import GUI.Model.VolunteerModel;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -29,6 +30,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -103,12 +106,19 @@ public class GuildController implements Initializable {
 
     @FXML
     private void AddMemberToGuiild(ActionEvent event) {
+    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    alert.setHeaderText(null);
+    alert.setTitle("Confirmation");
+    alert.setContentText("Are you sure you want to add " + tblVolunteers.getSelectionModel().getSelectedItem().getFirstName() + " " + tblVolunteers.getSelectionModel().getSelectedItem().getLastName() +" to "+ tblGuilds.getSelectionModel().getSelectedItem().getGuildName());   
+    Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
     GuildVolunteerModel GVmodel = new GuildVolunteerModel(); 
     getSelectedValues();
     GVmodel.addMemebertoGuild(VolunteerId,GuildId );
         System.out.println("GuildId"+GuildId);
         System.out.println("VolunteerId"+VolunteerId);
     
+    }else{alert.close();}
     }
     @FXML
     private void search(KeyEvent event)

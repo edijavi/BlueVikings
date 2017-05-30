@@ -191,14 +191,6 @@ public class VolunteersController implements Initializable
                 
                 allVolTbl.setItems(vm.getlistOfVolunteer());
             }else{alert.close();}
-
-
-        vm.deleteVolunteer(allVolTbl.getSelectionModel().getSelectedItem().getVolunteerId());
-        showVolunteer();
-        
-        allVolTbl.setItems(vm.getlistOfVolunteer());
-
-
     }
 
     @FXML

@@ -27,6 +27,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -108,7 +109,11 @@ public class StatisticsController implements Initializable
     @FXML
     private void DownloadBtn(ActionEvent event) throws IOException
     {
-       
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setHeaderText(null);
+    alert.setTitle("Downloaded");
+    alert.setContentText("The statistic has been donwloaded for " + GuildTbl.getSelectionModel().getSelectedItem().getGuildName());
+    alert.show();  
     printToExcel();
     }
 
@@ -208,7 +213,7 @@ public void printToExcel() throws IOException {
         try {
             //Write the workbook in file system
             String PathTillProject = System.getProperty("user.dir");
-            try (FileOutputStream out = new FileOutputStream(PathTillProject + "/src/Guild.xls")) {
+            try (FileOutputStream out = new FileOutputStream(PathTillProject + "/src/"+GuildTbl.getSelectionModel().getSelectedItem().getGuildName()+".xls")) {
                 workbook.write(out);
             }
             System.out.println("CountriesDetails.xlsx has been created successfully");

@@ -35,7 +35,7 @@ public class AdminMainViewController implements Initializable {
      */
     private Date date = new Date();
     
-    private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+    private String[] weekdays = {"Sunday","Monday","Tuesday","Wednensday","Thursday","Friday","Saturday"};
     @FXML
     private Label lblDate;
     @FXML

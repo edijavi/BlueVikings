@@ -91,11 +91,11 @@ public class GuildDetailsController implements Initializable
         setGuildMembers();
         setSearchComboItem();
         txtSearch.setDisable(true);
-        
-        
-        
-        
-      
+        lblGuildName.setText(guild.getGuildName());
+        String guildhour = String.valueOf(guild.getGuildHours());
+        lblAllHours.setText(guildhour);
+        String guildMembers = String.valueOf(GVM.getVolunteersBasedOnGuild(guild.getGuildName()).size());
+        lblAllMembers.setText(guildMembers);
     }
 
     @FXML
