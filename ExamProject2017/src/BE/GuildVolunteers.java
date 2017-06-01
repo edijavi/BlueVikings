@@ -26,16 +26,12 @@ this.VolunteerId = VolunteerId;
         return GuildId;
     }
 
-    public void setGuildId(int GuildId) {
-        this.GuildId = GuildId;
-    }
+   
 
     public int getVolunteerId() {
         return VolunteerId;
     }
 
-    public void setVolunteerId(int VolunteerId) {
-        this.VolunteerId = VolunteerId;
-    }
+    
 
 }

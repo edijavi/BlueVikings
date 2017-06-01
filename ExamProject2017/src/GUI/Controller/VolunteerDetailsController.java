@@ -6,7 +6,6 @@
 package GUI.Controller;
 
 import BE.Volunteer;
-import GUI.Controller.LogInController.loginType;
 import GUI.Model.ManagerModel;
 import java.net.URL;
 import java.util.ResourceBundle;

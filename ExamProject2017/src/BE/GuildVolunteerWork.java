@@ -35,10 +35,7 @@ public class GuildVolunteerWork
         return WorkId;
     }
 
-    public void setWorkId(int WorkId)
-    {
-        this.WorkId = WorkId;
-    }
+    
 
    
     public int getGuildId()
@@ -46,21 +43,14 @@ public class GuildVolunteerWork
         return GuildId;
     }
 
-    public void setGuildId(int GuildId)
-    {
-        this.GuildId = GuildId;
-    }
+  
 
     public int getVolunteerId()
     {
         return VolunteerId;
     }
 
-    public void setVolunteerId(int VolunteerId)
-    {
-        this.VolunteerId = VolunteerId;
-    }
-
+   
     public Date getDate()
     {
         return date;

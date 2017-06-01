@@ -64,7 +64,7 @@ public class VolunteerStatisticsController implements Initializable
     @FXML
     private TableColumn<?, ?> colHours;
     private SearchType searchtype;
-    VolunteerModel vm = new VolunteerModel();
+    VolunteerModel vModel = new VolunteerModel();
 
     ObservableList<Volunteer> listOfGuilds;
     ObservableList<GuildVolunteerWork> listOfGuildVolunteerWork;
@@ -72,7 +72,7 @@ public class VolunteerStatisticsController implements Initializable
      * Initializes the controller class.
      */
 
-    VolunteerModel VM = new VolunteerModel();
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -84,7 +84,7 @@ public class VolunteerStatisticsController implements Initializable
 
     public void DisplayVolunteers()
     {
-        listOfGuilds = FXCollections.observableArrayList(VM.getlistOfVolunteer());
+        listOfGuilds = FXCollections.observableArrayList(vModel.getlistOfVolunteer());
         tblVolunteers.setItems(listOfGuilds);
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -100,14 +100,14 @@ public class VolunteerStatisticsController implements Initializable
             if (searchtype == SearchHandler.SearchType.FIRSTNAME)
             {
 
-                volunteers = vm.getlistOfVolunteer();
-                tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(), volunteers, searchtype)));
+                volunteers = vModel.getlistOfVolunteer();
+                tblVolunteers.setItems(FXCollections.observableArrayList(vModel.doSearch(txtSearch.getText(), volunteers, searchtype)));
 
             } else if (searchtype == SearchHandler.SearchType.LASTNAME)
             {
 
-                volunteers = vm.getlistOfVolunteer();
-                tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(), volunteers, searchtype)));
+                volunteers = vModel.getlistOfVolunteer();
+                tblVolunteers.setItems(FXCollections.observableArrayList(vModel.doSearch(txtSearch.getText(), volunteers, searchtype)));
 
             }
         }
@@ -141,7 +141,7 @@ public class VolunteerStatisticsController implements Initializable
 
         colDate.setCellValueFactory(new PropertyValueFactory<>("Date"));
         colHours.setCellValueFactory(new PropertyValueFactory<>("Hour"));
-        tblDatesnHours.setItems(VM.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
+        tblDatesnHours.setItems(vModel.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
             
         
     }
@@ -169,7 +169,7 @@ public class VolunteerStatisticsController implements Initializable
                     public void handle(WindowEvent event)
                     {
                         try{
-                        tblDatesnHours.setItems(VM.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
+                        tblDatesnHours.setItems(vModel.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
                     
                     }catch (SQLException ex){
                             System.out.println(ex);
@@ -183,7 +183,7 @@ public class VolunteerStatisticsController implements Initializable
                     public void handle(WindowEvent event)
                     {
                         try{
-                        tblDatesnHours.setItems(VM.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
+                        tblDatesnHours.setItems(vModel.getVolunteerWork(tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId()));
                     
                     }catch (SQLException ex){
                             System.out.println(ex);

@@ -15,20 +15,14 @@ private String Password;
         return Username;
     }
 
-    public void setUsername(String Username)
-    {
-        this.Username = Username;
-    }
+   
 
     public String getPassword()
     {
         return Password;
     }
 
-    public void setPassword(String Password)
-    {
-        this.Password = Password;
-    }
+   
     @Override
     public String toString() {
         return "Username" + Username + " "+ "Password" + Password;
