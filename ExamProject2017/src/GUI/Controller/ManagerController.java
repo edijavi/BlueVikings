@@ -67,31 +67,34 @@ public class ManagerController implements Initializable
     @FXML
     private TableColumn<?, ?> colLastName;
 
-    /**
-     * Initializes the controller class.
-     */
     private SearchType searchtype;
 
     ManagerModel mm = new ManagerModel();
-
+/**
+ * Disable the search text field.
+ * @param url
+ * @param rb 
+ */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
-        colFirstName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
-        colLastName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
-        tblManagers.setItems(mm.getManagers());
+        showManagers();
         setSearchComboItem();
         txtSearch.setDisable(true);
 
     }
-
+/**
+ * This Action event runs if you click on the new manager button in the main view.
+ * It opens a new window where you can add the information of the new manager.
+ * When you click on the save button it will reset the items in the table view to show the new manager.
+ * @param event
+ * @throws IOException 
+ */
     @FXML
     private void addNewManagerBtb(ActionEvent event) throws IOException
     {
         if (event.getSource() == btnAddManager)
         {
-
             Parent root = null;
             Stage stage = new Stage();
             Stage stage1 = (Stage) tblManagers.getScene().getWindow();
@@ -118,7 +121,6 @@ public class ManagerController implements Initializable
                         tblManagers.setItems(mm.getManagers());
                     }
                 });
-
                 stage.getIcons().add(new Image("CSS/icon.png"));
                 stage.setResizable(false);
                 stage.initModality(Modality.WINDOW_MODAL);
@@ -131,7 +133,22 @@ public class ManagerController implements Initializable
 
         }
     }
+    /**
+     * This method prepare and upload the data to the table view.
+     */
+    private void showManagers()
+    {
+        colFirstName.setCellValueFactory(new PropertyValueFactory<>("Firstname"));
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
+        tblManagers.setItems(mm.getManagers());
 
+    }
+     /**
+     * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
+     * If the combo box seted to First Name or Last Name the method will enable the text field,
+     * and reset the items in the right table view according what is in the text field.
+     * @param event 
+     */
     @FXML
     private void search(KeyEvent event)
     {
@@ -140,18 +157,19 @@ public class ManagerController implements Initializable
 
             if (searchtype == SearchHandler.SearchType.MANAGERFIRSTNAME)
             {
-
                 tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(), mm.getManagers(), searchtype)));
 
             } else if (searchtype == SearchHandler.SearchType.MANAGERLASTNAME)
             {
-
                 tblManagers.setItems(FXCollections.observableArrayList(mm.doSearch(txtSearch.getText(), mm.getManagers(), searchtype)));
 
             }
         }
     }
-
+    /**
+     * This method sets the serch type according to waht is in the combo box and set the search text field enable to edit.
+     * @param event 
+     */
     @FXML
     private void setSearchType(ActionEvent event)
     {
@@ -166,14 +184,21 @@ public class ManagerController implements Initializable
             txtSearch.setDisable(false);
         }
     }
-
+    /**
+     * This method sets the items in the combobox, where you can choose the search options.
+     */
     public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name");
         cmbSearch.setItems(comboItems);
 
     }
-
+    /**
+     * This Action Event will runs if you double click on a manager. It will loads the information of the selected manager
+     * inside the new view. If you click on the save button or close the window the items in the table view will be reseted and
+     * show the editid infromation.
+     * @param event 
+     */
     @FXML
     private void ClickedOnManager(MouseEvent event)
     {
@@ -224,12 +249,17 @@ public class ManagerController implements Initializable
 
         }
     }
-
+    /**
+     * Jesper
+     * @param event 
+     */
     @FXML
     private void deleteManager(ActionEvent event)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
+        Stage Iconstage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Iconstage.getIcons().add(new Image("CSS/icon.png"));
         alert.setTitle("Confirmation");
         alert.setContentText("Are you sure you want to remove " + tblManagers.getSelectionModel().getSelectedItem().getFirstname() + " " + tblManagers.getSelectionModel().getSelectedItem().getLastname() + " from the system?");
         Optional<ButtonType> result = alert.showAndWait();

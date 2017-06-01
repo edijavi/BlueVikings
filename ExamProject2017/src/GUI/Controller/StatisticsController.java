@@ -36,9 +36,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -109,12 +111,14 @@ public class StatisticsController implements Initializable
     @FXML
     private void DownloadBtn(ActionEvent event) throws IOException
     {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setHeaderText(null);
-    alert.setTitle("Downloaded");
-    alert.setContentText("The statistic has been donwloaded for " + GuildTbl.getSelectionModel().getSelectedItem().getGuildName());
-    alert.show();  
-    printToExcel();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setHeaderText(null);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("CSS/icon.png"));
+        alert.setTitle("Downloaded");
+        alert.setContentText("The statistic has been donwloaded for " + GuildTbl.getSelectionModel().getSelectedItem().getGuildName());
+        alert.show();  
+        printToExcel();
     }
 
 

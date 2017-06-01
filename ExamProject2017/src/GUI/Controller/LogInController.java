@@ -71,7 +71,7 @@ public class LogInController implements Initializable
     };
 
     /**
-     * Initializes the controller class.
+     * Deavidas !!
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -100,6 +100,9 @@ public class LogInController implements Initializable
 
     AdminModel AM = new AdminModel();
 
+    /**
+     * This method makes a group for the radio buttons so they can't be marked both at the same time.
+     */
     public void toggleGroup()
     {
         rbtnAdministrator.setToggleGroup(group);
@@ -110,7 +113,10 @@ public class LogInController implements Initializable
         pwField.setDisable(true);
 
     }
-
+    /**
+     * This method makes the text fields visible for the manager and administrator login.
+     * @param event 
+     */
     @FXML
     public void setTxtFieldEnabled(MouseEvent event)
     {
@@ -126,7 +132,9 @@ public class LogInController implements Initializable
             loginGrid.setVisible(false);
         }
     }
-
+    /**
+     * Jesper !!
+     */
     public void AdminLogin()
     {
         if (rbtnAdministrator.isSelected())
@@ -162,7 +170,9 @@ public class LogInController implements Initializable
 
         }
     }
-
+    /**
+     * This method loads the view for the volunteers if the volunteer radio buton is selected.
+     */
     public void volunteerLogin()
     {
         if (rbtnVolunteer.isSelected())
@@ -189,48 +199,54 @@ public class LogInController implements Initializable
 
         }
     }
-
+    /**
+     * Jesper!!
+     */
     public void managerLogIn()
     {
-
         if (rbtnAdministrator.isSelected())
         {
             List<Manager> managers = MM.getManagers();
-            for (int i = 0; i < managers.size(); i++)
-            {
-                Manager ma = managers.get(i);
+            for (Manager ma : managers) {
+
+                //Manager ma = managers.get(i);
 
                 if (txtFieldUserName.getText().equals(ma.getUsername().trim())
                         && pwField.getText().equals(ma.getPassword().trim()))
 
                 {
-                    MM.setLogintype(loginType.MANAGER);
-                    Stage stage = null;
-                    stage = (Stage) btnLogIn.getScene().getWindow();
-                    try
-                    {
+                   MM.setLogintype(loginType.MANAGER);
+                   Stage stage = null;
+                   stage = (Stage) btnLogIn.getScene().getWindow();
+                   try
+                   {
 
                         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/MainView.fxml"));
                         Parent root = fxmlLoader.load();
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
-                        stage.show();
                         stage.getIcons().add(new Image("CSS/icon.png"));
                         stage.setResizable(false);
+                        stage.show();
+                        return;
 
-                    } catch (IOException ex)
+                    } catch (Exception ex)
                     {
                         Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
+                   
                 } else
                 {
                     warninglbl.setText("Password or Username is invalid");
                 }
+
             }
         }
     }
-
+    /**
+     * Log in to the program using the different kind of login methods.
+     * @param event 
+     */
     @FXML
     public void logInEvent(ActionEvent event)
     {
@@ -239,7 +255,10 @@ public class LogInController implements Initializable
         volunteerLogin();
 
     }
-
+    /**
+     * This method makes available to login with the enter instead of pressing the login button.
+     * @param event 
+     */
     @FXML
     private void EnterKeyPressed(KeyEvent event)
     {

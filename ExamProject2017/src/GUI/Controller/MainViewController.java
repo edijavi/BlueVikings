@@ -42,10 +42,6 @@ public class MainViewController implements Initializable {
     private Label lblDate;
     @FXML
     private Button btnLogOut; 
-    
-    private Date date = new Date();
-    
-    private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
     @FXML
     private Button btnStatistics;
     @FXML
@@ -55,11 +51,15 @@ public class MainViewController implements Initializable {
     @FXML
     private Label lblLN;
     
+    private Date date = new Date();
+    
+    private String[] weekdays = {"Sun","Mon","Tue","Wed","Thu","Fri","Sat"};
+
     ManagerModel MM = new ManagerModel();
 
 
     /**
-     * Initializes the controller class.
+     * Makes the Volunteer FXML default in the main view.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,7 +70,11 @@ public class MainViewController implements Initializable {
                 System.out.println(e);
             }
         setDate();
-        
+    /**
+    * Handle the Menu options when a button pressed it loads the right FXML to the Admin main view
+    * log out from the program or close it.
+    * @param event 
+    */
     }   
     @FXML
     private void pressedButton(ActionEvent event) {
@@ -132,37 +136,28 @@ public class MainViewController implements Initializable {
                 break;
         }
     }
-        public void openItem(String url) throws IOException {
+    /**
+    * This method creates an item loader to an Anchor pane in the Main View we use
+    * this every time when a button pressed in the menu
+    * @param url
+    * @throws IOException 
+    */
+    public void openItem(String url) throws IOException {
         FXMLLoader itemLoader = new FXMLLoader(getClass().getResource(url));
         AnchorPane itemPane = itemLoader.load();
         Object controller = itemLoader.getController();
         paneItem.getChildren().clear();
         paneItem.getChildren().add(itemPane);
     }
+    /**
+    * This method using 2 int to store the date and the months and with the date.getDay command we get the day. 
+    * and write the date of today to a label.
+    */
 public void setDate()
 {
     int y = date.getYear()+1900;
     int m = date.getMonth()+1;
     lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
-}
-@FXML
-public void logOutEvent(ActionEvent event)
-{
-    Stage stage = null;
-        stage = (Stage) btnLogOut.getScene().getWindow();
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/LogIn.fxml"));
-
-            Parent root = fxmlLoader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex)
-        {
-            Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
 }
     
 }

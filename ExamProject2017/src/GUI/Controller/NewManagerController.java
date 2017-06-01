@@ -22,6 +22,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -66,6 +67,8 @@ public class NewManagerController implements Initializable {
     public void addManager(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
+        Stage Iconstage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Iconstage.getIcons().add(new Image("CSS/icon.png"));
         alert.setTitle("Successfully Added");
         alert.setContentText(txtFirstName.getText()+" "+txtLastName.getText() + " successfully added to the system as Manager");
         alert.show();

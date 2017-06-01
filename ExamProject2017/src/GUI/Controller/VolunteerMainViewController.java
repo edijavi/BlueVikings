@@ -40,6 +40,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -216,6 +217,8 @@ public class VolunteerMainViewController implements Initializable
         {
             if (p.getGuildName().equals(guildsTable.getSelectionModel().getSelectedItem().getGuildName()))
             {   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.getIcons().add(new Image("CSS/icon.png"));
                 alert.setTitle("Saved");
                 alert.setHeaderText("Successfully Saved");
                 alert.setContentText("Thank you for your help today, your hours have been saved");

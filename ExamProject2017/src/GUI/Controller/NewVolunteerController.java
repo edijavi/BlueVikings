@@ -72,6 +72,8 @@ public class NewVolunteerController implements Initializable {
     {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("CSS/icon.png"));
         alert.setTitle("Successfully Added");
         alert.setContentText("You successfully added "+ txtFirstName.getText() + " " + txtLastName.getText()+" to the system!");
         alert.show();

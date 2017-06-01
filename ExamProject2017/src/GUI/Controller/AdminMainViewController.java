@@ -25,18 +25,17 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
- *
+ * Import the FXML items creates a date variable and String with the weekdays
  * @author boldi
  */
 public class AdminMainViewController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+
     private Date date = new Date();
     
     private String[] weekdays = {"Sunday","Monday","Tuesday","Wednensday","Thursday","Friday","Saturday"};
-    @FXML
+    
+    @FXML                                                                           
     private Label lblDate;
     @FXML
     private Button btnVolunteers;
@@ -55,12 +54,13 @@ public class AdminMainViewController implements Initializable {
     @FXML
     private Button btnManagers;
 
-
-    /**
-     * Initializes the controller class.
-     */
+/**
+ * Makes the Volunteer FXML default in the main view.
+ * @param url
+ * @param rb 
+ */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {                           
         try {
              openItem("/GUI/View/Volunteers.fxml");
             } catch(IOException e) {
@@ -68,16 +68,20 @@ public class AdminMainViewController implements Initializable {
                 System.out.println(e);
             }
         setDate();
-        // TODO
-    }   
+    } 
+    /**
+     * Handle the Menu options when a button pressed it loads the right FXML to the Admin main view
+     * log out from the program or close it.
+     * @param event 
+     */
     @FXML
-    private void pressedButton(ActionEvent event) {
+    private void pressedButton(ActionEvent event) {                                 
         Button pressedButton = (Button) event.getSource();
         System.out.println("pressed button: "+event.getSource());
         switch(pressedButton.getId()) {
             case "btnVolunteers":
                 try {
-                    openItem("/GUI/View/Volunteers.fxml");
+                    openItem("/GUI/View/Volunteers.fxml");                           
                 } catch(IOException e) {
                     System.out.println("FXML probably not found");
                     System.out.println(e);
@@ -86,7 +90,7 @@ public class AdminMainViewController implements Initializable {
                 break;
             case "btnStatistics":
                 try {
-                    openItem("/GUI/View/Statistics.fxml");
+                    openItem("/GUI/View/Statistics.fxml");                         
                 } catch(IOException e) {
                     System.out.println("FXML probably not found");
                     System.out.println(e);
@@ -94,7 +98,7 @@ public class AdminMainViewController implements Initializable {
                 break;
             case "btnVolunteerStat":
                 try {
-                    openItem("/GUI/View/VolunteerStatistics.fxml");
+                    openItem("/GUI/View/VolunteerStatistics.fxml");                  
                 } catch(IOException e) {
                     System.out.println("FXML probably not found");
                     System.out.println(e);
@@ -102,7 +106,7 @@ public class AdminMainViewController implements Initializable {
                 break;
             case "btnManagers":
                 try {
-                    openItem("/GUI/View/Manager.fxml");
+                    openItem("/GUI/View/Manager.fxml");                              
                 } catch(IOException e) {
                     System.out.println("FXML probably not found");
                     System.out.println(e);
@@ -110,9 +114,9 @@ public class AdminMainViewController implements Initializable {
                 break;
             case "btnLogOut":
                 Stage stage = null;
-                stage = (Stage) btnLogOut.getScene().getWindow();
+                stage = (Stage) btnLogOut.getScene().getWindow();           
                 try{
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/LogIn.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/View/LogIn.fxml"));     
                     Parent root = fxmlLoader.load();
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
@@ -125,7 +129,7 @@ public class AdminMainViewController implements Initializable {
                     }
                 break;
                 
-            case "btnGuilds":
+            case "btnGuilds":                                                           
                 try
                 {
                     openItem("/GUI/View/Guilds.fxml");
@@ -136,22 +140,33 @@ public class AdminMainViewController implements Initializable {
                 }
                 break;
             case "btnClose":
-                System.exit(0);
+                System.exit(0);                                                         
                 break;
         }
     }
-        public void openItem(String url) throws IOException {
-        FXMLLoader itemLoader = new FXMLLoader(getClass().getResource(url));
-        AnchorPane itemPane = itemLoader.load();
-        Object controller = itemLoader.getController();
-        paneItem.getChildren().clear();
-        paneItem.getChildren().add(itemPane);
-    }
-public void setDate()
+    /**
+     * This method creates an item loader to an Anchor pane in the Main View we use
+     * this every time when a button pressed in the menu
+     * @param url
+     * @throws IOException 
+     */
+public void openItem(String url) throws IOException                                     
+{   
+    FXMLLoader itemLoader = new FXMLLoader(getClass().getResource(url));
+    AnchorPane itemPane = itemLoader.load();
+    Object controller = itemLoader.getController();
+    paneItem.getChildren().clear();
+    paneItem.getChildren().add(itemPane);
+}
+/**
+ * This method using 2 int to store the date and the months and with the date.getDay command we get the day. 
+ * and write the date of today to a label.
+ */
+
+public void setDate()                                                                  
 {
     int y = date.getYear()+1900;
     int m = date.getMonth()+1;
     lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
-}
-    
+}   
 }

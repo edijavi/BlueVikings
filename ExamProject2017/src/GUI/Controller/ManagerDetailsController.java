@@ -25,6 +25,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -106,6 +107,8 @@ public class ManagerDetailsController implements Initializable
     public void editManagerEvent(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
+        Stage Iconstage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Iconstage.getIcons().add(new Image("CSS/icon.png"));
         alert.setTitle("Successfully Edited");
         alert.setContentText("You edited "+ txtFirstName.getText() + " " + txtLastName.getText());
         alert.show();

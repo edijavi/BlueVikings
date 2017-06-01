@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -101,6 +102,8 @@ private static GuildVolunteerWork GVW;
         String hour = String.valueOf(GVW.getHour());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("CSS/icon.png"));
         alert.setTitle("Successfully Edited");
         alert.setContentText(vol.getFirstName()+" "+vol.getFirstName() + " successfully Edited in " + date+ " from " + hour +" hours to " + cmbTime.getSelectionModel().getSelectedItem()+" hours.");
         alert.show();

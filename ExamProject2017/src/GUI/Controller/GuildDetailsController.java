@@ -51,15 +51,6 @@ public class GuildDetailsController implements Initializable
     
     @FXML
     private Button btnClose;
-
-    private static Guild guild;
-
-    VolunteerModel vm = new VolunteerModel();
-
-    ManagerModel MM = new ManagerModel();
-
-    GuildVolunteerModel GVM = new GuildVolunteerModel();
-
     @FXML
     private TableView<Volunteer> tblMembers;
     @FXML
@@ -70,20 +61,27 @@ public class GuildDetailsController implements Initializable
     private Label lblAllHours;
     @FXML
     private Label lblAllMembers;
-
-    ObservableList<Volunteer> listOfVolunteersBasedOnGuild;
-
     @FXML
     private ComboBox<String> cmbSearch;
     @FXML
     private TextField txtSearch;
-
-    private SearchType searchtype;
     @FXML
     private Label lblGuildName;
+    
+    ObservableList<Volunteer> listOfVolunteersBasedOnGuild;
+
+    private SearchType searchtype;
+
+    private static Guild guild;
+
+    VolunteerModel vm = new VolunteerModel();
+
+    ManagerModel MM = new ManagerModel();
+
+    GuildVolunteerModel GVM = new GuildVolunteerModel();
 
     /**
-     * Initializes the controller class.
+     * Set the items in the table view, and the details of the selected guild. 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -97,27 +95,39 @@ public class GuildDetailsController implements Initializable
         String guildMembers = String.valueOf(GVM.getVolunteersBasedOnGuild(guild.getGuildName()).size());
         lblAllMembers.setText(guildMembers);
     }
-
+    /**
+     * Close the program 
+     * @param event 
+     */
     @FXML
     private void closeAction(ActionEvent event)
     {
         Stage closeStage = (Stage) btnClose.getScene().getWindow();
         closeStage.close();
     }
-
+    /**
+     * We use this method to get the information from the Guild view and load it here.  
+     * @param guildd 
+     */
     public static void setGuild(Guild guildd)
     {
         guild = guildd;
     }
-
+    /**
+     * Prepare the data to load it in the view
+     */
     public void setGuildMembers()
     {
-
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("LastName"));
         tblMembers.setItems(GVM.getVolunteersBasedOnGuild(guild.getGuildName()));
     }
-
+    /**
+     * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
+     * If the combo box seted to First Name or Last Name the method will enable the text field,
+     * and reset the items in the right table view according what is in the text field.
+     * @param event 
+     */
     @FXML
     private void search(KeyEvent event)
     {
@@ -125,18 +135,19 @@ public class GuildDetailsController implements Initializable
         {
             if (searchtype == SearchHandler.SearchType.FIRSTNAME)
             {
-
                 tblMembers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(), GVM.getVolunteersBasedOnGuild(guild.getGuildName()), searchtype)));
 
             } else if (searchtype == SearchHandler.SearchType.LASTNAME)
             {
-
                 tblMembers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(), GVM.getVolunteersBasedOnGuild(guild.getGuildName()), searchtype)));
 
             }
         }
     }
-
+     /**
+     * This method sets the serch type according to waht is in the combo box and set the search text field enable to edit.
+     * @param event 
+     */
     @FXML
     private void setSearchType(ActionEvent event)
     {
@@ -151,7 +162,9 @@ public class GuildDetailsController implements Initializable
             txtSearch.setDisable(false);
         }
     }
-
+    /**
+    * This method sets the items in the combobox, where you can choose the search options.
+    */
     public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name");

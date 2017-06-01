@@ -52,7 +52,6 @@ public class GuildController implements Initializable {
     private TableView<Guild> tblGuilds;
     @FXML
     private TableColumn<?, ?> colHours;
-  
     @FXML
     private TableView<Volunteer> tblVolunteers;
     @FXML
@@ -61,30 +60,22 @@ public class GuildController implements Initializable {
     private TableColumn<?, ?> FirstNameClm;
     @FXML
     private TableColumn<?, ?> LastNameClm;
-    
-    
-    
-    GuildVolunteerModel GVmodel = new GuildVolunteerModel();
-    
-    GuildModel GModel = new GuildModel();
-    
-    VolunteerModel VModel = new VolunteerModel();
-    
-    int GuildId;
-    
-    int VolunteerId;
-    
     @FXML
     private ComboBox<String> cmbSearch;
-    
     @FXML
-    private TextField txtSearch;
-   
+    private TextField txtSearch; 
+    
+    int GuildId;
+    int VolunteerId;
+      
+    VolunteerModel vm = new VolunteerModel();
+    GuildModel gm = new GuildModel();
+    
     private SearchHandler.SearchType searchtype;
     
-    VolunteerModel vm = new VolunteerModel();
+
     
-    GuildModel gm = new GuildModel();
+    
     
    
     /**
@@ -92,41 +83,56 @@ public class GuildController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
     ShowInView();
-    
-    
-        
-    tblVolunteers.setItems(VModel.getlistOfVolunteer());
+    tblVolunteers.setItems(vm.getlistOfVolunteer());
     tblGuilds.setItems(gm.getListOfGuilds());
     setSearchComboItem();
     txtSearch.setDisable(true);
     
     }  
 
+/**
+ * If you click on the Add to guild button this method opens a confirmation popup where
+ * you can see two options OK or CANCEL after click one of them "IF" method will runs
+ * which add the selected member to the selected guild or else close the popup 
+ * @param event 
+ */
 
     @FXML
-    private void AddMemberToGuiild(ActionEvent event) {
-    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-    alert.setHeaderText(null);
-    alert.setTitle("Confirmation");
-    alert.setContentText("Are you sure you want to add " + tblVolunteers.getSelectionModel().getSelectedItem().getFirstName() + " " + tblVolunteers.getSelectionModel().getSelectedItem().getLastName() +" to "+ tblGuilds.getSelectionModel().getSelectedItem().getGuildName());   
-    Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK){
-    GuildVolunteerModel GVmodel = new GuildVolunteerModel(); 
-    getSelectedValues();
-    GVmodel.addMemebertoGuild(VolunteerId,GuildId );
-        System.out.println("GuildId"+GuildId);
-        System.out.println("VolunteerId"+VolunteerId);
+    private void AddMemberToGuiild(ActionEvent event)                                  
+    {                                                                                   
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);                                   
+        alert.setHeaderText(null);                                                                         
+        Stage Iconstage = (Stage) alert.getDialogPane().getScene().getWindow();
+        Iconstage.getIcons().add(new Image("CSS/icon.png"));
+        alert.setTitle("Confirmation");
+        alert.setContentText("Are you sure you want to add " + tblVolunteers.getSelectionModel().getSelectedItem().getFirstName() + " " + tblVolunteers.getSelectionModel().getSelectedItem().getLastName() +" to "+ tblGuilds.getSelectionModel().getSelectedItem().getGuildName());   
+        Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK)
+            {
+                GuildVolunteerModel GVmodel = new GuildVolunteerModel(); 
+                getSelectedValues();
+                GVmodel.addMemebertoGuild(VolunteerId,GuildId );
+                    System.out.println("GuildId"+GuildId);
+                    System.out.println("VolunteerId"+VolunteerId);
     
-    }else{alert.close();}
+            }else{
+                alert.close();}
     }
+    /**
+     * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
+     * If the combo box seted to First Name, Last Name or Guild the method will enable the text field,
+     * and reset the items in the right table view according what is in the text field.
+     * @param event 
+     */
     @FXML
     private void search(KeyEvent event)
     {
         if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
 
-            if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
- 
+            if(searchtype == SearchHandler.SearchType.FIRSTNAME) { 
+                
                     tblVolunteers.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),vm.getlistOfVolunteer(), searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
 
@@ -137,7 +143,10 @@ public class GuildController implements Initializable {
                 }
             }
         }
-    
+    /**
+     * This method sets the serch type according to waht is in the combo box and set the search text field enable to edit.
+     * @param event 
+     */
     @FXML
     private void setSearchType(ActionEvent event)
     {
@@ -157,31 +166,37 @@ public class GuildController implements Initializable {
             txtSearch.setDisable(false);
         }
     }
+    /**
+     * This Method prepare the data to load it in the table view
+     */
     public void ShowInView()
     {
     
-    GuildNameClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
-    colHours.setCellValueFactory(new PropertyValueFactory<>("GuildHours"));
-    FirstNameClm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-    LastNameClm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        GuildNameClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
+        colHours.setCellValueFactory(new PropertyValueFactory<>("GuildHours"));
+        FirstNameClm.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        LastNameClm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
     
     }
-    public void getSelectedValues(){
-    VolunteerId  = tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId();
-    GuildId = tblGuilds.getSelectionModel().getSelectedItem().getGuildId();
+    public void getSelectedValues()
+    {
+        VolunteerId  = tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId();
+        GuildId = tblGuilds.getSelectionModel().getSelectedItem().getGuildId();
     }
-    
+    /**
+     * This Action event method runs when you double click on a guild in the guilds table view.
+     * It will load a new window which is the Guild Details FXML
+     * @param event 
+     */
     @FXML
     private void ClickedOnGuild(MouseEvent event)
     {if(event.isPrimaryButtonDown() && event.getClickCount() == 2) 
-        {
-            
+        {           
             Parent root = null;
             Stage stage = new Stage();
             Stage stage1 = (Stage) tblGuilds.getScene().getWindow();
             try
             {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/GuildDetails.fxml"));
-            GuildDetailsController controller = fxmlLoader.getController();
             GuildDetailsController.setGuild(tblGuilds.getSelectionModel().getSelectedItem());
             
             root = fxmlLoader.load();
@@ -194,15 +209,14 @@ public class GuildController implements Initializable {
             stage.setResizable(false);
             stage.show();
             
-            } catch (IOException ex)
-            {
+            } catch (IOException ex){
                 Logger.getLogger(VolunteersController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-           
-
+                } 
         }
     }
+    /**
+     * This method sets the items in the combobox, where you can choose the search options.
+     */
   public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name", "Guilds");

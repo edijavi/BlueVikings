@@ -180,6 +180,8 @@ public class VolunteersController implements Initializable
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image("CSS/icon.png"));
         alert.setTitle("Confirmation");
         alert.setContentText("Are you sure you want to remove " + allVolTbl.getSelectionModel().getSelectedItem().getFirstName()+ " " + allVolTbl.getSelectionModel().getSelectedItem().getLastName() +" from the system" );
         Optional<ButtonType> result = alert.showAndWait();

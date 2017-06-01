@@ -116,7 +116,7 @@
                         <ComboBox fx:id="cmbHours" prefWidth="120.0" promptText="Hours" />
                      </children>
                   </GridPane>
-                  <Button fx:id="btnLogOut" mnemonicParsing="false" text="Log out" GridPane.rowIndex="2">
+                  <Button fx:id="btnLogOut" mnemonicParsing="false" onAction="#logOutEvent" text="Log out" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></Button>
