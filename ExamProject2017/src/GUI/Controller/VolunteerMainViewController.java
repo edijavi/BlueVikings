@@ -81,40 +81,23 @@ public class VolunteerMainViewController implements Initializable
     private TextField txtSearch;
     
     ObservableList<Guild> listOfGuilds;
-
     
-
-    GuildModel GM = new GuildModel();
-    
-    VolunteerModel VM = new VolunteerModel();
-    GuildVolunteerModel GVM = new GuildVolunteerModel();
     private Guild guild;
-
     private java.util.Date date = new java.util.Date();
-    
-    VolunteerModel vm = new VolunteerModel();
-    
-    GuildModel gm = new GuildModel();
-    
     private SearchHandler.SearchType searchtype;
+    
+    GuildModel GM = new GuildModel();
+    VolunteerModel vm = new VolunteerModel();
+    GuildVolunteerModel GVM = new GuildVolunteerModel();
     
     java.sql.Date timeNow = new Date(Calendar.getInstance().getTimeInMillis());
     
-    
     private String[] weekdays = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-    
 
-
-   
-
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        showguilds();
-        
+        showguilds();        
         guildsTable.setItems(GM.getListOfGuilds());
         setHoursComboItem();
         setSearchComboItem();
@@ -122,10 +105,14 @@ public class VolunteerMainViewController implements Initializable
         setHoursComboItem();
         setSearchComboItem();
         txtSearch.setDisable(true);
-        setDate();
-        
-        
+        setDate(); 
     }
+    /**
+     * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
+     * If the combo box seted to First Name, Last Name or Guild the method will enable the text field,
+     * and reset the items in the right table view according what is in the text field.
+     * @param event 
+     */
     @FXML
     private void search(KeyEvent event)
     {
@@ -141,11 +128,15 @@ public class VolunteerMainViewController implements Initializable
                     volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),GVM.getVolunteersBasedOnGuild(guild), searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
                     
-                    guildsTable.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(),gm.getListOfGuilds(), searchtype)));
+                    guildsTable.setItems(FXCollections.observableArrayList(GM.doSearch(txtSearch.getText(),GM.getListOfGuilds(), searchtype)));
                     
                 }
             }
         }
+    /**
+    * This method sets the serch type according to waht is in the combo box and set the search text field enable to edit.
+    * @param event 
+    */
     @FXML
     private void setSearchType(ActionEvent event)
     {
@@ -165,44 +156,51 @@ public class VolunteerMainViewController implements Initializable
             txtSearch.setDisable(false);
         }
     }
-
+    /**
+     * Prepare the information. (Jesper)
+     */
     public void showguilds()
     {
         guildClm.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
 
     }
-
+    /**
+     * Sets the items in the Search combo box.
+     */
     public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name", "Guilds");
         cmbSearch.setItems(comboItems);
-
     }
-
-    public void setVolunteersBasedOnGuild()
-    {
-        
-    }
-
+    /**    
+     * Sets the items in the Hours combo box.
+     */
     public void setHoursComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("0.5","1","1.5","2","2.5","3","3.5","4","4.5","5","5.5","6","6.5","7","7.5", "8","8.5","9","9.5","10","10.5", "11", "11.5","12","12.5","13","13.5","14","14.5","15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20");
-
         cmbHours.setItems(comboItems);
-
     }
+    /**
+    * This method using 2 int to contain the date and the months and with the date.getDay command we get the day. 
+    * and write the date of today to a label.
+    */
     public void setDate()
     {
     int y = date.getYear()+1900;
     int m = date.getMonth()+1;
     lblDate.setText(weekdays[date.getDay()]+", "+date.getDate()+"-"+m+"-"+y);
     }
-
-    //Taking selected item from combobox and adding into the selected guild
+    /**
+     * If one of the information the Guild, Volunteer or the Hours is empty it will load an allert window that something is missing.
+     * Jesper
+     * Else it will load an other allert window that the save was successfully.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void saveHoursBtn(ActionEvent event) throws IOException
     {   
-        if (guildsTable.getSelectionModel().isEmpty()/*equals(null)*/ || volunteerInGuildTbl.getSelectionModel().isEmpty()/*.getSelectedItem().equals(null)*/ || cmbHours.getSelectionModel().isEmpty()/*equals(null)*/ )
+        if (guildsTable.getSelectionModel().isEmpty() || volunteerInGuildTbl.getSelectionModel().isEmpty() || cmbHours.getSelectionModel().isEmpty()/*equals(null)*/ )
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");
@@ -234,38 +232,36 @@ public class VolunteerMainViewController implements Initializable
             }
         }
 
-        }
-        
+        }       
     }
-
-    
-
+    /**
+     * If you click on a volunteer this Action event will load the hours and the dates of work for the specific volunteer.
+     * @param event 
+     */
     @FXML
-    private void btnWorkAction(MouseEvent event){
-    if(event.isPrimaryButtonDown())
+    private void btnWorkAction(MouseEvent event)
     {
-        lstNameClm.setCellValueFactory(new PropertyValueFactory<>("LastName"));
-        FstNameClm.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
-        
-        
-        
-         
-        volunteerInGuildTbl.setItems(GVM.getVolunteersBasedOnGuild(guildsTable.getSelectionModel().getSelectedItem().getGuildName()));
-        
-    }
+        if(event.isPrimaryButtonDown())
+        {
+            lstNameClm.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+            FstNameClm.setCellValueFactory(new PropertyValueFactory<>("FirstName"));     
+            volunteerInGuildTbl.setItems(GVM.getVolunteersBasedOnGuild(guildsTable.getSelectionModel().getSelectedItem().getGuildName())); 
+        }
 
     }
-
-   
-    
-
+    /**
+     * Closes the program
+     * @param event 
+     */
     @FXML
     private void closeAction (ActionEvent event)
     {
     System.exit(0);
     }
-    
-    
+    /**
+     * Logs out from the program and loads the Login FXML.
+     * @param event 
+     */
     @FXML
     public void logOutEvent(ActionEvent event)
     {

@@ -159,10 +159,9 @@ public void openItem(String url) throws IOException
     paneItem.getChildren().add(itemPane);
 }
 /**
- * This method using 2 int to store the date and the months and with the date.getDay command we get the day. 
+ * This method using 2 int to contain the date and the months and with the date.getDay command we get the day. 
  * and write the date of today to a label.
  */
-
 public void setDate()                                                                  
 {
     int y = date.getYear()+1900;

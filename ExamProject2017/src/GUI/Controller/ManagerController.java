@@ -145,8 +145,8 @@ public class ManagerController implements Initializable
     }
      /**
      * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
-     * If the combo box seted to First Name or Last Name the method will enable the text field,
-     * and reset the items in the right table view according what is in the text field.
+     * If the combo box seted to First Name or Last Name the method will reset the items in the right table view
+     * according what is in the text field.
      * @param event 
      */
     @FXML
@@ -194,9 +194,9 @@ public class ManagerController implements Initializable
 
     }
     /**
-     * This Action Event will runs if you double click on a manager. It will loads the information of the selected manager
-     * inside the new view. If you click on the save button or close the window the items in the table view will be reseted and
-     * show the editid infromation.
+     * When you double click on a item in the tabel view this method will opens a new window to edit it. 
+     * Sets the selected item equals with a variable in the new window's controller.
+     * After you close the window the method will refresh the items in the table view with the override method.
      * @param event 
      */
     @FXML

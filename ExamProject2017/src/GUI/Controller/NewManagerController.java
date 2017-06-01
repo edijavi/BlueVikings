@@ -48,13 +48,21 @@ public class NewManagerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-
-     @FXML
+    /**
+     * Close Action if you click on the close button this method closes the window.
+     * @param event 
+     */
+    @FXML
     private void closeAction(ActionEvent event) {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
         
     }
+    /**
+     * if you click on the save button the method will opens an Information alert window.
+     * That shows you successfully added the new manager to the system.
+     * @param event 
+     */
     @FXML
     public void addManager(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -67,8 +75,7 @@ public class NewManagerController implements Initializable {
         MM.addManager(txtUserName.getText(), txtPassword.getText(), txtFirstName.getText(), txtLastName.getText(), txtEamil.getText(), txtPhone.getText());
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
-    }
-    
+    } 
     }
     
 

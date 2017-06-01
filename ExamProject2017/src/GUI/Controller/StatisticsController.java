@@ -61,23 +61,21 @@ public class StatisticsController implements Initializable
     private TableColumn<?, ?> colHours;
     @FXML
     private TableView<Guild> GuildTbl;
-
-    GuildModel GM = new GuildModel();
-
-    GuildVolunteerWorkModel GVWModel = new GuildVolunteerWorkModel();
-
-    ObservableList<Guild> listOfGuilds;
-
-    ObservableList<GuildVolunteerWork> listOfGuildVolunteerWork;
-
     @FXML
     private DatePicker dpStartDate;
     @FXML
     private DatePicker dpEndDate;
     @FXML
     private TextField txtSearch;
+    
+    GuildModel GM = new GuildModel();
+    GuildVolunteerWorkModel GVWModel = new GuildVolunteerWorkModel();
+
+    ObservableList<Guild> listOfGuilds;
+    ObservableList<GuildVolunteerWork> listOfGuildVolunteerWork;
+
     private SearchType searchtype;
-    GuildModel gm = new GuildModel();
+
    
     
  
@@ -102,6 +100,13 @@ public class StatisticsController implements Initializable
         }
 
     }
+    /**
+     * This event will runs if you click on the downolad button. It will opens an information alert
+     * which says that the download was successfully.
+     * Edwin
+     * @param event
+     * @throws IOException 
+     */
 
     @FXML
     private void DownloadBtn(ActionEvent event) throws IOException
@@ -115,26 +120,35 @@ public class StatisticsController implements Initializable
         alert.show();  
         printToExcel();
     }
-
-
+    /**
+     * Prepares and loads the data to the table view.
+     * @throws IOException 
+     */
     public void ShowGuildInView() throws IOException
-    {
-        
+    {        
         GuildTbl.setItems(GM.getListOfGuilds());
         colGuilds.setCellValueFactory(new PropertyValueFactory<>("GuildName"));
-
     }
 
+     /**
+     * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
+     * It will reset the items in the right table view according what is in the text field.
+     * @param event 
+     */
     @FXML
     private void search(KeyEvent event)
     {
         if ((event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE))
         {
             this.searchtype = SearchHandler.SearchType.GUILD;
-            GuildTbl.setItems(FXCollections.observableArrayList(gm.doSearch(txtSearch.getText(), gm.getListOfGuilds(), searchtype)));
+            GuildTbl.setItems(FXCollections.observableArrayList(GM.doSearch(txtSearch.getText(), GM.getListOfGuilds(), searchtype)));
         }
     }
-
+/**
+ * Edwin or Jesper
+ * @throws IOException
+ * @throws SQLException 
+ */
     public void ShowDateAndHours() throws IOException, SQLException
     {
         if(dpStartDate.getValue() == null || dpEndDate.getValue() == null) {
@@ -168,18 +182,24 @@ public class StatisticsController implements Initializable
         }
     }
     }
-
-
-@FXML
-        private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException
-    {   
-        
+/**
+ * Jesper
+ * @param event
+ * @throws IOException
+ * @throws SQLException 
+ */
+    @FXML
+    private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException
+    {           
         ShowDateAndHours();
         
         System.out.println(listOfGuildVolunteerWork);
-
     }
-public void printToExcel() throws IOException {
+    /**
+     * Edwin
+     * @throws IOException 
+     */
+    public void printToExcel() throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
 
         HSSFSheet spreadsheet = workbook.createSheet("GuildWork");

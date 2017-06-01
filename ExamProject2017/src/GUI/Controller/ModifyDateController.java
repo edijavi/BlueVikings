@@ -32,24 +32,25 @@ import javafx.stage.Stage;
 public class ModifyDateController implements Initializable {
 
 
-private static Volunteer vol;
-private static GuildVolunteerWork GVW;
+    private static Volunteer vol;
+    private static GuildVolunteerWork GVW;
+    
     @FXML
     private Label lblDate;
     @FXML
     private Label lblFirstName;
     @FXML
-    private Label lblLastName;
-  
+    private Label lblLastName; 
     @FXML
     private Button btnModify;
     @FXML
     private Label lblHours;
+    @FXML
+    private ComboBox<String> cmbTime; 
     
     ManagerModel MM = new ManagerModel();
     GuildVolunteerWorkModel GVWM = new GuildVolunteerWorkModel();
-    @FXML
-    private ComboBox<String> cmbTime;
+
     /**
      * Initializes the controller class.
      */
@@ -57,16 +58,26 @@ private static GuildVolunteerWork GVW;
     public void initialize(URL url, ResourceBundle rb) {
         showData();
         setHoursComboItem();
-    }    
+    }   
+    /**
+     * Creates a variable what we use to get the selected item from the other view and load the data of it.
+     * @param gvww 
+     */
     public static void setDate(GuildVolunteerWork gvww)
     {
     GVW=gvww;
     }
-
+    /**
+    * Creates a variable what we use to get the selected item from the other view and load the data of it.
+    * @param voll
+    */
     public static void setVolunteer(Volunteer voll)
     {
     vol=voll;
     }
+    /**
+     * Gets and load the data of the selected item.
+     */
     private void showData()
     {
     String date = String.valueOf(GVW.getDate());
@@ -76,7 +87,9 @@ private static GuildVolunteerWork GVW;
     String hour = String.valueOf(GVW.getHour());
     lblHours.setText(hour);
     }
-    
+    /**
+     * Sets the combo box items.
+     */
     public void setHoursComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("0.5","1","1.5","2","2.5","3","3.5","4","4.5","5","5.5","6","6.5","7","7.5", "8","8.5","9","9.5","10","10.5", "11", "11.5","12","12.5","13","13.5","14","14.5","15","15.5","16","16.5","17","17.5","18","18.5","19","19.5","20");
@@ -84,7 +97,12 @@ private static GuildVolunteerWork GVW;
         cmbTime.setItems(comboItems);
 
     }
-    
+    /**
+     * This Action event runs if you click on the modify button.
+     * Opens an Information alert window which inform you that the modification was successfully.
+     * Jesper
+     * @param event 
+     */
     @FXML
     private void modifyAction(ActionEvent event)
     {

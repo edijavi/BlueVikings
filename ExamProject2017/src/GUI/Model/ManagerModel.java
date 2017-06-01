@@ -42,6 +42,14 @@ public class ManagerModel
     {
         return listOfManagers = FXCollections.observableArrayList(MM1.getManager());
     }
+    /**
+     * References to the search handler.
+     * @param <T>
+     * @param word
+     * @param inWhat
+     * @param type
+     * @return 
+     */
     public <T> List<T> doSearch(String word, List<T> inWhat, SearchHandler.SearchType type) {
         return searchHandler.Search(word, inWhat, type);
     }

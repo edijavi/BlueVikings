@@ -122,8 +122,8 @@ public class GuildController implements Initializable {
     }
     /**
      * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
-     * If the combo box seted to First Name, Last Name or Guild the method will enable the text field,
-     * and reset the items in the right table view according what is in the text field.
+     * If the combo box seted to First Name, Last Name or Guild the method will reset the items in the right table view
+     * according what is in the text field.
      * @param event 
      */
     @FXML
@@ -185,7 +185,8 @@ public class GuildController implements Initializable {
     }
     /**
      * This Action event method runs when you double click on a guild in the guilds table view.
-     * It will load a new window which is the Guild Details FXML
+     * It will load a new window which is the Guild Details FXML and sets the selected item
+     * equals with a variable in the new window's controller.
      * @param event 
      */
     @FXML

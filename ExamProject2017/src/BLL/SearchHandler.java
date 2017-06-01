@@ -12,14 +12,19 @@ import BE.Guild;
 import BE.Manager;
 import DAL.ManagerDataManager;
 
-/**
- *
- * @author boldi
- */
+
 public class SearchHandler {
    public enum SearchType{FIRSTNAME,LASTNAME,GUILD,MANAGERFIRSTNAME,MANAGERLASTNAME,}
    VolunteerManager VM = new VolunteerManager();
    ManagerDataManager MDM = new ManagerDataManager();
+   /**
+    * This method searches the given word in the given list by the selected search type
+    * @param <T> BE object
+    * @param word to search for
+    * @param inWhat list to search in
+    * @param type
+    * @return search results in a list of given BE objects
+    */
    public <T> List <T> Search(String word, List<T> inWhat, SearchType type)
    {
        List <T> filtered = new ArrayList<>();

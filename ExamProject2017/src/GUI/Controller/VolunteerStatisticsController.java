@@ -63,7 +63,9 @@ public class VolunteerStatisticsController implements Initializable
     private TableColumn<?, ?> colDate;
     @FXML
     private TableColumn<?, ?> colHours;
+    
     private SearchType searchtype;
+    
     VolunteerModel vModel = new VolunteerModel();
 
     ObservableList<Volunteer> listOfGuilds;
@@ -81,38 +83,42 @@ public class VolunteerStatisticsController implements Initializable
         setSearchComboItem();
         txtSearch.setDisable(true);
     }
-
+    /**
+     * Prepare, contain in an observableArrayList, and load the data in the table view.
+     */
     public void DisplayVolunteers()
     {
         listOfGuilds = FXCollections.observableArrayList(vModel.getlistOfVolunteer());
         tblVolunteers.setItems(listOfGuilds);
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-
     }
-
+    /**
+    * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
+    * If the combo box seted to First Name or Last Name the method will reset the items in the table view
+    * according what is in the text field.
+    * @param event 
+    */
     @FXML
     private void search(KeyEvent event)
     {
         if (searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE))
         {
-            List<Volunteer> volunteers;
             if (searchtype == SearchHandler.SearchType.FIRSTNAME)
             {
-
-                volunteers = vModel.getlistOfVolunteer();
-                tblVolunteers.setItems(FXCollections.observableArrayList(vModel.doSearch(txtSearch.getText(), volunteers, searchtype)));
+                tblVolunteers.setItems(FXCollections.observableArrayList(vModel.doSearch(txtSearch.getText(), vModel.getlistOfVolunteer(), searchtype)));
 
             } else if (searchtype == SearchHandler.SearchType.LASTNAME)
             {
-
-                volunteers = vModel.getlistOfVolunteer();
-                tblVolunteers.setItems(FXCollections.observableArrayList(vModel.doSearch(txtSearch.getText(), volunteers, searchtype)));
+                tblVolunteers.setItems(FXCollections.observableArrayList(vModel.doSearch(txtSearch.getText(), vModel.getlistOfVolunteer(), searchtype)));
 
             }
         }
     }
-
+    /**
+     * This method sets the serch type according to waht is in the combo box and set the search text field enable to edit.
+     * @param event 
+     */
     @FXML
     private void setSearchType(ActionEvent event)
     {
@@ -127,14 +133,19 @@ public class VolunteerStatisticsController implements Initializable
             txtSearch.setDisable(false);
         }
     }
-
+    /**
+     * Sets the items in the combo box
+     */
     public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name");
         cmbSearch.setItems(comboItems);
-
     }
-
+    /**
+     * Prepare and load the data in the table view.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     private void getVolunteerStatsOnClick(MouseEvent event) throws SQLException
     {
@@ -145,7 +156,12 @@ public class VolunteerStatisticsController implements Initializable
             
         
     }
-
+    /**
+     * When you double click on a item in the tabel view this method will opens a new window to modify it. 
+     * Sets the selected item equals with a variable in the new window's controller.
+     * After you close the window the method will refresh the items in the table view with the override method.
+     * @param event 
+     */
     @FXML
     private void modifyDate(MouseEvent event)
     {
@@ -157,8 +173,7 @@ public class VolunteerStatisticsController implements Initializable
             try
             {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/ModifyDate.fxml"));
-                ModifyDateController controller = fxmlLoader.getController();
-                controller.setVolunteer(tblVolunteers.getSelectionModel().getSelectedItem());
+                ModifyDateController.setVolunteer(tblVolunteers.getSelectionModel().getSelectedItem());
                 ModifyDateController.setDate(tblDatesnHours.getSelectionModel().getSelectedItem());
                 root = fxmlLoader.load();
                 Scene scene = new Scene(root);
@@ -190,7 +205,6 @@ public class VolunteerStatisticsController implements Initializable
                 }
                 }
                 });
-
                 stage.getIcons().add(new Image("CSS/icon.png"));
                 stage.setResizable(false);
                 stage.initModality(Modality.WINDOW_MODAL);

@@ -40,13 +40,8 @@ public class NewVolunteerController implements Initializable {
     private TextField prefGuild1;
     @FXML
     private TextField prefGuild2;
-   
-    ManagerModel MM = new ManagerModel();
-   
     @FXML
     private TextArea AddInfoTxtArea;
-    
-    VolunteerModel vModel = new VolunteerModel();
     @FXML
     private TextField txtFirstName;
     @FXML
@@ -58,7 +53,15 @@ public class NewVolunteerController implements Initializable {
     @FXML
     private TextField txtPhone;
     @FXML
-    private TextField prefGuild3;
+    private TextField prefGuild3;  
+    @FXML
+    private Button saveI;
+    @FXML
+    private ImageView imageV;
+    
+    ManagerModel MM = new ManagerModel();
+     
+    VolunteerModel vModel = new VolunteerModel();
 
     /**
      * Initializes the controller class.
@@ -66,7 +69,13 @@ public class NewVolunteerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    } 
+    }
+    /**
+     * if you click on the save volunter button the method will load an information window that 
+     * you saved the volunteer successfully.
+     * Jesper
+     * @param event 
+     */
     @FXML
     private void saveVolunteerBtb(ActionEvent event)
     {
@@ -83,25 +92,27 @@ public class NewVolunteerController implements Initializable {
         closeStage.close();
         
     }
-
+/**
+ * Jesper
+ * @return 
+ */
     public List<Volunteer> VolunteerList()
     {
-
         return vModel.getlistOfVolunteer();
-
     }
-
+/**
+ * Close button Action, closes the window.
+ * @param event 
+ */
     @FXML
     private void closeAction(ActionEvent event) {
         Stage closeStage = (Stage) btnClose.getScene().getWindow();
         closeStage.close();
     }   
-    
-    @FXML
-    private Button saveI;
-    @FXML
-    private ImageView imageV;
-    
+    /**
+     * Edison
+     * @param event 
+     */  
     @FXML
     private void handleUploadImage(ActionEvent event)
       {

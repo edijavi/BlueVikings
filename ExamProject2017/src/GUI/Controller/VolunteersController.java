@@ -60,45 +60,41 @@ public class VolunteersController implements Initializable
     private Button btnRemoveVol;
     @FXML
     private Button btnEditVol;
-    
-    
-    
-    private Volunteer volunteer;
-
-    VolunteerModel vm = new VolunteerModel();
-    
-    VolunteerDetailsController vdc = new VolunteerDetailsController();
+    @FXML
+    private TextField txtSearch;    
     @FXML
     private TableView<Volunteer> allVolTbl;
     @FXML
-    private ComboBox<String> cmbSearch;
+    private ComboBox<String> cmbSearch;    
     
+    private Volunteer volunteer;
     private SearchType searchtype;
-    @FXML
-    private TextField txtSearch;
     
+    VolunteerModel vm = new VolunteerModel();
+    VolunteerDetailsController vdc = new VolunteerDetailsController();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-        showVolunteer();
-        
+        showVolunteer();       
         allVolTbl.setItems(vm.getlistOfVolunteer());
         setSearchComboItem();
         txtSearch.setDisable(true);
-
     }
-
-
+    /**
+     * Prepare the data to load in the table view
+     */
     public void showVolunteer()
     {
         colFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        
+        colLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));    
     }
+    /**
+     * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
+     * If the combo box seted to First Name or Last Name the method will reset the items in the right table view 
+     * according what is in the text field.
+     * @param event 
+     */
     @FXML
     private void search(KeyEvent event)
     {
@@ -115,6 +111,10 @@ public class VolunteersController implements Initializable
             }
     }
     }
+    /**
+    * This method sets the serch type according to waht is in the combo box and set the search text field enable to edit.
+    * @param event 
+    */
     @FXML
     private void setSearchType(ActionEvent event)
     {
@@ -129,8 +129,13 @@ public class VolunteersController implements Initializable
             txtSearch.setDisable(false);
         }
     }
-
-
+    /**
+     * This Action Event runs if you click on the new volunteer button, it opens a new window where you can add
+     * the information of the new volunteer. After you close the window method will reset the items in the table view
+     * to show the new volunteer.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void addNewVolunteerBtb(ActionEvent event) throws IOException
     {
@@ -173,7 +178,12 @@ public class VolunteersController implements Initializable
 
         }
     }
-
+    /**
+     * If you click on the remove volunteer button a confirmation alert window will opens to make sure 
+     * you really want to delete the selected volunteer.
+     * Jesper
+     * @param event 
+     */
     @FXML
     private void removeVolunteerBtb(ActionEvent event)
     {
@@ -192,7 +202,11 @@ public class VolunteersController implements Initializable
                 allVolTbl.setItems(vm.getlistOfVolunteer());
             }else{alert.close();}
     }
-
+    /**
+     * If you double click on a volunteer in the volunteer table view this method will opens a new window where
+     * you can see the details of the selected volunteer. When the details view closes the method will reset the items in the table view.
+     * @param event 
+     */
     @FXML
     private void ClickedOnVolunteer(MouseEvent event)
     {if(event.isPrimaryButtonDown() && event.getClickCount() == 2) 
@@ -204,8 +218,6 @@ public class VolunteersController implements Initializable
             try
             {FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/GUI/View/VolunteerDetails.fxml"));
             VolunteerDetailsController.setVolunteer(allVolTbl.getSelectionModel().getSelectedItem());
-            VolunteerDetailsController controller = fxmlLoader.getController();
-           // controller.setCurrentVolunteer(allVolTbl.getSelectionModel().getSelectedItem());
             root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -239,14 +251,14 @@ public class VolunteersController implements Initializable
 
         }
     }
+    /**
+     * Sets the items in the combo box.
+     */
       public void setSearchComboItem()
     {
         ObservableList<String> comboItems = FXCollections.observableArrayList("First Name", "Last Name");
         cmbSearch.setItems(comboItems);
 
     }
-
-        
-
 }
 

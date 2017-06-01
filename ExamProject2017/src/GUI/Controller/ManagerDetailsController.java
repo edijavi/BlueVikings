@@ -54,15 +54,19 @@ public class ManagerDetailsController implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
-
         setManagerItems();
     }
-
+    /**
+    * We use this method to get the information of the selected manager from the Manager view and load it here.  
+    * @param mann 
+    */
     public static void setManager(Manager mann)
     {
         man = mann;
     }
-
+    /**
+     * Loads the information to the textfields, and set all the text field disabled.
+     */
     private void setManagerItems()
     {
         txtPassword.setText(man.getPassword());
@@ -76,10 +80,12 @@ public class ManagerDetailsController implements Initializable
         txtLastName.setDisable(true);
         txtUserName.setDisable(true);
         txtPassword.setDisable(true);
-        txtPhone.setDisable(true);
-        
+        txtPhone.setDisable(true);   
     }
-
+    /**
+     * Sets all the text field enable to edit.
+     * @param event 
+     */
     @FXML
     private void editAction(ActionEvent event)
     {
@@ -88,15 +94,16 @@ public class ManagerDetailsController implements Initializable
         txtLastName.setDisable(false);
         txtUserName.setDisable(false);
         txtPassword.setDisable(false);
-        txtPhone.setDisable(false);
-        
+        txtPhone.setDisable(false);      
     }
-
-    
-    
-    
+    /**
+     * This event opens an infromation alert window which inform you that you successfully edited the selected manager.
+     * Jesper
+     * @param event 
+     */
     @FXML
-    public void editManagerEvent(ActionEvent event) {
+    public void editManagerEvent(ActionEvent event) 
+    {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         Stage Iconstage = (Stage) alert.getDialogPane().getScene().getWindow();
@@ -108,11 +115,16 @@ public class ManagerDetailsController implements Initializable
         txtLastName.getText(), txtEmail.getText(), txtPhone.getText(), man.getManagerId());
         
     }
+    /**
+     * Close Action, closes the window.
+     * @param event 
+     */
     @FXML
-    private void closeAction(ActionEvent event) {
+    private void closeAction(ActionEvent event) 
+    {
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
-         }
+    }
 }
 
 
