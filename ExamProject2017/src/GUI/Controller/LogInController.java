@@ -52,11 +52,6 @@ public class LogInController implements Initializable
     @FXML
     private RadioButton rbtnVolunteer;
     @FXML
-    private Button btnLogIn;
-    ToggleGroup group = new ToggleGroup();
-
-    ManagerModel MM = new ManagerModel();
-    @FXML
     private Label warninglbl;
     @FXML
     private AnchorPane anchorPane;
@@ -64,14 +59,18 @@ public class LogInController implements Initializable
     private BorderPane borderPane;
     @FXML
     private GridPane loginGrid;
+    @FXML
+    private Button btnLogIn;
+    
+    ToggleGroup group = new ToggleGroup();
+    
+    AdminModel AM = new AdminModel();
+    ManagerModel MM = new ManagerModel();
 
-    public enum loginType
-    {
-        ADMIN, MANAGER
-    };
+    public enum loginType{ADMIN, MANAGER};
 
     /**
-     * Deavidas !!
+     * Deavidas 
      */
     @Override
     public void initialize(URL url, ResourceBundle rb)
@@ -98,7 +97,7 @@ public class LogInController implements Initializable
         transition1.play();
     }
 
-    AdminModel AM = new AdminModel();
+   
 
     /**
      * This method makes a group for the radio buttons so they can't be marked both at the same time.

@@ -32,7 +32,6 @@ public class GuildModel
     {
         return listOfGuilds = FXCollections.observableArrayList(GM.getGuild());
 
-
     }
 
     public <T> List<T> doSearch(String word, List<T> inWhat, SearchHandler.SearchType type)

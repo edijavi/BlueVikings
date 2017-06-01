@@ -118,13 +118,13 @@ public class VolunteerMainViewController implements Initializable
     {
         if(searchtype != null && (event.getCode().isLetterKey() || event.getCode().isDigitKey() || event.getCode() == KeyCode.BACK_SPACE)) {
 
-            String guild = guildsTable.getSelectionModel().getSelectedItem().getGuildName();
+            
             if(searchtype == SearchHandler.SearchType.FIRSTNAME) {
- 
+                    String guild = guildsTable.getSelectionModel().getSelectedItem().getGuildName();
                     volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),GVM.getVolunteersBasedOnGuild(guild), searchtype)));
                 
                 }else if(searchtype == SearchHandler.SearchType.LASTNAME) {
-                    
+                    String guild = guildsTable.getSelectionModel().getSelectedItem().getGuildName();
                     volunteerInGuildTbl.setItems(FXCollections.observableArrayList(vm.doSearch(txtSearch.getText(),GVM.getVolunteersBasedOnGuild(guild), searchtype)));
                 }else if(searchtype == SearchHandler.SearchType.GUILD) {
                     
