@@ -18,8 +18,11 @@ public class AdminstratorManager
 
     AdminManager AM = new AdminManager();
 
-    // Get a list of Administrators  from DB
-    public ArrayList<Adminstrator> getAdminstrators()
+    /** 
+    @return List of Adminstrators from DB
+    */
+   
+   public ArrayList<Adminstrator> getAdminstrators()
     {
         return AM.getAdminstrators();
 

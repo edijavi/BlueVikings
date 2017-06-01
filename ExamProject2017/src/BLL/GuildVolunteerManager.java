@@ -17,19 +17,30 @@ public class GuildVolunteerManager
 {
 
     GuildVolunteerDataManager GVDM = new GuildVolunteerDataManager();
-// Delete a volunteer from DB, with a specific volunteerId
 
+    /**
+     * Delete a voluntteer from a guild by the volunteerId
+     * @param volunteerId 
+     */
     public void deleteVolunteer(int volunteerId)
     {
         GVDM.deleteVolunteerFromGuild(volunteerId);
     }
-// Add a volunteer based on a volunteerID to a guild based on the chosen guildId
 
+/**
+ * Add a volunteer to  a guild by GuildId and VolunteerId
+ * @param GuildId
+ * @param VolunteerId 
+ */
     public void AddVolunteer(int GuildId, int VolunteerId)
     {
         GVDM.addMemberToGuild(GuildId, VolunteerId);
     }
-
+ /**
+  * 
+  * @param GuildName
+  * @return a list of volunteer based on a guild name 
+  */
     public ArrayList<Volunteer> getVolunteerBasedOnGuild(String GuildName)
     {
         return GVDM.getVolunteerBasedOnGuild(GuildName);

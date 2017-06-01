@@ -122,7 +122,7 @@ public class GuildController implements Initializable {
     }
     /**
      * This method checks the searchtype if null or not, all the characters in the keyboard and the backspace as well.
-     * If the combo box seted to First Name, Last Name or Guild the method will reset the items in the right table view
+     * If the combo box i set to First Name, Last Name or Guild the method will reset the items in the right table view
      * according what is in the text field.
      * @param event 
      */
@@ -178,6 +178,10 @@ public class GuildController implements Initializable {
         LastNameClm.setCellValueFactory(new PropertyValueFactory<>("lastName"));
     
     }
+    /**
+     * This method gets the id of the selected value from the tabelview of Volunteer and guild,
+     * and saves the in two global varibles.
+     */
     public void getSelectedValues()
     {
         VolunteerId  = tblVolunteers.getSelectionModel().getSelectedItem().getVolunteerId();

@@ -86,7 +86,7 @@ public class GuildDetailsController implements Initializable
         lblAllMembers.setText(guildMembers);
     }
     /**
-     * Close the program 
+     * Close the curretn view
      * @param event 
      */
     @FXML
@@ -104,7 +104,7 @@ public class GuildDetailsController implements Initializable
         guild = guildd;
     }
     /**
-     * Prepare the data to load it in the view
+     * Prepare the data to load it in the view.
      */
     public void setGuildMembers()
     {
