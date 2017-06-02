@@ -22,7 +22,10 @@ public class AdminModel
 {
     
     AdminstratorManager AM = new AdminstratorManager();
-    
+    /**
+     * 
+     * @return list of administrator
+     */
     public ArrayList<Adminstrator> getAdminstrators()
     {
         return AM.getAdminstrators();

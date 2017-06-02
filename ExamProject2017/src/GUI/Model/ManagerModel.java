@@ -27,19 +27,28 @@ public class ManagerModel
     private static loginType logintype;
     ObservableList<Manager> listOfManagers;
    
-    
+    /**
+     * 
+     * @param logintype 
+     */
     public void setLogintype(loginType logintype) {
         this.logintype = logintype;
     }
 
     
-    
+    /**
+     * 
+     * @return 
+     */
     public loginType getLogintype() {
         return logintype;
     }
     ManagementManager MM1 = new ManagementManager();
     private SearchHandler searchHandler = new SearchHandler();
-    
+    /**
+     * 
+     * @return 
+     */
     public ObservableList<Manager> getManagers()
     {
         return listOfManagers = FXCollections.observableArrayList(MM1.getManager());
@@ -55,14 +64,35 @@ public class ManagerModel
     public <T> List<T> doSearch(String word, List<T> inWhat, SearchHandler.SearchType type) {
         return searchHandler.Search(word, inWhat, type);
     }
+    /**
+     * edit informaiton about the manger.
+     * @param Username
+     * @param Password
+     * @param Firstname
+     * @param Lastname
+     * @param Email
+     * @param Phone
+     * @param ManagerId 
+     */
     public void editManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone, int ManagerId) {
         MM1.editManager(Username, Password, Firstname, Lastname, Email, Phone, ManagerId);
     }
-    
+    /**
+     * delete a maanger from db based on the manager id.
+     * @param ManagerId 
+     */
     public void deleteManager(int ManagerId) {
          MM1.deleteManager(ManagerId);
     }
-    
+    /**
+     * add a manager to the DB 
+     * @param Username
+     * @param Password
+     * @param Firstname
+     * @param Lastname
+     * @param Email
+     * @param Phone 
+     */
     public void addManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone) {
         MM1.addManager(Username, Password, Firstname, Lastname, Email, Phone);
     }

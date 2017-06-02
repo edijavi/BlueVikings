@@ -26,17 +26,29 @@ public class GuildVolunteerModel
     public GuildVolunteerModel()
     {
     }
-
+/**
+ * add a memeber to a guild
+ * @param GuildId
+ * @param VolunteerId 
+ */
     public void addMemebertoGuild(int GuildId, int VolunteerId)
     {
         GVM.AddVolunteer(GuildId, VolunteerId);
     }
-
+    /**
+     * delete a Member from a guild
+     * @param VolunteerId 
+     */
     public void deleteMemberFromGuild(int VolunteerId)
     {
         GVM.deleteVolunteer(VolunteerId);
 
     }
+    /**
+     * 
+     * @param GuildName
+     * @return volunteers in a guild
+     */
     public ObservableList<Volunteer> getVolunteersBasedOnGuild(String GuildName)
     {
         return listOfVolunteerOnGuild = FXCollections.observableArrayList(GVM.getVolunteerBasedOnGuild(GuildName));
