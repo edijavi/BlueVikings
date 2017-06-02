@@ -5,10 +5,8 @@
  */
 package DAL;
 
-import BE.Guild;
 import BE.GuildVolunteerWork;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

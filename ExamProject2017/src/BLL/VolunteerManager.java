@@ -28,28 +28,56 @@ public class VolunteerManager
     {
 
     }
-
+/**
+ * 
+ * @return a list of volunteer from the database
+ */
     public ArrayList<Volunteer> getVolunteer()
     {
         return VDM.getVolunteer();
     }
 
     
-
+/**
+ * Delete a volunteer from the database based on vollunteer Id
+ * @param volunteerId 
+ */
     public void deleteVolunteer(int volunteerId)
     {
         VDM.deleteVolunteer(volunteerId);
     }
-    // Update the  information about a volunteer in the DB
+    /**
+     * Update information about the volunteer in the DB
+     * @param FirstName
+     * @param LastName
+     * @param Email
+     * @param PhoneNumber
+     * @param Address
+     * @param Additionalinfo
+     * @param VolunteerId 
+     */
     public void updateVolunteer(String FirstName, String LastName, String Email, String PhoneNumber, String Address, String Additionalinfo, int VolunteerId) {
         VDM.updateVolunteer(FirstName, LastName, Email, PhoneNumber, Address, Additionalinfo, VolunteerId);
     }
-    // Add a Volunteer to the DB
+/**
+ * Add a volunteer to the database, with indformation
+ * @param firstName
+ * @param lastName
+ * @param Email
+ * @param phoneNumber
+ * @param Address
+ * @param additionalInfo 
+ */
     public void AddVolunteer(String firstName, String lastName, String Email, String phoneNumber, String Address, String additionalInfo)
     {
         VDM.addVolunteer(firstName, lastName, Email, phoneNumber, Address, additionalInfo);
     }
-    //Get the work a volunteer has registeret by volunteerID
+/**
+ * 
+ * @param VolunteerId
+ * @return a list of volunteer from the database
+ * @throws SQLException 
+ */
     public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLException {
         return VDM.getVolunteerWork(VolunteerId);
     }

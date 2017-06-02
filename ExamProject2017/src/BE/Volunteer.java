@@ -33,97 +33,112 @@ public class Volunteer
 
     }
 
-    public String getImage()
-    {
-        return image;
-    }
-
-    public void setImage(String image)
-    {
-        this.image = image;
-    }
     
-    
+    /**
+     *
+     * @return additional informaiton about a volunteer
+     */
     public String getAdditionalInfo()
     {
         return additionalInfo;
     }
-
+    /**
+     * Set the additional information about a volunteer
+     * @param additionalInfo 
+     */
     public void setAdditionalInfo(String additionalInfo)
     {
         this.additionalInfo = additionalInfo;
     }
 
     
-
+/**
+ * 
+ * @return the first name of a volunteer
+ */
     public String getFirstName()
     {
         return firstName;
     }
-
+/**
+ * set the first name of a volunteer
+ * @param firstName 
+ */
     public void setFirstName(String firstName)
     {
         this.firstName = firstName;
     }
-
+/**
+ * 
+ * @return the last name of a volunteer
+ */
     public String getLastName()
     {
         return lastName;
     }
-
+/**
+ * set the last name of a volunteer
+ * @param lastName 
+ */
     public void setLastName(String lastName)
     {
         this.lastName = lastName;
     }
-
+/**
+ * 
+ * @return id of a volunteer
+ */
     public int getVolunteerId()
     {
         return VolunteerId;
     }
-
-    public void setVolunteerId(int VolunteerId)
-    {
-        this.VolunteerId = VolunteerId;
-    }
-
+/**
+ * 
+ * @return  the phone number of a volunteer
+ */
     public String getPhoneNumber()
     {
         return phoneNumber;
     }
-
+/**
+ * set hte phone number of a volunteer
+ * @param phoneNumber 
+ */
     public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
     }
-
+/**
+ * 
+ * @return the email of a volunteer
+ */
     public String getEmail()
     {
         return Email;
     }
-
+/**
+ * set the Email of a volunteer
+ * @param Email 
+ */
     public void setEmail(String Email)
     {
         this.Email = Email;
     }
-
+/**
+ * 
+ * @return the address of a volunteer 
+ */
     public String getAddress()
     {
         return Address;
     }
-
+/**
+ * set the address of a volunteer
+ * @param Address 
+ */
     public void setAddress(String Address)
     {
         this.Address = Address;
-    }
-
-    public int getVolunteerHours()
-    {
-        return VolunteerHours;
-    }
-
-    public void setVolunteerHours(int VolunteerHours)
-    {
-        this.VolunteerHours = VolunteerHours;
     }
 
     @Override

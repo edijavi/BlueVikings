@@ -21,13 +21,19 @@ this.GuildId = GuildId;
 this.VolunteerId = VolunteerId;
     
 }
-
+    /**
+     * 
+     * @return the guild id
+     */
     public int getGuildId() {
         return GuildId;
     }
 
    
-
+    /**
+     * 
+     * @return The volunteer Id
+     */
     public int getVolunteerId() {
         return VolunteerId;
     }

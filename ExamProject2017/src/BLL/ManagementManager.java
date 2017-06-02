@@ -17,21 +17,45 @@ public class ManagementManager
 {
 
     ManagerDataManager MDM = new ManagerDataManager();
-// Get a list of Manager from DB
+
+    /**
+     * 
+     * @return a list of manager from DB
+     */
     public ArrayList<Manager> getManager()
     {
         return MDM.getManager();
     }
-    //Makes it possible to change information about a Manager
+    /**
+     * Make is possible to change information about the manager
+     * @param Username
+     * @param Password
+     * @param Firstname
+     * @param Lastname
+     * @param Email
+     * @param Phone
+     * @param ManagerId 
+     */
     public void editManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone, int ManagerId) {
         MDM.editManager(Username, Password, Firstname, Lastname, Email, Phone, ManagerId);
     }
-    // deletes a manager from database based on managerId
+    /**
+     * Delete a manager based on  the id
+     * @param ManagerId 
+     */
      public void deleteManager(int ManagerId) {
          MDM.deleteManager(ManagerId);
      }
-    // Add a Manager to the database
-    public void addManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone) {
+/**
+ * Add a maanger to the database
+ * @param Username
+ * @param Password
+ * @param Firstname
+ * @param Lastname
+ * @param Email
+ * @param Phone 
+ */
+     public void addManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone) {
         MDM.addManager(Username, Password, Firstname, Lastname, Email, Phone);
     }
 }
