@@ -37,10 +37,6 @@ public class NewVolunteerController implements Initializable {
     @FXML
     private Button btnClose;
     @FXML
-    private TextField prefGuild1;
-    @FXML
-    private TextField prefGuild2;
-    @FXML
     private TextArea AddInfoTxtArea;
     @FXML
     private TextField txtFirstName;

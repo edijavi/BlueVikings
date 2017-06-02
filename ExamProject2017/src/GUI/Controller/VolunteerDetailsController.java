@@ -141,14 +141,12 @@ public class VolunteerDetailsController implements Initializable
         firstName.setText(vol.getFirstName());
         lastName.setText(vol.getLastName());
         PhoneNumber.setText(vol.getPhoneNumber());
+        AddInfoTxtArea.setText(vol.getAdditionalInfo());
         EmailAddress.setDisable(true);
         Address.setDisable(true);
         firstName.setDisable(true);
         lastName.setDisable(true);
         PhoneNumber.setDisable(true);
-        prefGuild1.setDisable(true);
-        prefGuild2.setDisable(true);
-        prefGuild3.setDisable(true);
         AddInfoTxtArea.setDisable(true);
     }
    /**
@@ -171,9 +169,6 @@ public class VolunteerDetailsController implements Initializable
     firstName.setDisable(false);
     lastName.setDisable(false);
     PhoneNumber.setDisable(false);
-    prefGuild1.setDisable(false);
-    prefGuild2.setDisable(false);
-    prefGuild3.setDisable(false);
     AddInfoTxtArea.setDisable(false);
     }       
 }
