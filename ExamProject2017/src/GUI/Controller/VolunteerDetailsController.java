@@ -24,8 +24,9 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author boldi
  */
 public class VolunteerDetailsController implements Initializable
 {
@@ -86,7 +87,8 @@ public class VolunteerDetailsController implements Initializable
     }
     /**
      * Opens an Information alert window which says that you successfully edited the selected volunteer.
-     * Jesper
+     * UPDATES the information about a specific volunteer to whatever is changed in the textfields.
+     * Closes.
      * @param event 
      */
     @FXML

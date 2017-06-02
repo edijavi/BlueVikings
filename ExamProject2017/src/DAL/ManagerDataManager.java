@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAL;
 
 import BE.Manager;
@@ -16,11 +12,18 @@ import java.util.ArrayList;
 
 /**
  *
- * @author EdwinSilva
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
  */
+
 public class ManagerDataManager {
     ConnectionManager CM = new ConnectionManager();
     
+    /**
+     * 
+     * @return list of Managers
+     */
     public ArrayList<Manager> getManager() {
         try (Connection con = CM.getConnection()) {
             String query = "SELECT * FROM [Management]";
@@ -57,6 +60,16 @@ public class ManagerDataManager {
             return null;
         }
     }
+    
+    /**
+     * Adds a manager based on all the parameters
+     * @param Username
+     * @param Password
+     * @param Firstname
+     * @param Lastname
+     * @param Email
+     * @param Phone 
+     */
     public void addManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone)
     {
 
@@ -82,7 +95,16 @@ public class ManagerDataManager {
             System.err.println(sqle);
         }
     }
-    
+    /**
+     * Updates Manager based on ManagerId
+     * @param Username
+     * @param Password
+     * @param Firstname
+     * @param Lastname
+     * @param Email
+     * @param Phone
+     * @param ManagerId 
+     */
     public void editManager(String Username, String Password, String Firstname, String Lastname, String Email, String Phone, int ManagerId) {
         try(Connection con = CM.getConnection()) 
         {
@@ -104,7 +126,10 @@ public class ManagerDataManager {
         }
     }
     
-    
+    /**
+     * Delete a manager based on ManagerId
+     * @param ManagerId 
+     */
     public void deleteManager(int ManagerId)
     {
 

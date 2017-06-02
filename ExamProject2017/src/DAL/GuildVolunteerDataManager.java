@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAL;
 
 import BE.Guild;
@@ -15,7 +10,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author EdwinSilva
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper
+ * Enemark, Edison J. Lamar Toapanta
+ *
  */
 public class GuildVolunteerDataManager
 {
@@ -29,6 +26,10 @@ public class GuildVolunteerDataManager
         CM = new ConnectionManager();
     }
 
+    /**
+     * INSERTING member and guild into a table to add a member to guild
+     *
+     */
     public void addMemberToGuild(int VolunteerId, int GuildId)
     {
         try (Connection con = CM.getConnection())
@@ -47,7 +48,11 @@ public class GuildVolunteerDataManager
             System.err.println(sqle);
         }
     }
-    
+
+    /**
+     *
+     * @returns volunteers based on their guild by inner joins, retrieving data from volunteers
+     */
     public ArrayList<Volunteer> getVolunteerBasedOnGuild(String GuildName)
     {
 
@@ -93,6 +98,10 @@ public class GuildVolunteerDataManager
 
     }
 
+    /**
+     * 
+     * @param volunteerId , Deletes volunteer from guild based on volunteer
+     */
     public void deleteVolunteerFromGuild(int volunteerId)
     {
 

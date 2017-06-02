@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAL;
 
 import BE.Guild;
@@ -17,10 +13,11 @@ import java.util.ArrayList;
 import java.sql.Date;
 
 
-
 /**
  *
- * @author EdwinSilva
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
  */
 public class GuildDataManager {
 
@@ -81,8 +78,11 @@ public class GuildDataManager {
         }
 
     }
-    
-    public void addVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId) {
+    /**
+ * 
+ * INSERTs GuildVolunterWork, 4 parameters required
+ */
+    public void addGuildVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId) {
         {
 
         try (Connection con = CM.getConnection())

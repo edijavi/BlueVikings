@@ -35,11 +35,16 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 
+
+
+
 /**
- * FXML Controller class
  *
- * @author boldi
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ * FXML Controller class
  */
+
 public class LogInController implements Initializable
 {
 
@@ -132,7 +137,8 @@ public class LogInController implements Initializable
         }
     }
     /**
-     * Jesper !!
+     * This method compares the entity's username with the text from the textfield
+     * And if it returns true it opens a new view.
      */
     public void AdminLogin()
     {
@@ -199,7 +205,8 @@ public class LogInController implements Initializable
         }
     }
     /**
-     * Jesper!!
+     * This method compares the entity's username with the text from the textfield
+     * And if it returns true it opens a new view.
      */
     public void managerLogIn()
     {
@@ -208,7 +215,7 @@ public class LogInController implements Initializable
             List<Manager> managers = MM.getManagers();
             for (Manager ma : managers) {
 
-                //Manager ma = managers.get(i);
+                
 
                 if (txtFieldUserName.getText().equals(ma.getUsername().trim())
                         && pwField.getText().equals(ma.getPassword().trim()))

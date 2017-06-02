@@ -17,7 +17,9 @@ import javafx.collections.ObservableList;
 
 /**
  *
- * @author EdwinSilva
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
  */
 public class GuildModel
 {
@@ -53,7 +55,7 @@ public class GuildModel
 
     public void addVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId)
     {
-        GM.addVolunteerWork(date, Hour, GuildId, VolunteerId);
+        GM.addGuildVolunteerWork(date, Hour, GuildId, VolunteerId);
     }
 
 }

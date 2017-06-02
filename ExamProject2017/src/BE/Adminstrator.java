@@ -1,5 +1,10 @@
 package BE;
-
+/**
+ *
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
+ */
 public class Adminstrator {
 
 private String Username;

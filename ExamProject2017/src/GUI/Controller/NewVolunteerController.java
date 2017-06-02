@@ -25,9 +25,11 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author boldi
  */
+
 public class NewVolunteerController implements Initializable {
 
     @FXML
@@ -71,7 +73,8 @@ public class NewVolunteerController implements Initializable {
     /**
      * if you click on the save volunter button the method will load an information window that 
      * you saved the volunteer successfully.
-     * Jesper
+     * Afterward the system is getting a method from DAL allowing to INSERT a new entity into the table in database, strings are needed.
+     * Closes program
      * @param event 
      */
     @FXML
@@ -90,14 +93,7 @@ public class NewVolunteerController implements Initializable {
         closeStage.close();
         
     }
-/**
- * Jesper
- * @return 
- */
-    public List<Volunteer> VolunteerList()
-    {
-        return vModel.getlistOfVolunteer();
-    }
+
 /**
  * Close button Action, closes the window.
  * @param event 

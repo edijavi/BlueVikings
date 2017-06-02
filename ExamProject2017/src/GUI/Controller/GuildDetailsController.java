@@ -32,9 +32,12 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
- *
- * @author Jesper Enemark
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ * 
  */
+  
+
 public class GuildDetailsController implements Initializable
 {
 

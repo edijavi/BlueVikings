@@ -19,7 +19,9 @@ import javafx.scene.control.DatePicker;
 
 /**
  *
- * @author EdwinSilva
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
  */
 public class GuildVolunteerWorkModel
 {

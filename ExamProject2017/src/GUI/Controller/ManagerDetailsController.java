@@ -22,8 +22,9 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author boldi
  */
 public class ManagerDetailsController implements Initializable
 {
@@ -98,7 +99,8 @@ public class ManagerDetailsController implements Initializable
     }
     /**
      * This event opens an infromation alert window which inform you that you successfully edited the selected manager.
-     * Jesper
+     * And More importantly it UPDATES values in the database based on which of the textfields has been changed, so every textfield that has
+     * been changed changes the value in the database
      * @param event 
      */
     @FXML

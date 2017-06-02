@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package BLL;
 
 import BE.Guild;
@@ -15,7 +11,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author EdwinSilva
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
  */
 public class GuildManager
 {
@@ -39,8 +37,8 @@ public class GuildManager
         GDM.updateGuildHours(GuildHours, GuildId);
     }
     
-    public void addVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId) {
-        GDM.addVolunteerWork(date, Hour, GuildId, VolunteerId);
+    public void addGuildVolunteerWork(Date date, double Hour, int GuildId, int VolunteerId) {
+        GDM.addGuildVolunteerWork(date, Hour, GuildId, VolunteerId);
     }
     
     

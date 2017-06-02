@@ -19,8 +19,9 @@ import javafx.stage.Stage;
 
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author boldi
  */
 public class NewManagerController implements Initializable {
 

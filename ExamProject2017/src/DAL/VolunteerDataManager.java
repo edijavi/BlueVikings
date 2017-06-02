@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAL;
 
 import BE.GuildVolunteerWork;
@@ -19,7 +15,9 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author EdwinSilva
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
  */
 public class VolunteerDataManager
 {
@@ -34,7 +32,15 @@ public class VolunteerDataManager
     {
         CM = new ConnectionManager();
     }
-
+    /**
+     * Add volunteer based on all the paramters
+     * @param firstName
+     * @param lastName
+     * @param Email
+     * @param PhoneNumber
+     * @param Address
+     * @param additionalInfo 
+     */
     public void addVolunteer(String firstName, String lastName, String Email, String PhoneNumber, String Address, String additionalInfo)
     {
 
@@ -63,7 +69,16 @@ public class VolunteerDataManager
     
     
     
-    
+    /**
+     * Updates volunteer based on parameters
+     * @param FirstName
+     * @param LastName
+     * @param Email
+     * @param PhoneNumber
+     * @param Address
+     * @param Additionalinfo
+     * @param VolunteerId 
+     */
     public void updateVolunteer(String FirstName, String LastName, String Email, String PhoneNumber, String Address, String Additionalinfo, int VolunteerId)
     {
         try (Connection con = CM.getConnection())
@@ -86,7 +101,10 @@ public class VolunteerDataManager
             Logger.getLogger(VolunteerDataManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /**
+     * Deletes volunteer based on VolunteerId
+     * @param volunteerId 
+     */
     public void deleteVolunteer(int volunteerId)
     {
 
@@ -104,7 +122,10 @@ public class VolunteerDataManager
 
         }
     }
-
+    /**
+     * 
+     * @return list of Volunteers
+     */
     public ArrayList<Volunteer> getVolunteer()
     {
         try (Connection con = CM.getConnection())
@@ -148,7 +169,13 @@ public class VolunteerDataManager
     }
 
     
-
+    /**
+     * Gets VolunteerWork based on VolunteerId
+     * @param VolunteerId
+     * @return
+     * @throws SQLServerException
+     * @throws SQLException 
+     */
     public ArrayList<GuildVolunteerWork> getVolunteerWork(int VolunteerId) throws SQLServerException, SQLException
     {
         try (Connection con = CM.getConnection())

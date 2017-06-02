@@ -46,11 +46,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author EdwinSilva
  */
 public class VolunteerMainViewController implements Initializable
 {
@@ -99,9 +99,6 @@ public class VolunteerMainViewController implements Initializable
     {
         showguilds();        
         guildsTable.setItems(GM.getListOfGuilds());
-        setHoursComboItem();
-        setSearchComboItem();
-        System.out.println(listOfGuilds);
         setHoursComboItem();
         setSearchComboItem();
         txtSearch.setDisable(true);
@@ -157,7 +154,7 @@ public class VolunteerMainViewController implements Initializable
         }
     }
     /**
-     * Prepare the information. (Jesper)
+     * Setting cell from guildClm to the GuildName property.
      */
     public void showguilds()
     {
@@ -192,15 +189,16 @@ public class VolunteerMainViewController implements Initializable
     }
     /**
      * If one of the information the Guild, Volunteer or the Hours is empty it will load an allert window that something is missing.
-     * Jesper
-     * Else it will load an other allert window that the save was successfully.
+     * 
+     * Else it will go thorugh the list of guilds and pick out the one selected then it loads an other allert window that the save was successfully.
+     * Furthermore a string is converted into a double and 
      * @param event
      * @throws IOException 
      */
     @FXML
     private void saveHoursBtn(ActionEvent event) throws IOException
     {   
-        if (guildsTable.getSelectionModel().isEmpty() || volunteerInGuildTbl.getSelectionModel().isEmpty() || cmbHours.getSelectionModel().isEmpty()/*equals(null)*/ )
+        if (guildsTable.getSelectionModel().isEmpty() || volunteerInGuildTbl.getSelectionModel().isEmpty() || cmbHours.getSelectionModel().isEmpty() )
         {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error");

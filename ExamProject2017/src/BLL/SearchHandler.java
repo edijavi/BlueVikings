@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package BLL;
 
 import java.util.ArrayList;
@@ -12,7 +8,12 @@ import BE.Guild;
 import BE.Manager;
 import DAL.ManagerDataManager;
 
-
+/**
+ *
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
+ */
 public class SearchHandler {
    public enum SearchType{FIRSTNAME,LASTNAME,GUILD,MANAGERFIRSTNAME,MANAGERLASTNAME,}
    VolunteerManager VM = new VolunteerManager();

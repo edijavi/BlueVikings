@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAL;
 
 import BE.GuildVolunteerWork;
@@ -17,7 +13,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author EdwinSilva
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
  */
 public class GuildVolunteerWorkDataManager
 {
@@ -66,7 +64,14 @@ public class GuildVolunteerWorkDataManager
 
     }
 
-    // +"And between Date" + startDate +  "AND" + endDate + "";
+    /**
+     * Adds Work to GuildVolunteerWork table based on the 4 parameters
+     * @param Date
+     * @param Hour
+     * @param GuildId
+     * @param VolunteerId 
+     * 
+     */
     public void addVolunteerWork(Date Date, double Hour, int GuildId, int VolunteerId)
     {
         {
@@ -90,7 +95,11 @@ public class GuildVolunteerWorkDataManager
             }
         }
     }
-    
+    /**
+     * Updates information about Hours on Work table baesd on WorkId
+     * @param hours
+     * @param WorkId 
+     */
     public void editHourOnWork(double hours, int WorkId) {
         try(Connection con = CM.getConnection())
         {

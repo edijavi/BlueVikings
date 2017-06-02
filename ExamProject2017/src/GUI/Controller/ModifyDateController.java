@@ -23,10 +23,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+ 
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author boldi
  */
 
 public class ModifyDateController implements Initializable {
@@ -100,7 +102,8 @@ public class ModifyDateController implements Initializable {
     /**
      * This Action event runs if you click on the modify button.
      * Opens an Information alert window which inform you that the modification was successfully.
-     * Jesper
+     * Afterwards a string is being parsed into a double, next it is UPDATING the hour value from WorkTable based on WorkId.
+     * Lastly it is closing the stage.
      * @param event 
      */
     @FXML

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAL;
 
 import BE.Adminstrator;
@@ -15,7 +11,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Jesper Enemark
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
  */
 public class AdminManager
 {
@@ -26,7 +24,10 @@ public class AdminManager
     {
         CM = new ConnectionManager();
     }
-
+/**
+ * 
+ * @returns Adminstrators from the Adminstrator table from database, retrieving username and password
+ */
     public ArrayList<Adminstrator> getAdminstrators()
     {
         try (Connection con = CM.getConnection())

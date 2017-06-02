@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI.Controller;
 
 import java.io.IOException;
@@ -22,11 +18,18 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+/**
+ *
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
+ *
+ */
+
 
 /**
  * FXML Controller class
  * Import the FXML items creates a date variable and String with the weekdays
- * @author boldi
+ * 
  */
 public class AdminMainViewController implements Initializable {
 

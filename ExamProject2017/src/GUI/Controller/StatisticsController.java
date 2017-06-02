@@ -42,8 +42,9 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author boldi
  */
 public class StatisticsController implements Initializable
 {
@@ -80,7 +81,7 @@ public class StatisticsController implements Initializable
     
  
 
-// Fordi den snakker med database? 
+
     /**
      * Initializes the controller class.
      *
@@ -145,7 +146,8 @@ public class StatisticsController implements Initializable
         }
     }
 /**
- * Edwin or Jesper
+ * If the datepickers are empty it goes through list of guilds and picks the object that is equal to what is selected
+ * Then it is displaying the work from before the program was made a 13 years into the future based on the guildId
  * @throws IOException
  * @throws SQLException 
  */
@@ -183,17 +185,18 @@ public class StatisticsController implements Initializable
     }
     }
 /**
- * Jesper
+ * 
  * @param event
  * @throws IOException
  * @throws SQLException 
+ * Initializes ShowDateAndHours
  */
     @FXML
     private void getGuildStatsOnClick(MouseEvent event) throws IOException, SQLException
     {           
         ShowDateAndHours();
         
-        System.out.println(listOfGuildVolunteerWork);
+        
     }
     /**
      * Edwin

@@ -44,8 +44,9 @@ import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author boldi
  */
 public class ManagerController implements Initializable
 {
@@ -250,7 +251,8 @@ public class ManagerController implements Initializable
         }
     }
     /**
-     * Jesper
+     * This method deletes a manager from the system when the button OK is pressed in the alert dialog box
+     * and afterwards setting a shortend list of managers to the tableview 
      * @param event 
      */
     @FXML

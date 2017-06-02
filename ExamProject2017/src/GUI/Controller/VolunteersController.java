@@ -44,8 +44,9 @@ import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
+ * @authors Boldizsár Koppány, Deividas Tamošiūnas, Edwin Mhoy Silva, Jesper Enemark,
+ * Edison J. Lamar Toapanta
  *
- * @author boldi
  */
 public class VolunteersController implements Initializable
 {
@@ -181,7 +182,8 @@ public class VolunteersController implements Initializable
     /**
      * If you click on the remove volunteer button a confirmation alert window will opens to make sure 
      * you really want to delete the selected volunteer.
-     * Jesper
+     * Deletes the volunteer based on the volunteerId selected, refresh list of volunteers.
+     * closed.
      * @param event 
      */
     @FXML
