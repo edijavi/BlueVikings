@@ -14,15 +14,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import GUI.Model.VolunteerModel;
-import java.io.File;
 import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 /**
@@ -176,23 +173,5 @@ public class VolunteerDetailsController implements Initializable
     prefGuild2.setDisable(false);
     prefGuild3.setDisable(false);
     AddInfoTxtArea.setDisable(false);
-    }
-    /**
-     * Edison
-     * @param event 
-     */
-    @FXML
-    private void handleUploadImage(ActionEvent event)
-      {
-        FileChooser fileChooser = new FileChooser();
-
-        fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Image Files", "*.JPG", "*.jpg", "*.png", "*.JPEG", "*.jpeg"));
-        File file = fileChooser.showOpenDialog(null);
-        if (file != null)
-        {
-            Image image = new Image(file.toURI().toString());
-            imageV.setImage(image);
-        }
-      }
-        
+    }       
 }
