@@ -36,40 +36,37 @@ public class GuildVolunteerWork
         return WorkId;
     }
 
-<<<<<<< Upstream, based on origin/master
+
     
 
    /**
     * 
     * @return The Guild Id
     */
-=======
->>>>>>> f037fba Added test class and javaDoc implemented - Jesper
+
     public int getGuildId()
     {
         return GuildId;
     }
 
-<<<<<<< Upstream, based on origin/master
+
   
     /**
      * 
      * @return return the volunteerId 
      */
-=======
->>>>>>> f037fba Added test class and javaDoc implemented - Jesper
+
     public int getVolunteerId()
     {
         return VolunteerId;
     }
 
-<<<<<<< Upstream, based on origin/master
+
    /**
     * 
     * @return return the date for work days 
     */
-=======
->>>>>>> f037fba Added test class and javaDoc implemented - Jesper
+
     public Date getDate()
     {
         return date;
